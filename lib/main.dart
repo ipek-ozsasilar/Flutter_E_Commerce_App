@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_e_commerce_app/gen/assets.gen.dart';
+import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +33,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
     
       );
   }
 }
+
+
