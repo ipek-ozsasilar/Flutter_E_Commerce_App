@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_e_commerce_app/core/injection_manager.dart';
 import 'package:flutter_e_commerce_app/gen/assets.gen.dart';
 import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 void main() {
+  setupLocator();
   runApp(const MyApp());
 }
 
