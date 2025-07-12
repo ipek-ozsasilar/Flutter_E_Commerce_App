@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="sizzling_red">#F83758</color>
+    <color name="light_background">#FFFFFF</color>
+    <color name="bold_black">#000000</color>
+    <color name="splash_ultimate_grey_text">#A8A8A9</color>
+    <color name="login_input_hint_text">#676767</color>
+    <color name="login_input_icons_grey">#626262</color>
+    <color name="login_shadow_mountain">#575757</color>
+</resources>

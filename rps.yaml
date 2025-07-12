@@ -1,0 +1,24 @@
+scripts:
+  reset:
+    description: Clean & get packages
+    run: flutter clean && flutter pub get
+
+  clean:
+    description: Flutter clean
+    run: flutter clean
+
+  pub_get:
+    description: Flutter pub get
+    run: flutter pub get
+
+  run_app:
+    description: Run Flutter app
+    run: flutter run
+
+  build_all:
+    description: Clean, get, generate all
+    run: flutter clean && flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
+
+  gen_flutter:
+    description: Generate FlutterGen assets & color files
+    run: flutter pub run build_runner build --delete-conflicting-outputs 
