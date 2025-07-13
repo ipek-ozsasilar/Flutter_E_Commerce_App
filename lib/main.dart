@@ -1,12 +1,21 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app/core/injection_manager.dart';
-import 'package:flutter_e_commerce_app/gen/assets.gen.dart';
-import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
+import 'package:flutter_e_commerce_app/product/initializer/app_initiliazer.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-void main() {
-  setupLocator();
-  runApp(const MyApp());
+Future<void> main() async {
+  //Start get it injection of app
+    setupLocator();
+  //before starting the app, we need to initialize the app
+  await getIt<AppInitiliazer>().init();
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [Locale('en'), Locale('tr')],
+      path: 'assets/translations', 
+      fallbackLocale: const Locale('en'),
+      child: const MyApp(),
+    ),);
 }
 
 class MyApp extends StatelessWidget {
@@ -52,4 +61,13 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
+//context.setLocale(Locale('tr')) dediğinde yalnızca .tr() ile çağırdığın stringleri çevirir.
+    //Text("Welcome") gibi sabit yazılar çevirilmez.
+    //en ve tr json dosyalarını olıstur
+    //en.json'u master dosya olarak kullan
+    //Tüm stringleri buraya yaz.
+
+//tr.json'u manuel ya da Google Translate yardımıyla güncelle.
+
+//locale_keys.g.dart üretimini easy_localization_generator ile yap.
 
