@@ -44,3 +44,15 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Android configuration files
+android/app/google-services.json
+
+# iOS configuration files
+ios/Runner/Info.plist
+
+# macOS configuration files
+macos/Runner/Info.plist
+
+# Firebase configuration files
+lib/firebase_options.dart

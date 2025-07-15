@@ -71,3 +71,19 @@ class _MyHomePageState extends State<MyHomePage> {
 
 //locale_keys.g.dart üretimini easy_localization_generator ile yap.
 
+//Platform  Firebase App Id
+//web       1:631494873953:web:2ef1fcc478816fc6e2ab20
+//android   1:631494873953:android:677598bd67a9886be2ab20
+//ios       1:631494873953:ios:659ff6e528ab4f97e2ab20
+//macos     1:631494873953:ios:659ff6e528ab4f97e2ab20
+//windows   1:631494873953:web:46cae53726e17bb6e2ab20
+
+//Evet, iOS için GoogleService-Info.plist dosyasını siz manuel olarak indirmeniz gerekiyor. Firebase Console otomatik olarak tüm platform dosyalarını indirmiyor.
+//iOS Konfigürasyon Dosyasını İndirmek İçin:
+//Firebase Console'a gidin: https://console.firebase.google.com
+//Projenizi seçin: flutter-e-commerce-app-7b592
+//Proje ayarlarına gidin: ⚙️ simgesine tıklayın
+//"Your apps" bölümünde iOS uygulamanızı bulun
+//"GoogleService-Info.plist" butonuna tıklayın ve dosyayı indirin
+//İndirdikten Sonra:
+//Dosyayı ios/Runner/ klasörüne koymanız gerekiyor:
