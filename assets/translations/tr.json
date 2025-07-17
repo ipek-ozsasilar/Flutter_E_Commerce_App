@@ -25,5 +25,8 @@
     "forgotPasswordDetail": "* Yeni şifrenizi ayarlamak veya sıfırlamak için size mesaj göndereceğiz",
     "submit": "Gönder",
     "createAnAccountDetail": "Kayıt butonuna tıklayarak, halka açık teklifi kabul etmiş olursunuz",
-    "createAccount": "Hesap Oluştur"
+    "createAccount": "Hesap Oluştur",
+    "requiredUpdate": "Güncelleme Gerekiyor",
+    "youNeedToUpdateTheApplication": "Uygulamayı güncellemeniz gerekiyor",
+    "ok": "Tamam"
 }

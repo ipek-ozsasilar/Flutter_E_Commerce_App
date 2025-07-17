@@ -4,4 +4,4 @@ targets:
       json_serializable:
         generate_for:
           include:
-            - lib/models/**_models.dart
+            - lib/models/**_model.dart

@@ -25,5 +25,8 @@
     "forgotPasswordDetail": "* We will send you a message to set or reset your new password",
     "submit": "Submit",
     "createAnAccountDetail": "By clicking the Register button, you agree to the public offer",
-    "createAccount": "Create Account"
+    "createAccount": "Create Account",
+    "requiredUpdate": "Required Update",
+    "youNeedToUpdateTheApplication": "You need to update the application",
+    "ok": "OK"
 }

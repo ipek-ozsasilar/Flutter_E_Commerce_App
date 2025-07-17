@@ -30,5 +30,8 @@ abstract class  LocaleKeys {
   static const submit = 'submit';
   static const createAnAccountDetail = 'createAnAccountDetail';
   static const createAccount = 'createAccount';
+  static const requiredUpdate = 'requiredUpdate';
+  static const youNeedToUpdateTheApplication = 'youNeedToUpdateTheApplication';
+  static const ok = 'ok';
 
 }
