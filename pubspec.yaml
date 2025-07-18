@@ -53,6 +53,7 @@ dependencies:
 
   #animation
   animated_text_kit: ^4.2.3
+  animate_do: ^4.2.0
 
   #read assets
   flutter_gen: ^5.4.0

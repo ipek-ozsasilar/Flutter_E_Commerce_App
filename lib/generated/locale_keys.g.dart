@@ -3,35 +3,35 @@
 // ignore_for_file: constant_identifier_names
 
 abstract class  LocaleKeys {
-  static const splashStylish = 'splashStylish';
+  static const splashStylish = 'Stylish';
   static const next = 'next';
   static const prev = 'prev';
-  static const chooseProducts = 'chooseProducts';
-  static const chooseProductsDetail = 'chooseProductsDetail';
-  static const makePayment = 'makePayment';
-  static const makePaymentDetail = 'makePaymentDetail';
-  static const getYourOrder = 'getYourOrder';
-  static const getYourOrderDetail = 'getYourOrderDetail';
-  static const getStarted = 'getStarted';
-  static const welcomeBack = 'welcomeBack';
-  static const inputUsernameEmail = 'inputUsernameEmail';
-  static const inputPassword = 'inputPassword';
-  static const forgotPassword = 'forgotPassword';
+  static const chooseProducts = 'choose Products';
+  static const chooseProductsDetail = 'choose Products Detail';
+  static const makePayment = 'make Payment';
+  static const makePaymentDetail = 'make Payment Detail';
+  static const getYourOrder = 'get  Your Order';
+  static const getYourOrderDetail = 'get Your Order Detail';
+  static const getStarted = 'get Started';
+  static const welcomeBack = 'welcome Back';
+  static const inputUsernameEmail = 'Username or Email';
+  static const inputPassword = 'Password';
+  static const forgotPassword = 'forgot Password';
   static const login = 'login';
-  static const createAnAccount = 'createAnAccount';
-  static const signUp = 'signUp';
-  static const confirmPassword = 'confirmPassword';
-  static const continueOtherLogin = 'continueOtherLogin';
+  static const createAnAccount = 'create An Account';
+  static const signUp = 'sign Up';
+  static const confirmPassword = 'confirm Password';
+  static const continueOtherLogin = 'continue Other Login';
   static const createAnAccountLower = 'createAnAccountLower';
   static const forgotPasswordLower = 'forgotPasswordLower';
-  static const IHaveAnAccount = 'IHaveAnAccount';
-  static const enterYourEmail = 'enterYourEmail';
+  static const IHaveAnAccount = 'I Have An Account';
+  static const enterYourEmail = 'Enter Your Email';
   static const forgotPasswordDetail = 'forgotPasswordDetail';
-  static const submit = 'submit';
+  static const submit = 'Submit';
   static const createAnAccountDetail = 'createAnAccountDetail';
-  static const createAccount = 'createAccount';
-  static const requiredUpdate = 'requiredUpdate';
-  static const youNeedToUpdateTheApplication = 'youNeedToUpdateTheApplication';
+  static const createAccount = 'create Account';
+  static const requiredUpdate = 'required update';
+  static const youNeedToUpdateTheApplication = 'you need to update the application';
   static const ok = 'ok';
-
+  static const update = 'update';
 }

@@ -28,5 +28,6 @@
     "createAccount": "Create Account",
     "requiredUpdate": "Required Update",
     "youNeedToUpdateTheApplication": "You need to update the application",
-    "ok": "OK"
+    "ok": "OK",
+    "update": "Update"
 }

@@ -28,5 +28,6 @@
     "createAccount": "Hesap Oluştur",
     "requiredUpdate": "Güncelleme Gerekiyor",
     "youNeedToUpdateTheApplication": "Uygulamayı güncellemeniz gerekiyor",
-    "ok": "Tamam"
+    "ok": "Tamam",
+    "update": "Güncelle"
 }

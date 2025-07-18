@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter_e_commerce_app/core/injection_manager.dart';
 import 'package:flutter_e_commerce_app/models/version_model.dart';
@@ -10,7 +9,7 @@ import 'package:riverpod/riverpod.dart';
 
 
 class SplashProvider extends StateNotifier<splashState> {
-  SplashProvider(): super(splashState(isLoading: false, isForceUpdate: false, isRedirectStart: false));
+  SplashProvider(): super(splashState(isForceUpdate: false, isRedirectStart: false));
 
   Future<void> checkVersion(String clientVersion) async {
     log("🚀 checkVersion başladı - Client: $clientVersion");
@@ -21,7 +20,7 @@ class SplashProvider extends StateNotifier<splashState> {
       
       if(versionData == null){
         log("❌ Version data null - Force update");
-        state = state.copyWith(isForceUpdate: true, isLoading: false);
+        state = state.copyWith(isForceUpdate: true);
         return;
       }
       
@@ -33,10 +32,10 @@ class SplashProvider extends StateNotifier<splashState> {
       
       if(isNeedUpdate){
         log("🔴 Force update gösterilecek");
-        state = state.copyWith(isForceUpdate: true, isLoading: false);
+        state = state.copyWith(isForceUpdate: true);
       } else {
         log("🟢 Login'e yönlendirilecek");
-        state = state.copyWith(isForceUpdate: false, isRedirectStart: true, isLoading: false);
+        state = state.copyWith(isForceUpdate: false, isRedirectStart: true);
       }
     } catch (e) {
       log("💥 Hata: $e");
@@ -58,19 +57,17 @@ class SplashProvider extends StateNotifier<splashState> {
 
 
 class splashState extends Equatable {
-  final bool isLoading;
   final bool isForceUpdate;
   final bool isRedirectStart;
 
   splashState({
-    required this.isLoading,
     required this.isForceUpdate,
     required this.isRedirectStart,
   });
   
   @override
   // TODO: implement props
-  List<Object?> get props => [isLoading, isForceUpdate, isRedirectStart ];
+  List<Object?> get props => [isForceUpdate, isRedirectStart ];
 
   splashState copyWith({
     bool? isLoading,
@@ -78,7 +75,6 @@ class splashState extends Equatable {
     bool? isRedirectStart,
   }) {
     return splashState(
-      isLoading: isLoading ?? this.isLoading,
       isForceUpdate: isForceUpdate ?? this.isForceUpdate,
       isRedirectStart: isRedirectStart ?? this.isRedirectStart,
     );
