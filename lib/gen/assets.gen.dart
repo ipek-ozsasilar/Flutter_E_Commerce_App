@@ -30,6 +30,34 @@ class $AssetsIconsGen {
   List<AssetGenImage> get values => [splashIcon];
 }
 
+class $AssetsImagesGen {
+  const $AssetsImagesGen();
+
+  /// File path: assets/images/choose_product.png
+  AssetGenImage get chooseProduct =>
+      const AssetGenImage('assets/images/choose_product.png');
+
+  /// File path: assets/images/choose_product_bg.png
+  AssetGenImage get chooseProductBg =>
+      const AssetGenImage('assets/images/choose_product_bg.png');
+
+  /// File path: assets/images/get_your_order.png
+  AssetGenImage get getYourOrder =>
+      const AssetGenImage('assets/images/get_your_order.png');
+
+  /// File path: assets/images/make_payment.png
+  AssetGenImage get makePayment =>
+      const AssetGenImage('assets/images/make_payment.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [
+    chooseProduct,
+    chooseProductBg,
+    getYourOrder,
+    makePayment,
+  ];
+}
+
 class $AssetsTranslationsGen {
   const $AssetsTranslationsGen();
 
@@ -48,6 +76,7 @@ class Assets {
 
   static const $AssetsColorsGen colors = $AssetsColorsGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
+  static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsTranslationsGen translations = $AssetsTranslationsGen();
 }
 

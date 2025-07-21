@@ -1,10 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_e_commerce_app/core/injection_manager.dart';
 import 'package:flutter_e_commerce_app/features/splash/splash_view.dart';
 import 'package:flutter_e_commerce_app/product/initializer/app_initiliazer.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
 
 Future<void> main() async {
   //Start get it injection of app
@@ -33,6 +35,15 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter E-Commerce Application',
       theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor: Colors.transparent,
+            statusBarIconBrightness: Brightness.dark,
+          ),
+        ),
+        scaffoldBackgroundColor: ColorName.lightBackground,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
        builder: (context, child) => ResponsiveBreakpoints.builder(
@@ -45,7 +56,7 @@ class MyApp extends StatelessWidget {
         ],
       ),
       home: const SplashView(),
-    );
+      );
   
   }
 }

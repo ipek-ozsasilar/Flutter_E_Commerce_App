@@ -3,6 +3,7 @@ import 'package:flutter_e_commerce_app/product/initializer/app_cache.dart';
 
 
 enum SecureStorageKeys {
+  hasSeenOnboarding,
   token;
 
   Future<String> readKeys() async {

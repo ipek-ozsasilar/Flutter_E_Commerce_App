@@ -131,6 +131,7 @@ flutter:
     - assets/icons/
     - assets/colors/
     - assets/translations/
+    - assets/images/
 
 #flutter gen configurations
 flutter_gen:

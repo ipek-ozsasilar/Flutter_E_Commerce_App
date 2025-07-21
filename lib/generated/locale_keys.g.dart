@@ -4,14 +4,14 @@
 
 abstract class  LocaleKeys {
   static const splashStylish = 'Stylish';
-  static const next = 'next';
-  static const prev = 'prev';
-  static const chooseProducts = 'choose Products';
-  static const chooseProductsDetail = 'choose Products Detail';
-  static const makePayment = 'make Payment';
-  static const makePaymentDetail = 'make Payment Detail';
-  static const getYourOrder = 'get  Your Order';
-  static const getYourOrderDetail = 'get Your Order Detail';
+  static const next = 'Next';
+  static const prev = 'Prev';
+  static const chooseProducts = 'Choose Products';
+  static const chooseProductsDetail = 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.';
+  static const makePayment = 'Make Payment';
+  static const makePaymentDetail = 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.';
+  static const getYourOrder = 'Get  Your Order';
+  static const getYourOrderDetail = 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.';
   static const getStarted = 'get Started';
   static const welcomeBack = 'welcome Back';
   static const inputUsernameEmail = 'Username or Email';
@@ -34,4 +34,5 @@ abstract class  LocaleKeys {
   static const youNeedToUpdateTheApplication = 'you need to update the application';
   static const ok = 'ok';
   static const update = 'update';
+  static const skip = 'Skip';
 }

@@ -93,8 +93,8 @@ class _SplashAnimationScreenState extends State<SplashAnimationScreen>with Ticke
                 return Transform.translate(
                   offset: Offset(0, _bounceAnimation.value),
                   child: Assets.icons.splashIcon.image(
-                    width: SizesEnum.splashIconWidthAndHeight.value,
-                    height: SizesEnum.splashIconWidthAndHeight.value,
+                    width: IconSizeEnum.splashIconWidthAndHeight.value,
+                    height: IconSizeEnum.splashIconWidthAndHeight.value,
                   ),
                 );
               },

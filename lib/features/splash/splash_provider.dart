@@ -8,77 +8,91 @@ import 'package:flutter_e_commerce_app/product/utility/firebase/version_manager.
 import 'package:riverpod/riverpod.dart';
 
 
-class SplashProvider extends StateNotifier<splashState> {
-  SplashProvider(): super(splashState(isForceUpdate: false, isRedirectStart: false));
+class SplashProvider extends StateNotifier<SplashState> {
+  SplashProvider()
+      : super(
+          const SplashState(
+            isForceUpdate: false,
+            isRedirectStart: false,
+          ),
+        );
 
   Future<void> checkVersion(String clientVersion) async {
     log("🚀 checkVersion başladı - Client: $clientVersion");
-    
+
     try {
       final versionData = await getFirebaseData();
       log("📦 Firebase data: $versionData");
-      
-      if(versionData == null){
+
+      if (versionData == null) {
         log("❌ Version data null - Force update");
         state = state.copyWith(isForceUpdate: true);
         return;
       }
-      
+
       final databaseVersion = versionData.number;
-      log("🔄 Version karsilastirma - Client: $clientVersion, Server: $databaseVersion");
-      
-      final isNeedUpdate = getIt<VersionManager>().versionProcess(clientVersion, databaseVersion);
+      log(
+        "🔄 Version karşılaştırma - Client: $clientVersion, Server: $databaseVersion",
+      );
+
+      final isNeedUpdate = getIt<VersionManager>().versionProcess(
+        clientVersion,
+        databaseVersion,
+      );
       log("⚡ Update gerekli mi: $isNeedUpdate");
-      
-      if(isNeedUpdate){
+
+      if (isNeedUpdate) {
         log("🔴 Force update gösterilecek");
         state = state.copyWith(isForceUpdate: true);
       } else {
-        log("🟢 Login'e yönlendirilecek");
-        state = state.copyWith(isForceUpdate: false, isRedirectStart: true);
+        log("✅ Version check başarılı");
+        state = state.copyWith(isForceUpdate: false,isRedirectStart: true);
       }
     } catch (e) {
-      log("💥 Hata: $e");
-      state = state.copyWith(isForceUpdate: true,);
+      log("💥 Version check hatası: $e");
+      state = state.copyWith(isForceUpdate: true);
     }
   }
 
-
-    Future<VersionModel?> getFirebaseData() async {
-        final versionReference = await FirebaseCollections.version.collectionReference;
-        final response=await versionReference.withConverter<VersionModel>(
-            fromFirestore: (snapshot, _) => VersionModel.fromJson(snapshot.data()!),
-            toFirestore: (model, _) => model.toJson(),
-        ).doc(PlatformEnum.platformName).get();
-        return response.data() as VersionModel;
-    }
+  Future<VersionModel?> getFirebaseData() async {
+    final versionReference =
+        await FirebaseCollections.version.collectionReference;
+    final response = await versionReference
+        .withConverter<VersionModel>(
+          fromFirestore: (snapshot, _) =>
+              VersionModel.fromJson(snapshot.data()!),
+          toFirestore: (model, _) => model.toJson(),
+        )
+        .doc(PlatformEnum.platformName)
+        .get();
+    return response.data() as VersionModel;
+  }
 }
-  
 
-
-class splashState extends Equatable {
+class SplashState extends Equatable {
   final bool isForceUpdate;
   final bool isRedirectStart;
 
-  splashState({
+  const SplashState({
     required this.isForceUpdate,
     required this.isRedirectStart,
   });
-  
-  @override
-  // TODO: implement props
-  List<Object?> get props => [isForceUpdate, isRedirectStart ];
 
-  splashState copyWith({
-    bool? isLoading,
+  @override
+  List<Object?> get props => [isForceUpdate, isRedirectStart];
+
+  SplashState copyWith({
     bool? isForceUpdate,
     bool? isRedirectStart,
   }) {
-    return splashState(
+    return SplashState(
       isForceUpdate: isForceUpdate ?? this.isForceUpdate,
       isRedirectStart: isRedirectStart ?? this.isRedirectStart,
     );
   }
-
-
 }
+
+// Global provider
+final splashProvider = StateNotifierProvider<SplashProvider, SplashState>(
+  (ref) => SplashProvider(),
+);
