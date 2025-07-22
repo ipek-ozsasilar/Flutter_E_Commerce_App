@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_e_commerce_app/product/theme/custom_theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_e_commerce_app/core/injection_manager.dart';
 import 'package:flutter_e_commerce_app/features/splash/splash_view.dart';
@@ -10,15 +11,18 @@ import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
 
 Future<void> main() async {
   //Start get it injection of app
-    setupLocator();
+  setupLocator();
   //before starting the app, we need to initialize the app
   await getIt<AppInitiliazer>().init();
   runApp(
     ProviderScope(
       child: EasyLocalization(
         supportedLocales: const [Locale('en'), Locale('tr')],
-        path: 'assets/translations', 
+        path: 'assets/translations',
+        //Default language when translations are missing or language is not supported
         fallbackLocale: const Locale('en'),
+        //Support english language for beginning of app
+        startLocale: const Locale('en'),
         child: const MyApp(),
       ),
     ),
@@ -32,33 +36,32 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      //don't show debug banner
       debugShowCheckedModeBanner: false,
       title: 'Flutter E-Commerce Application',
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: Colors.transparent,
-            statusBarIconBrightness: Brightness.dark,
-          ),
-        ),
-        scaffoldBackgroundColor: ColorName.lightBackground,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-       builder: (context, child) => ResponsiveBreakpoints.builder(
+      //EasyLocalization configuration
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+      //Custom Theme for app
+      theme: CustomTheme.theme,
+      //Responsive Breakpoints for app
+      builder: (context, child) => ResponsiveBreakpoints.builder(
+        //child
         child: child!,
+        //breakpoints
         breakpoints: [
-           const Breakpoint(start: 0, end: 450, name: MOBILE),
-           const Breakpoint(start: 451, end: 800, name: TABLET),
-           const Breakpoint(start: 801, end: 1920, name: DESKTOP),
-           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
+          //mobile
+          const Breakpoint(start: 0, end: 450, name: MOBILE),
+          //tablet
+          const Breakpoint(start: 451, end: 800, name: TABLET),
+          //desktop
+          const Breakpoint(start: 801, end: 1920, name: DESKTOP),
+          //4K
+          const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
       home: const SplashView(),
-      );
-  
+    );
   }
 }
-
-

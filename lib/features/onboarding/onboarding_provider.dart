@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// Provider
 final onboardingProvider = StateNotifierProvider<OnboardingProvider, OnboardingState>(
   (ref) => OnboardingProvider(),
 );
@@ -29,12 +28,12 @@ class OnboardingState extends Equatable {
     );
   }
 
-  // Helper getters
+
   String get pageIndicator => '${currentPage}/$totalPages';
   bool get isLastPage => currentPage == totalPages - 1;
 }
 
-// Provider Logic
+
 class OnboardingProvider extends StateNotifier<OnboardingState> {
   OnboardingProvider() : super(const OnboardingState(currentPage: 0, totalPages: 3));
 

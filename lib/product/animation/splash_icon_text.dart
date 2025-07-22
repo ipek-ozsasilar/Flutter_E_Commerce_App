@@ -8,71 +8,57 @@ class SplashAnimationScreen extends StatefulWidget {
   State<SplashAnimationScreen> createState() => _SplashAnimationScreenState();
 }
 
-class _SplashAnimationScreenState extends State<SplashAnimationScreen>with TickerProviderStateMixin {
+class _SplashAnimationScreenState extends State<SplashAnimationScreen> with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _bounceAnimation;
-  final MainAxisAlignment _mainAxisAlignment = MainAxisAlignment.center;
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+    _setupAnimation();
+    _startAnimation();
+  }
 
+  void _setupAnimation() {
     _controller = AnimationController(
       duration: DurationConstants.durationInstance.splashDuration,
       vsync: this,
     );
 
-    // Zıplama hareketleri için TweenSequence
-    _bounceAnimation = TweenSequence([
-      TweenSequenceItem(
-        tween: Tween(
-          begin: -400.0,
-          end: -30.0,
-        ).chain(CurveTween(curve: Curves.easeOut)),
-        weight: 1,
-      ),
-      TweenSequenceItem(
-        tween: Tween(
-          begin: -30.0,
-          end: 10.0,
-        ).chain(CurveTween(curve: Curves.easeIn)),
-        weight: 1,
-      ),
-      TweenSequenceItem(
-        tween: Tween(
-          begin: 10.0,
-          end: -30.0,
-        ).chain(CurveTween(curve: Curves.easeOut)),
-        weight: 0.8,
-      ),
-      TweenSequenceItem(
-        tween: Tween(
-          begin: -30.0,
-          end: 0.0,
-        ).chain(CurveTween(curve: Curves.easeIn)),
-        weight: 0.8,
-      ),
-      TweenSequenceItem(
-        tween: Tween(
-          begin: 0.0,
-          end: -30.0,
-        ).chain(CurveTween(curve: Curves.easeOut)),
-        weight: 0.6,
-      ),
-      TweenSequenceItem(
-        tween: Tween(
-          begin: -30.0,
-          end: -10.0,
-        ).chain(CurveTween(curve: Curves.easeIn)),
-        weight: 0.6,
-      ),
-    ]).animate(_controller);
+    _bounceAnimation = _createBounceAnimation();
+  }
 
-    // before start animation a little delay
-    Future.delayed(DurationConstants.durationInstance.splashIconDelay , () {
+  Animation<double> _createBounceAnimation() {
+    return TweenSequence([
+      // İlk düşüş (baştan aşağı)
+      _createBounceStep(-400.0, -30.0, 1.0, Curves.easeOut),
+      // İlk zıplama yukarı
+      _createBounceStep(-30.0, 10.0, 1.0, Curves.easeIn),
+      // İkinci zıplama (daha küçük)
+      _createBounceStep(10.0, -30.0, 0.8, Curves.easeOut),
+      _createBounceStep(-30.0, 0.0, 0.8, Curves.easeIn),
+      // Son micro zıplama
+      _createBounceStep(0.0, -10.0, 0.6, Curves.easeOut),
+      _createBounceStep(-10.0, 0.0, 0.6, Curves.easeIn),
+    ]).animate(_controller);
+  }
+
+  TweenSequenceItem<double> _createBounceStep(
+    double begin, 
+    double end, 
+    double weight, 
+    Curve curve
+  ) {
+    return TweenSequenceItem(
+      tween: Tween(begin: begin, end: end).chain(CurveTween(curve: curve)),
+      weight: weight,
+    );
+  }
+
+  void _startAnimation() {
+    Future.delayed(DurationConstants.durationInstance.splashIconDelay, () {
       _controller.forward();
     });
-
   }
 
   @override
@@ -81,29 +67,36 @@ class _SplashAnimationScreenState extends State<SplashAnimationScreen>with Ticke
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Row(
-          mainAxisAlignment: _mainAxisAlignment,
-          children: [
-            AnimatedBuilder(
-              animation: _bounceAnimation,
-              builder: (context, child) {
-                return Transform.translate(
-                  offset: Offset(0, _bounceAnimation.value),
-                  child: Assets.icons.splashIcon.image(
-                    width: IconSizeEnum.splashIconWidthAndHeight.value,
-                    height: IconSizeEnum.splashIconWidthAndHeight.value,
-                  ),
-                );
-              },
-            ),
-             Padding(
-              padding: PaddingsConstants.splashIconOnlyLeftPadding,
-              child: SplashAnimatedText(),
-            ),
-          ],
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        _buildBounceIcon(),
+        _buildAnimatedText(),
+      ],
+    );
+  }
+
+  Widget _buildBounceIcon() {
+    return AnimatedBuilder(
+      animation: _bounceAnimation,
+      builder: (context, child) {
+        return Transform.translate(
+          offset: Offset(0, _bounceAnimation.value),
+          child: Assets.icons.splashIcon.image(
+            width: IconSizeEnum.splashIconWidthAndHeight.value,
+            height: IconSizeEnum.splashIconWidthAndHeight.value,
+          ),
         );
+      },
+    );
+  }
+
+  Widget _buildAnimatedText() {
+    return Padding(
+      padding: PaddingsConstants.instance.splashIconOnlyLeftPadding,
+      child: SplashAnimatedText(),
+    );
   }
 }

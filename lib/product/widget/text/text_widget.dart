@@ -1,9 +1,9 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
 import 'package:kartal/kartal.dart';
 
+//Bold Onboarding Text for onboarding page's bold text
 class BoldOnboardingText extends StatelessWidget {
   const BoldOnboardingText({
     super.key,
@@ -20,29 +20,27 @@ class BoldOnboardingText extends StatelessWidget {
     return Text(
       title,
       style: context.general.appTheme.textTheme.headlineSmall?.copyWith(
-       fontWeight: FontWeight.bold,
-       fontSize: titleSize,
-       color: titleColor,
-    ));
+        fontWeight: FontWeight.bold,
+        fontSize: titleSize,
+        color: titleColor,
+      ),
+    );
   }
 }
 
-
 class BoldOnboardingTextDetail extends StatelessWidget {
-  const BoldOnboardingTextDetail({
-    super.key,
-    required this.description,
-  });
+  const BoldOnboardingTextDetail({super.key, required this.description});
 
   final String description;
 
   @override
   Widget build(BuildContext context) {
     return Text(
-    description,
-    textAlign: TextAlign.center,
-    style: context.general.appTheme.textTheme.bodyMedium?.copyWith(
-      color: ColorName.splashUltimateGreyText,
-    ));
+      description,
+      textAlign: TextAlign.center,
+      style: context.general.appTheme.textTheme.bodyMedium?.copyWith(
+        color: ColorName.splashUltimateGreyText,
+      ),
+    );
   }
 }

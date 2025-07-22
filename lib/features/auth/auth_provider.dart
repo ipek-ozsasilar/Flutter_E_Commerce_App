@@ -16,90 +16,58 @@ Firebase'in Otomatik Yaptıkları:
  */
 
 final authProvider = StateNotifierProvider<AuthProvider, AuthState>((ref) {
-  return AuthProvider();  
-}); 
+  return AuthProvider();
+});
 
 class AuthProvider extends StateNotifier<AuthState> {
-  AuthProvider() : super(const AuthState(isLoggedIn: false, hasSeenOnboarding: false));
+  AuthProvider() : super(const AuthState(isLoggedIn: false));
 
   Future<void> checkAuthStatus() async {
-    log("🔍 Auth status kontrol ediliyor...");
-    
     try {
       // Firebase Auth user kontrolü
       final User? user = FirebaseAuth.instance.currentUser;
-      
-      // ✅ Storage'dan onboarding durumu oku
-      final String hasSeenOnboardingValue = await SecureStorageKeys.hasSeenOnboarding.readKeys();
-      final bool hasSeenOnboarding = hasSeenOnboardingValue == 'true';
-      
-      log("👤 User: ${user?.uid ?? 'null'}");
-      log("📦 Storage'dan okunan: '$hasSeenOnboardingValue'");
-      log("📚 Has seen onboarding: $hasSeenOnboarding");
-      
-      // ✅ State güncelle
-      state = state.copyWith(
-        isLoggedIn: user != null,
-        hasSeenOnboarding: hasSeenOnboarding,
-      );
-      
-      log("🎯 Final state - isLoggedIn: ${state.isLoggedIn}, hasSeenOnboarding: ${state.hasSeenOnboarding}");
-      
+
+      //if user is not null update logged in true
+      if (user != null) {
+        updateLoggedInTrue();
+      } else {
+        //if user is null update logged in false
+        updateLoggedInFalse();
+      }
     } catch (e) {
-      log("💥 Auth kontrol hatası: $e");
-      // Hata durumunda güvenli varsayılan değerler
-      state = state.copyWith(
-        isLoggedIn: false,
-        hasSeenOnboarding: false,
-      );
+      //if error update logged in false
+      updateLoggedInFalse();
     }
   }
 
-  void setOnboardingCompleted() async {
-    log("✅ Onboarding tamamlandı");
-    await SecureStorageKeys.hasSeenOnboarding.writeKeys('true');
-    state = state.copyWith(hasSeenOnboarding: true);
-    log("💾 Storage'a yazıldı: 'true'");
+  //logout function
+  void logout() async {
+    await FirebaseAuth.instance.signOut();
+    // Token clear
+    await SecureStorageKeys.token.writeKeys('');
+    state = state.copyWith(isLoggedIn: false);
   }
 
-  void logout() async {
-    log("🚪 Logout işlemi");
-    
-    // Firebase Auth'dan çıkış yap
-    await FirebaseAuth.instance.signOut();
-    
-    // ✅ HER İKİSİNİ DE temizle
-    await SecureStorageKeys.token.writeKeys('');
-    await SecureStorageKeys.hasSeenOnboarding.writeKeys('');
-    
-    state = state.copyWith(
-      isLoggedIn: false,
-      hasSeenOnboarding: false, // ✅ Bu eksikti!
-    );
-    
-    log("🗑️ Tüm storage temizlendi");
+  //update logged in true
+  void updateLoggedInTrue() {
+    state = state.copyWith(isLoggedIn: true);
+  }
+
+  //update logged in false
+  void updateLoggedInFalse() {
+    state = state.copyWith(isLoggedIn: false);
   }
 }
 
 class AuthState extends Equatable {
   final bool isLoggedIn;
-  final bool hasSeenOnboarding;
-  
-  const AuthState({
-    required this.isLoggedIn,
-    required this.hasSeenOnboarding,
-  });
+
+  const AuthState({required this.isLoggedIn});
 
   @override
-  List<Object?> get props => [isLoggedIn, hasSeenOnboarding];
+  List<Object?> get props => [isLoggedIn];
 
-  AuthState copyWith({
-    bool? isLoggedIn,
-    bool? hasSeenOnboarding,
-  }) {
-    return AuthState(
-      isLoggedIn: isLoggedIn ?? this.isLoggedIn,
-      hasSeenOnboarding: hasSeenOnboarding ?? this.hasSeenOnboarding,
-    );
+  AuthState copyWith({bool? isLoggedIn}) {
+    return AuthState(isLoggedIn: isLoggedIn ?? this.isLoggedIn);
   }
 }

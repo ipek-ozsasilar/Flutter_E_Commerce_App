@@ -31,12 +31,12 @@ class ColorName {
   /// Color: #C4C4C4
   static const Color prevColor = Color(0xFFC4C4C4);
 
+  /// Color: #17223B
+  static const Color selectedPageBlue = Color(0xFF17223B);
+
   /// Color: #F83758
   static const Color sizzlingRed = Color(0xFFF83758);
 
   /// Color: #A8A8A9
   static const Color splashUltimateGreyText = Color(0xFFA8A8A9);
-
-  /// Color: #17223B
-  static const Color selectedPageBlue = Color(0xFF17223B);
 }

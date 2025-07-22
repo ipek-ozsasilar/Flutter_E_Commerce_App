@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 
 @immutable
 class PaddingsConstants {
-  const PaddingsConstants._();
-  static const PaddingsConstants paddingsInstance = PaddingsConstants._();
+   PaddingsConstants._();
+  static PaddingsConstants get instance => PaddingsConstants._();
   
-  static const EdgeInsets splashIconOnlyLeftPadding = EdgeInsets.only(left: 10);
-  static const EdgeInsets onboardingLeadingPadding = EdgeInsets.only(left: 17,top: 15);
-  static const EdgeInsets onboardingPageHorizontalPadding = EdgeInsets.symmetric(horizontal: 17);
-  static const EdgeInsets onboardingTitlePadding = EdgeInsets.only(top:25,bottom: 10);
-  
+  final EdgeInsets splashIconOnlyLeftPadding = EdgeInsets.only(left: 10);
+  final EdgeInsets onboardingLeadingPadding = EdgeInsets.only(left: 17,top: 15);
+  final EdgeInsets onboardingPageHorizontalPadding = EdgeInsets.symmetric(horizontal: 17);
+  final EdgeInsets onboardingTitlePadding = EdgeInsets.only(top:25,bottom: 10);
+  final EdgeInsets bottomContainerHorizontalPadding = EdgeInsets.symmetric(horizontal: 10);
+  final EdgeInsets onboardingBottomPadding = EdgeInsets.symmetric(vertical: 17,horizontal: 17);
 } 

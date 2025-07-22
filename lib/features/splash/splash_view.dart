@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app/features/auth/auth_provider.dart';
 import 'package:flutter_e_commerce_app/features/splash/splash_provider.dart';
 import 'package:flutter_e_commerce_app/gen/assets.gen.dart';
-import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
+
 import 'package:flutter_e_commerce_app/product/animation/splash_text.dart';
 import 'package:flutter_e_commerce_app/product/constants/duration_constants.dart';
 import 'package:flutter_e_commerce_app/product/constants/paddings_constants.dart';
 import 'package:flutter_e_commerce_app/product/enums/sizes_enum.dart';
-import 'package:flutter_e_commerce_app/product/mixins/force_update_dialog.dart';
-import 'package:flutter_e_commerce_app/product/mixins/navigation_mixin.dart';
+import 'package:flutter_e_commerce_app/product/mixins/splash_view_model.dart.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:flutter_e_commerce_app/product/constants/duration_constants.dart';
 part '../../product/animation/splash_icon_text.dart';
 
+//Splash View for app splash screen
 class SplashView extends ConsumerStatefulWidget {
   const SplashView({super.key});
 
@@ -20,35 +20,37 @@ class SplashView extends ConsumerStatefulWidget {
   ConsumerState<SplashView> createState() => _SplashViewState();
 }
 
-class _SplashViewState extends ConsumerState<SplashView>  
-    with ForceUpdateDialogMixin, NavigationMixin{
-
+class _SplashViewState extends ConsumerState<SplashView>
+    with SplashViewModelMixin {
   @override
   void initState() {
     super.initState();
-    
-    // ✅ Paralel olarak version ve auth check
-    _initializeApp();
-  }
+    //_initializeApp() fonksiyonu içerisinde, authProvider üzerinden state değişikliği yapılmaya çalışılıyor.
+    // Riverpod, widget henüz tam olarak oluşturulmadan state değişikliği yapılmasına izin vermez 
+    //çünkü bu durum widget ağacının tutarsız hale gelmesine sebep olabilir.
+    //initState içinde hemen state değiştirirsen → ❌ HATA
+    ////Future.delayed ile biraz erteleyip değiştirirsen → ✅ GÜVENLİ
+    Future.delayed(DurationConstants.durationInstance.splashDuration, () {
+      _initializeApp();
+    });
+  } 
 
   void _initializeApp() async {
-    // Paralel olarak her ikisini de başlat
+    //parallel process check version, auth and onboarding
     await Future.wait<void>([
+      //check auth status
+      ref.read(authProvider.notifier).checkAuthStatus(),
+      //check version app
       ref.read(splashProvider.notifier).checkVersion("1.0.0"),
-      ref.read(authProvider.notifier).checkAuthStatus(),  
-
+      //check onboarding has seen for navigation which screen will be shown
+      ref.read(splashProvider.notifier).checkOnboardingHasSeen(),
     ]);
   }
 
   @override
   Widget build(BuildContext context) {
-    // ✅ Listener'ları initState'te kur
+    //check force update with splash view model
     setupForceUpdateListener();
-    setupNavigationListener();
-    return const Scaffold(
-      body: Center(
-        child: SplashAnimationScreen(),
-      ),
-    );
+    return const Scaffold(body: Center(child: SplashAnimationScreen()));
   }
 }

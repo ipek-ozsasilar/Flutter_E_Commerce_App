@@ -10,36 +10,35 @@ import 'package:flutter_e_commerce_app/core/injection_manager.dart';
 import 'package:flutter_e_commerce_app/firebase_options.dart';
 import 'package:flutter_e_commerce_app/product/initializer/app_cache.dart';
 
-
 //init services
-    //init repositories
-    //init usecases
-    //init blocs
-    //init views
-    //init routes
-    //init localization
+//init repositories
+//init usecases
+//init blocs
+//init views
+//init routes
+//init localization
 
+//before app start initialize configurations
 class AppInitiliazer {
-   AppInitiliazer();
+  AppInitiliazer();
 
   Future<void> init() async {
     //Start flutter binding of app
     await WidgetsFlutterBinding.ensureInitialized();
-    //Start localization of app
+    //Start firebase of app
     await Firebase.initializeApp(
-     options: DefaultFirebaseOptions.currentPlatform,
+      options: DefaultFirebaseOptions.currentPlatform,
     );
+    //Configure firebase auth providers
     firebaseAuthUI.FirebaseUIAuth.configureProviders([
       firebaseAuthUI.EmailAuthProvider(),
       GoogleProvider(clientId: ''),
       AppleProvider(),
-      FacebookProvider(clientId: ''), 
-      ]);
+      FacebookProvider(clientId: ''),
+    ]);
+    //Start easy localization of app
     await EasyLocalization.ensureInitialized();
-    //started secure storage instance
+    //started secure storage instance for caching data
     await getIt<secureStorageSetUp>().setUp();
-
-
-  
   }
 }
