@@ -23,12 +23,15 @@
     "forgotPasswordLower": "Forgot password?",
     "IHaveAnAccount": "I Already Have an Account",
     "enterYourEmail": "Enter your email address",
-    "forgotPasswordDetail": "* We will send you a message to set or reset your new password",
+    "forgotPasswordDetail": "We will send you a message to set or reset your new password",
     "submit": "Submit",
     "createAnAccountDetail": "By clicking the Register button, you agree to the public offer",
     "createAccount": "Create Account",
     "requiredUpdate": "Required Update",
     "youNeedToUpdateTheApplication": "You need to update the application",
     "ok": "OK",
-    "update": "Update"
+    "update": "Update",
+    "byClickingThe": "By clicking the ",
+    "register": "Register",
+    "buttonYouAgreeToThePublicOffer": "button, you agree to the public offer"
 }

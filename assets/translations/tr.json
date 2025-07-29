@@ -23,13 +23,16 @@
     "forgotPasswordLower": "Şifremi unuttum?",
     "IHaveAnAccount": "Zaten Hesabım Var",
     "enterYourEmail": "Email adresinizi girin",
-    "forgotPasswordDetail": "* Yeni şifrenizi ayarlamak veya sıfırlamak için size mesaj göndereceğiz",
+    "forgotPasswordDetail": "Yeni şifrenizi ayarlamak veya sıfırlamak için size mesaj göndereceğiz",
     "submit": "Gönder",
     "createAnAccountDetail": "Kayıt butonuna tıklayarak, halka açık teklifi kabul etmiş olursunuz",
     "createAccount": "Hesap Oluştur",
     "requiredUpdate": "Güncelleme Gerekiyor",
     "youNeedToUpdateTheApplication": "Uygulamayı güncellemeniz gerekiyor",
     "ok": "Tamam",
-    "update": "Güncelle"
+    "update": "Güncelle",
+    "byClickingThe": "Tıklayarak",
+    "register": "Kayıt ol",
+    "buttonYouAgreeToThePublicOffer": "butonuna, halka açık teklifi kabul etmiş olursunuz"
 }
   

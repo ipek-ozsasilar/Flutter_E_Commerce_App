@@ -55,7 +55,7 @@ class OnboardingBottom extends ConsumerWidget {
                           : ColorName.prevColor,
                       borderRadius: BorderRadiusConstants
                           .instance
-                          .onboardingBottomContainerBorderRadius,
+                          .circularSmallBorderRadius,
                     ),
                   ),
                 ),

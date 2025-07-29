@@ -9,4 +9,6 @@
     <color name="login_shadow_mountain">#575757</color>
     <color name="prevColor">#C4C4C4</color>
     <color name="selected_page_blue">#17223B</color>
+    <color name="white_color">#FFFFFF</color>
+    <color name="facebook_blue">#3D4DA6</color>
 </resources>

@@ -22,7 +22,9 @@ enum ImageSizeEnum {
 //Text Size Enum for get text size
 enum TextSizeEnum {
   onboardingTitleSize(24),
-  onboardingSkipSize(16);
+  onboardingSkipSize(16),
+  loginWelcomeSize(30),
+  loginInputHintTextSize(13);
 
   final double value;
 
@@ -31,9 +33,19 @@ enum TextSizeEnum {
 
 //Widget Size Enum for get widget size
 enum WidgetSizeEnum {
-  bottomContainerWidthAndHeight(10);
+  bottomContainerWidthAndHeight(10),
+  loginButtonHeight(55);
 
   final double value;
 
   const WidgetSizeEnum(this.value);
+}
+
+enum AppbarSizeEnum {
+  loginToolbarHeight(140),
+  loginLeadingWidth(220);
+
+  final double value;
+
+  const AppbarSizeEnum(this.value);
 }

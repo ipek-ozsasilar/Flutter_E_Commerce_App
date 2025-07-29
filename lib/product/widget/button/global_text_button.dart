@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_e_commerce_app/product/widget/text/text_widget.dart';
 
 //Onboarding Text Button for onboarding page's text button
 class GlobalTextButton extends StatelessWidget {
@@ -15,7 +16,7 @@ class GlobalTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: onPressed,
-      child: Text(text, style: TextStyle(color: color)),
+      child: NormalText(text: text, color: color,fontSize: 13),
     );
   }
 }

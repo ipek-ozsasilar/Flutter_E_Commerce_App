@@ -39,4 +39,10 @@ class ColorName {
 
   /// Color: #A8A8A9
   static const Color splashUltimateGreyText = Color(0xFFA8A8A9);
+
+  /// Color: #FFFFFF
+  static const Color whiteColor = Color(0xFFFFFFFF);
+
+  /// Color: #3D4DA6
+  static const Color facebookBlue = Color(0xFF3D4DA6);
 }

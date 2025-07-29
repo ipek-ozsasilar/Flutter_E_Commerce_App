@@ -4,5 +4,5 @@ import 'package:flutter/material.dart';
 class BorderRadiusConstants {
   BorderRadiusConstants._();
   static BorderRadiusConstants get instance => BorderRadiusConstants._();
-  final BorderRadius onboardingBottomContainerBorderRadius = BorderRadius.all(Radius.circular(10));
+  final BorderRadius circularSmallBorderRadius = BorderRadius.all(Radius.circular(10));
 }

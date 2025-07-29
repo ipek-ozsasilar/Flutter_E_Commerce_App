@@ -35,5 +35,7 @@ abstract class  LocaleKeys {
   static const youNeedToUpdateTheApplication = 'youNeedToUpdateTheApplication';
   static const ok = 'ok';
   static const update = 'update';
-
+  static const byClickingThe = 'byClickingThe';
+  static const register = 'register';
+  static const buttonYouAgreeToThePublicOffer = 'buttonYouAgreeToThePublicOffer';
 }
