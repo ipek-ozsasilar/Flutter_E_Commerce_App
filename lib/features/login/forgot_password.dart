@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app/features/login/login_welcome_back.dart';
+import 'package:flutter_e_commerce_app/features/login/provider/login_provider.dart';
 import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
 import 'package:flutter_e_commerce_app/generated/locale_keys.g.dart';
 import 'package:flutter_e_commerce_app/product/constants/paddings_constants.dart';
@@ -12,17 +13,18 @@ import 'package:flutter_e_commerce_app/product/widget/button/global_elevated_but
 import 'package:flutter_e_commerce_app/product/widget/input/login_input.dart';
 import 'package:flutter_e_commerce_app/product/widget/text/rich_text.dart';
 import 'package:flutter_e_commerce_app/product/widget/text/text_widget.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ForgotPassword extends StatefulWidget {
+class ForgotPassword extends ConsumerStatefulWidget {
   const ForgotPassword({super.key});
 
   @override
-  State<ForgotPassword> createState() => _ForgotPasswordState();
+  ConsumerState<ForgotPassword> createState() => _ForgotPasswordState();
 
   
 }
 
-class _ForgotPasswordState extends State<ForgotPassword> {
+class _ForgotPasswordState extends ConsumerState<ForgotPassword> {
   late TapGestureRecognizer _tapGestureRecognizer;
   @override
   void initState() {
@@ -32,28 +34,37 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   }
   @override
   Widget build(BuildContext context) {
+    final forgotPasswordController = ref.watch(loginProvider.notifier).forgotPasswordController;
+    final _formKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: CustomAppbarLogin(title: LocaleKeys.forgotPassword.tr()) as PreferredSizeWidget,
       body: Padding(
         padding: PaddingsConstants.instance.loginBodyPadding,
-        child: Column(
-          children: [
-            loginInput(
-              hintText: LocaleKeys.enterYourEmail.tr(),
-              icon: Icons.email_rounded,
-              color: ColorName.loginInputIconsGrey,
-            ),
-
-            Padding(
-              padding: PaddingsConstants.instance.forgotPasswordDetailPadding,
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: RichTextWidget(tapGestureRecognizer: _tapGestureRecognizer, text: "*", secondText: LocaleKeys.forgotPasswordDetail.tr()),
+        child: Form(
+          key: _formKey,
+          autovalidateMode: AutovalidateMode.disabled,
+          child: Column(
+            children: [
+              loginInput( 
+                hintText: LocaleKeys.enterYourEmail.tr(),
+                prefixIcon: Icons.email_rounded,
+                suffixIcon: AnimatedIcons.close_menu,
+                color: ColorName.loginInputIconsGrey,
+                formKey: _formKey,
+                controller: forgotPasswordController,
               ),
-            ),
-
-            GlobalElevatedButton(text: LocaleKeys.submit.tr()),
-          ],
+          
+              Padding(
+                padding: PaddingsConstants.instance.forgotPasswordDetailPadding,
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: RichTextWidget(tapGestureRecognizer: _tapGestureRecognizer, text: "*", secondText: LocaleKeys.forgotPasswordDetail.tr()),
+                ),
+              ),
+          
+              GlobalElevatedButton(text: LocaleKeys.submit.tr()),
+            ],
+          ),
         ),
       ),
     );

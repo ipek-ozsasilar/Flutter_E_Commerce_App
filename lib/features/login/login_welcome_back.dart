@@ -3,30 +3,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_e_commerce_app/features/login/create_account.dart';
 import 'package:flutter_e_commerce_app/features/login/forgot_password.dart';
+import 'package:flutter_e_commerce_app/features/login/provider/login_provider.dart';
 import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
 import 'package:flutter_e_commerce_app/generated/locale_keys.g.dart';
-import 'package:flutter_e_commerce_app/product/constants/border_radius.dart';
 import 'package:flutter_e_commerce_app/product/constants/paddings_constants.dart';
 import 'package:flutter_e_commerce_app/product/enums/sizes_enum.dart';
 import 'package:flutter_e_commerce_app/product/utility/navigator/navigator.dart';
 import 'package:flutter_e_commerce_app/product/widget/appbar/login_appbar.dart';
 import 'package:flutter_e_commerce_app/product/widget/button/global_elevated_button.dart';
-import 'package:flutter_e_commerce_app/product/widget/button/global_icon_button.dart';
 import 'package:flutter_e_commerce_app/product/widget/button/global_text_button.dart';
 import 'package:flutter_e_commerce_app/product/widget/button/other_login_button.dart';
 import 'package:flutter_e_commerce_app/product/widget/input/login_input.dart';
 import 'package:flutter_e_commerce_app/product/widget/text/rich_text.dart';
 import 'package:flutter_e_commerce_app/product/widget/text/text_widget.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LoginWelcomeBack extends StatefulWidget {
+class LoginWelcomeBack extends ConsumerStatefulWidget {
   const LoginWelcomeBack({super.key});
 
   @override
-  State<LoginWelcomeBack> createState() => _LoginWelcomeBackState();
+  ConsumerState<LoginWelcomeBack> createState() => _LoginWelcomeBackState();
 }
 
-class _LoginWelcomeBackState extends State<LoginWelcomeBack> {
+class _LoginWelcomeBackState extends ConsumerState<LoginWelcomeBack> {
   late TapGestureRecognizer _tapGestureRecognizer;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -44,85 +45,97 @@ class _LoginWelcomeBackState extends State<LoginWelcomeBack> {
 
   @override
   Widget build(BuildContext context) {
+    final emailController = ref.watch(loginProvider.notifier).emailController;
+    final passwordController = ref.watch(loginProvider.notifier).passwordController;
     return Scaffold(
       appBar:
           CustomAppbarLogin(title: LocaleKeys.welcomeBack.tr())
               as PreferredSizeWidget,
       body: Padding(
         padding: PaddingsConstants.instance.loginBodyPadding,
-        child: ListView(
-          shrinkWrap: true,
-          children: [
-            loginInput(
-              hintText: LocaleKeys.inputUsernameEmail.tr(),
-              icon: Icons.person_rounded,
-              color: ColorName.loginInputIconsGrey,
-            ),
-            Padding(
-              padding: PaddingsConstants.instance.loginWelcomeInputPadding,
-              child: loginInput(
-                hintText: LocaleKeys.inputPassword.tr(),
-                icon: Icons.lock,
+        child: Form(
+          key: _formKey,
+          autovalidateMode: AutovalidateMode.disabled,
+          child: ListView(
+            shrinkWrap: true,
+            children: [
+              loginInput(
+                hintText: LocaleKeys.inputUsernameEmail.tr(),
+                prefixIcon: Icons.person_rounded,
+                suffixIcon: AnimatedIcons.close_menu,
                 color: ColorName.loginInputIconsGrey,
+                formKey: _formKey,
+                controller: emailController,
               ),
-            ),
-
-            Align(
-              alignment: Alignment.centerRight,
-              child: GlobalTextButton(
-                onPressed: () => NavigatorManager.instance.navigatePage(
-                  context,
-                  ForgotPassword(),
+              Padding(
+                padding: PaddingsConstants.instance.loginWelcomeInputPadding,
+                child: loginInput(
+                  hintText: LocaleKeys.inputPassword.tr(),
+                  prefixIcon: Icons.lock,
+                  suffixIcon: AnimatedIcons.pause_play,
+                  color: ColorName.loginInputIconsGrey,
+                  formKey: _formKey,  
+                  controller: passwordController,
                 ),
-                text: LocaleKeys.forgotPassword.tr(),
-                color: ColorName.sizzlingRed.withOpacity(0.8),
               ),
-            ),
-
-            Padding(
-              padding: PaddingsConstants.instance.welcomeLoginButtonPadding,
-              child: GlobalElevatedButton(text: LocaleKeys.login.tr()),
-            ),
-
-            Center(
-              child: NormalText(
-                text: LocaleKeys.continueOtherLogin.tr(),
-                color: ColorName.loginShadowMountain,
-                fontSize: TextSizeEnum.loginInputHintTextSize.value,
-              ),
-            ),
-
-            Padding(
-              padding: PaddingsConstants.instance.otherLoginButtonVerticalPadding,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const otherLoginButton(
-                    icon: Icons.g_mobiledata,
-                    color: ColorName.boldBlack,
+          
+              Align(
+                alignment: Alignment.centerRight,
+                child: GlobalTextButton(
+                  onPressed: () => NavigatorManager.instance.navigatePage(
+                    context,
+                    ForgotPassword(),
                   ),
-                  Padding(
-                    padding: PaddingsConstants.instance.otherLoginButtonHorizontalPadding,
-                    child: const otherLoginButton(
-                      icon: Icons.apple,
+                  text: LocaleKeys.forgotPassword.tr(),
+                  color: ColorName.sizzlingRed.withOpacity(0.8),
+                ),
+              ),
+          
+              Padding(
+                padding: PaddingsConstants.instance.welcomeLoginButtonPadding,
+                child: GlobalElevatedButton(text: LocaleKeys.login.tr()),
+              ),
+          
+              Center(
+                child: NormalText(
+                  text: LocaleKeys.continueOtherLogin.tr(),
+                  color: ColorName.loginShadowMountain,
+                  fontSize: TextSizeEnum.loginInputHintTextSize.value,
+                ),
+              ),
+          
+              Padding(
+                padding: PaddingsConstants.instance.otherLoginButtonVerticalPadding,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const otherLoginButton(
+                      icon: Icons.g_mobiledata,
                       color: ColorName.boldBlack,
                     ),
-                  ),
-                  const otherLoginButton(
-                    icon: Icons.facebook_outlined,
-                    color: ColorName.facebookBlue,
-                  ),
-                ],
+                    Padding(
+                      padding: PaddingsConstants.instance.otherLoginButtonHorizontalPadding,
+                      child: const otherLoginButton(
+                        icon: Icons.apple,
+                        color: ColorName.boldBlack,
+                      ),
+                    ),
+                    const otherLoginButton(
+                      icon: Icons.facebook_outlined,
+                      color: ColorName.facebookBlue,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Center(
-              child: RichTextWidget(
-                tapGestureRecognizer: _tapGestureRecognizer,
-                text: LocaleKeys.createAnAccount.tr(),
-                secondText: LocaleKeys.signUp.tr(),
+              Center(
+                child: RichTextWidget(
+                  tapGestureRecognizer: _tapGestureRecognizer,
+                  text: LocaleKeys.createAnAccount.tr(),
+                  secondText: LocaleKeys.signUp.tr(),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
