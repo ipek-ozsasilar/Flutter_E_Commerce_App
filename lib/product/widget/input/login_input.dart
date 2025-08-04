@@ -1,7 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_e_commerce_app/features/login/provider/login_provider.dart';
+import 'package:flutter_e_commerce_app/features/login/provider/connection_provider.dart';
+import 'package:flutter_e_commerce_app/features/login/provider/form_provider.dart' hide FormState;
 import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
 import 'package:flutter_e_commerce_app/generated/locale_keys.g.dart';
 import 'package:flutter_e_commerce_app/product/constants/border_radius.dart';
@@ -10,7 +11,15 @@ import 'package:flutter_e_commerce_app/product/widget/button/global_icon_button.
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class loginInput extends ConsumerWidget {
-  loginInput({super.key, required this.hintText, required this.prefixIcon, required this.suffixIcon, required this.color, required this.formKey, required this.controller});
+  loginInput({
+    super.key,
+    required this.hintText,
+    required this.prefixIcon,
+    required this.suffixIcon,
+    required this.color,
+    required this.formKey,
+    required this.controller,
+  });
 
   final String hintText;
   final IconData prefixIcon;
@@ -20,16 +29,19 @@ class loginInput extends ConsumerWidget {
   final TextEditingController controller;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    
     return TextFormField(
-      obscureText: hintText==LocaleKeys.inputPassword.tr() || hintText==LocaleKeys.confirmPassword.tr()? ref.watch(loginProvider).isObscureText:false,
-      onChanged: (value){
+      obscureText:
+          hintText == LocaleKeys.inputPassword.tr() ||
+              hintText == LocaleKeys.confirmPassword.tr()
+          ? ref.watch(formProvider).isObscureText
+          : false,
+      onChanged: (value) {
         formKey.currentState!.validate();
       },
       //focus olunca kontrol yapılsın
-      validator: (value){
+      validator: (value) {
         if (value == null || value.isEmpty) {
-          if(hintText==LocaleKeys.inputUsernameEmail.tr()){
+          if (hintText == LocaleKeys.inputUsernameEmail.tr()) {
             return 'Lütfen geçerli bir e-mail adresi giriniz';
           } else {
             return 'Lütfen geçerli bir şifre giriniz';
@@ -37,27 +49,37 @@ class loginInput extends ConsumerWidget {
         }
         return null;
       },
-      keyboardType: hintText==LocaleKeys.inputUsernameEmail.tr()? TextInputType.emailAddress:TextInputType.visiblePassword,
+      keyboardType: hintText == LocaleKeys.inputUsernameEmail.tr()
+          ? TextInputType.emailAddress
+          : TextInputType.visiblePassword,
       inputFormatters: [
-        if(hintText==LocaleKeys.inputUsernameEmail.tr())
+        if (hintText == LocaleKeys.inputUsernameEmail.tr())
           FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9@._-]'))
         else
           FilteringTextInputFormatter.digitsOnly,
       ],
-      maxLength: hintText==LocaleKeys.inputUsernameEmail.tr()? 30:6,
+      maxLength: hintText == LocaleKeys.inputUsernameEmail.tr() ? 30 : 6,
       controller: controller,
       decoration: InputDecoration(
         filled: true,
         fillColor: ColorName.splashUltimateGreyText.withOpacity(0.15),
-        hintStyle: TextStyle(color: ColorName.loginInputHintText, fontSize: TextSizeEnum.loginInputHintTextSize.value),
+        hintStyle: TextStyle(
+          color: ColorName.loginInputHintText,
+          fontSize: TextSizeEnum.loginInputHintTextSize.value,
+        ),
         hintText: hintText,
         border: OutlineInputBorder(
-          borderSide: BorderSide(color: ColorName.loginInputHintText.withOpacity(0.2)),
+          borderSide: BorderSide(
+            color: ColorName.loginInputHintText.withOpacity(0.2),
+          ),
           borderRadius:
               BorderRadiusConstants.instance.circularSmallBorderRadius,
         ),
         prefixIcon: Icon(prefixIcon, color: color),
-        suffixIcon: GlobalIconButton(icon: suffixIcon, color: color),
+        suffixIcon: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: GlobalIconButton(icon: suffixIcon, color: color),
+        ),
       ),
     );
   }

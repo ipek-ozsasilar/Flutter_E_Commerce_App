@@ -24,7 +24,8 @@ enum TextSizeEnum {
   onboardingTitleSize(24),
   onboardingSkipSize(16),
   loginWelcomeSize(30),
-  loginInputHintTextSize(13);
+  loginInputHintTextSize(13),
+  loginButtonTextSize(15);
 
   final double value;
 

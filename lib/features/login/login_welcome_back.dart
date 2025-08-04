@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_e_commerce_app/features/login/create_account.dart';
 import 'package:flutter_e_commerce_app/features/login/forgot_password.dart';
-import 'package:flutter_e_commerce_app/features/login/provider/login_provider.dart';
+import 'package:flutter_e_commerce_app/features/login/provider/auth_provider.dart';
+  import 'package:flutter_e_commerce_app/features/login/provider/connection_provider.dart';
+import 'package:flutter_e_commerce_app/features/login/provider/form_provider.dart' hide FormState;
+import 'package:flutter_e_commerce_app/features/login/provider/login_view_model.dart';
 import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
 import 'package:flutter_e_commerce_app/generated/locale_keys.g.dart';
 import 'package:flutter_e_commerce_app/product/constants/paddings_constants.dart';
@@ -25,7 +28,7 @@ class LoginWelcomeBack extends ConsumerStatefulWidget {
   ConsumerState<LoginWelcomeBack> createState() => _LoginWelcomeBackState();
 }
 
-class _LoginWelcomeBackState extends ConsumerState<LoginWelcomeBack> {
+class _LoginWelcomeBackState extends ConsumerState<LoginWelcomeBack>  with LoginViewModel{
   late TapGestureRecognizer _tapGestureRecognizer;
   final _formKey = GlobalKey<FormState>();
 
@@ -45,8 +48,12 @@ class _LoginWelcomeBackState extends ConsumerState<LoginWelcomeBack> {
 
   @override
   Widget build(BuildContext context) {
-    final emailController = ref.watch(loginProvider.notifier).emailController;
-    final passwordController = ref.watch(loginProvider.notifier).passwordController;
+    final emailController = ref
+        .watch(formProvider.notifier)
+        .emailController;
+    final passwordController = ref
+        .watch(formProvider.notifier)
+        .passwordController;
     return Scaffold(
       appBar:
           CustomAppbarLogin(title: LocaleKeys.welcomeBack.tr())
@@ -72,13 +79,13 @@ class _LoginWelcomeBackState extends ConsumerState<LoginWelcomeBack> {
                 child: loginInput(
                   hintText: LocaleKeys.inputPassword.tr(),
                   prefixIcon: Icons.lock,
-                  suffixIcon: AnimatedIcons.pause_play,
+                  suffixIcon: AnimatedIcons.menu_home,
                   color: ColorName.loginInputIconsGrey,
-                  formKey: _formKey,  
+                  formKey: _formKey,
                   controller: passwordController,
                 ),
               ),
-          
+
               Align(
                 alignment: Alignment.centerRight,
                 child: GlobalTextButton(
@@ -90,12 +97,14 @@ class _LoginWelcomeBackState extends ConsumerState<LoginWelcomeBack> {
                   color: ColorName.sizzlingRed.withOpacity(0.8),
                 ),
               ),
-          
+
               Padding(
                 padding: PaddingsConstants.instance.welcomeLoginButtonPadding,
-                child: GlobalElevatedButton(text: LocaleKeys.login.tr()),
+                child: GlobalElevatedButton(text: LocaleKeys.login.tr(), 
+                onPressed: () => loginWithEmailAndPasswordCheck(ref, context),
+                 isLoading: ref.watch(authProvider).isLoading),
               ),
-          
+
               Center(
                 child: NormalText(
                   text: LocaleKeys.continueOtherLogin.tr(),
@@ -103,9 +112,10 @@ class _LoginWelcomeBackState extends ConsumerState<LoginWelcomeBack> {
                   fontSize: TextSizeEnum.loginInputHintTextSize.value,
                 ),
               ),
-          
+
               Padding(
-                padding: PaddingsConstants.instance.otherLoginButtonVerticalPadding,
+                padding:
+                    PaddingsConstants.instance.otherLoginButtonVerticalPadding,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -114,7 +124,9 @@ class _LoginWelcomeBackState extends ConsumerState<LoginWelcomeBack> {
                       color: ColorName.boldBlack,
                     ),
                     Padding(
-                      padding: PaddingsConstants.instance.otherLoginButtonHorizontalPadding,
+                      padding: PaddingsConstants
+                          .instance
+                          .otherLoginButtonHorizontalPadding,
                       child: const otherLoginButton(
                         icon: Icons.apple,
                         color: ColorName.boldBlack,

@@ -23,13 +23,13 @@ mixin SplashViewModelMixin on ConsumerState<SplashView> {
 
       // ✅ Splash ready olduğunda, mevcut auth state ile navigation yap
       if (next.isRedirectStart) {
-        final currentAuthState = ref.read(authProvider);
+        final currentAuthState = ref.read(authhProvider);
         _performNavigation(currentAuthState, next);
       }
     });
 
     // ✅ Auth state değişikliklerini dinle
-    ref.listen<AuthState>(authProvider, (previous, next) {
+    ref.listen<AuthState>(authhProvider, (previous, next) {
       final currentSplashState = ref.read(splashProvider);
 
       // ✅ Sadece splash ready ise navigation yap

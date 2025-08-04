@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_e_commerce_app/features/login/login_welcome_back.dart';
-import 'package:flutter_e_commerce_app/features/login/provider/login_provider.dart';
+import 'package:flutter_e_commerce_app/features/login/provider/connection_provider.dart';
+import 'package:flutter_e_commerce_app/features/login/provider/form_provider.dart' hide FormState;
 import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
 import 'package:flutter_e_commerce_app/generated/locale_keys.g.dart';
 import 'package:flutter_e_commerce_app/product/constants/paddings_constants.dart';
@@ -41,13 +42,21 @@ class _CreateAccountState extends ConsumerState<CreateAccount> {
 
   @override
   Widget build(BuildContext context) {
-    final emailController = ref.watch(loginProvider.notifier).emailController;
-    final passwordController = ref.watch(loginProvider.notifier).passwordController;
-    final confirmPasswordController = ref.watch(loginProvider.notifier).confirmPasswordController;
-    
+    final emailController = ref
+        .watch(formProvider.notifier)
+        .emailController;
+    final passwordController = ref
+        .watch(formProvider.notifier)
+        .passwordController;
+    final confirmPasswordController = ref
+        .watch(formProvider.notifier)
+        .confirmPasswordController;
+
     final _formKey = GlobalKey<FormState>();
     return Scaffold(
-      appBar: CustomAppbarLogin(title: LocaleKeys.createAnAccount.tr()) as PreferredSizeWidget,
+      appBar:
+          CustomAppbarLogin(title: LocaleKeys.createAnAccount.tr())
+              as PreferredSizeWidget,
       body: Padding(
         padding: PaddingsConstants.instance.loginBodyPadding,
         child: Form(
@@ -65,21 +74,22 @@ class _CreateAccountState extends ConsumerState<CreateAccount> {
                 formKey: _formKey,
                 controller: emailController,
               ),
-          
+
               // Password
               Padding(
-                padding: PaddingsConstants.instance.createAccountPasswordPadding,
-                child: loginInput(  
+                padding:
+                    PaddingsConstants.instance.createAccountPasswordPadding,
+                child: loginInput(
                   hintText: LocaleKeys.inputPassword.tr(),
                   prefixIcon: Icons.lock,
                   suffixIcon: AnimatedIcons.pause_play,
                   color: ColorName.loginInputIconsGrey,
                   controller: passwordController,
-        
+
                   formKey: _formKey,
                 ),
               ),
-          
+
               // Confirm Password
               loginInput(
                 hintText: LocaleKeys.confirmPassword.tr(),
@@ -87,43 +97,61 @@ class _CreateAccountState extends ConsumerState<CreateAccount> {
                 suffixIcon: AnimatedIcons.pause_play,
                 color: ColorName.loginInputIconsGrey,
                 formKey: _formKey,
-                controller: confirmPasswordController, // Confirm password controller
+                controller:
+                    confirmPasswordController, // Confirm password controller
               ),
-          
+
               Padding(
                 padding: PaddingsConstants.instance.createAccountButtonPadding,
-                child: Center(
-                  child: _createAccountRichText(),
-                ),
+                child: Center(child: _createAccountRichText()),
               ),
-          
-          
+
               // Create Account Button
               GlobalElevatedButton(text: LocaleKeys.createAccount.tr()),
-          
+
               Padding(
                 padding: PaddingsConstants.instance.orContinuePadding,
                 child: Center(
-                  child: NormalText(text: LocaleKeys.continueOtherLogin.tr(), color: ColorName.loginShadowMountain, fontSize: 13),
+                  child: NormalText(
+                    text: LocaleKeys.continueOtherLogin.tr(),
+                    color: ColorName.loginShadowMountain,
+                    fontSize: 13,
+                  ),
                 ),
               ),
-          
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-              
+
                 children: [
-                  otherLoginButton(icon: Icons.g_mobiledata, color: ColorName.boldBlack),
-                  Padding(
-                    padding: PaddingsConstants.instance.otherLoginButtonHorizontalPadding,
-                    child: otherLoginButton(icon: Icons.apple, color: ColorName.boldBlack),
+                  otherLoginButton(
+                    icon: Icons.g_mobiledata,
+                    color: ColorName.boldBlack,
                   ),
-                  otherLoginButton(icon: Icons.facebook_outlined, color: ColorName.facebookBlue),
+                  Padding(
+                    padding: PaddingsConstants
+                        .instance
+                        .otherLoginButtonHorizontalPadding,
+                    child: otherLoginButton(
+                      icon: Icons.apple,
+                      color: ColorName.boldBlack,
+                    ),
+                  ),
+                  otherLoginButton(
+                    icon: Icons.facebook_outlined,
+                    color: ColorName.facebookBlue,
+                  ),
                 ],
               ),
               Padding(
-                padding: PaddingsConstants.instance.createAccountRichTextPadding,
+                padding:
+                    PaddingsConstants.instance.createAccountRichTextPadding,
                 child: Center(
-                  child: RichTextWidget(tapGestureRecognizer: _tapGestureRecognizer, text: LocaleKeys.IHaveAnAccount.tr(), secondText: LocaleKeys.login.tr()),
+                  child: RichTextWidget(
+                    tapGestureRecognizer: _tapGestureRecognizer,
+                    text: LocaleKeys.IHaveAnAccount.tr(),
+                    secondText: LocaleKeys.login.tr(),
+                  ),
                 ),
               ),
             ],
@@ -131,8 +159,6 @@ class _CreateAccountState extends ConsumerState<CreateAccount> {
         ),
       ),
     );
-  
-  
   }
 
   RichText _createAccountRichText() {

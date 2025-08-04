@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_e_commerce_app/features/home/home_view.dart';
 import 'package:flutter_e_commerce_app/features/login/login_welcome_back.dart';
 import 'package:flutter_e_commerce_app/product/theme/custom_theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -43,7 +45,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter E-Commerce Application',
       //EasyLocalization configuration
       localizationsDelegates: context.localizationDelegates,
-      
+
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       //Custom Theme for app
@@ -64,7 +66,25 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: const LoginWelcomeBack(),
+      home: const AuthWrapper(),
     );
+  }
+}
+
+
+class AuthWrapper extends StatelessWidget {
+  const AuthWrapper({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      // Giriş yapılmışsa ana sayfa
+      return const HomeView();  // Buraya kendi Home sayfanı koy
+    } else {
+      // Giriş yapılmamışsa login ekranı
+      return const LoginWelcomeBack();
+    }
   }
 }

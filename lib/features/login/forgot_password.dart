@@ -2,7 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app/features/login/login_welcome_back.dart';
-import 'package:flutter_e_commerce_app/features/login/provider/login_provider.dart';
+import 'package:flutter_e_commerce_app/features/login/provider/connection_provider.dart';
+import 'package:flutter_e_commerce_app/features/login/provider/form_provider.dart' hide FormState;
 import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
 import 'package:flutter_e_commerce_app/generated/locale_keys.g.dart';
 import 'package:flutter_e_commerce_app/product/constants/paddings_constants.dart';
@@ -20,8 +21,6 @@ class ForgotPassword extends ConsumerStatefulWidget {
 
   @override
   ConsumerState<ForgotPassword> createState() => _ForgotPasswordState();
-
-  
 }
 
 class _ForgotPasswordState extends ConsumerState<ForgotPassword> {
@@ -30,14 +29,20 @@ class _ForgotPasswordState extends ConsumerState<ForgotPassword> {
   void initState() {
     super.initState();
     _tapGestureRecognizer = TapGestureRecognizer()
-      ..onTap = () => NavigatorManager.instance.navigatePage(context, ForgotPassword());
+      ..onTap = () =>
+          NavigatorManager.instance.navigatePage(context, ForgotPassword());
   }
+
   @override
   Widget build(BuildContext context) {
-    final forgotPasswordController = ref.watch(loginProvider.notifier).forgotPasswordController;
+    final forgotPasswordController = ref
+        .watch(formProvider.notifier)
+        .forgotPasswordController;
     final _formKey = GlobalKey<FormState>();
     return Scaffold(
-      appBar: CustomAppbarLogin(title: LocaleKeys.forgotPassword.tr()) as PreferredSizeWidget,
+      appBar:
+          CustomAppbarLogin(title: LocaleKeys.forgotPassword.tr())
+              as PreferredSizeWidget,
       body: Padding(
         padding: PaddingsConstants.instance.loginBodyPadding,
         child: Form(
@@ -45,7 +50,7 @@ class _ForgotPasswordState extends ConsumerState<ForgotPassword> {
           autovalidateMode: AutovalidateMode.disabled,
           child: Column(
             children: [
-              loginInput( 
+              loginInput(
                 hintText: LocaleKeys.enterYourEmail.tr(),
                 prefixIcon: Icons.email_rounded,
                 suffixIcon: AnimatedIcons.close_menu,
@@ -53,15 +58,19 @@ class _ForgotPasswordState extends ConsumerState<ForgotPassword> {
                 formKey: _formKey,
                 controller: forgotPasswordController,
               ),
-          
+
               Padding(
                 padding: PaddingsConstants.instance.forgotPasswordDetailPadding,
                 child: Align(
                   alignment: Alignment.centerLeft,
-                  child: RichTextWidget(tapGestureRecognizer: _tapGestureRecognizer, text: "*", secondText: LocaleKeys.forgotPasswordDetail.tr()),
+                  child: RichTextWidget(
+                    tapGestureRecognizer: _tapGestureRecognizer,
+                    text: "*",
+                    secondText: LocaleKeys.forgotPasswordDetail.tr(),
+                  ),
                 ),
               ),
-          
+
               GlobalElevatedButton(text: LocaleKeys.submit.tr()),
             ],
           ),

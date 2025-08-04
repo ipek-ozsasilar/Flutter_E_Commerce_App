@@ -15,7 +15,7 @@ Firebase'in Otomatik Yaptıkları:
 - Battery Optimization: Background refresh, minimal network calls
  */
 
-final authProvider = StateNotifierProvider<AuthProvider, AuthState>((ref) {
+final authhProvider = StateNotifierProvider<AuthProvider, AuthState>((ref) {
   return AuthProvider();
 });
 
