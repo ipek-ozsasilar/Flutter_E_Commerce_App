@@ -1,12 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_e_commerce_app/features/login/create_account.dart';
 import 'package:flutter_e_commerce_app/features/login/forgot_password.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/auth_provider.dart';
-  import 'package:flutter_e_commerce_app/features/login/provider/connection_provider.dart';
-import 'package:flutter_e_commerce_app/features/login/provider/form_provider.dart' hide FormState;
-import 'package:flutter_e_commerce_app/features/login/provider/login_view_model.dart';
+import 'package:flutter_e_commerce_app/features/login/provider/connection_provider.dart';
+import 'package:flutter_e_commerce_app/features/login/provider/form_provider.dart'
+    hide FormState;
+import 'package:flutter_e_commerce_app/features/login/view_model/login_view_model.dart';
 import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
 import 'package:flutter_e_commerce_app/generated/locale_keys.g.dart';
 import 'package:flutter_e_commerce_app/product/constants/paddings_constants.dart';
@@ -28,7 +30,8 @@ class LoginWelcomeBack extends ConsumerStatefulWidget {
   ConsumerState<LoginWelcomeBack> createState() => _LoginWelcomeBackState();
 }
 
-class _LoginWelcomeBackState extends ConsumerState<LoginWelcomeBack>  with LoginViewModel{
+class _LoginWelcomeBackState extends ConsumerState<LoginWelcomeBack>
+    with LoginViewModel {
   late TapGestureRecognizer _tapGestureRecognizer;
   final _formKey = GlobalKey<FormState>();
 
@@ -36,8 +39,12 @@ class _LoginWelcomeBackState extends ConsumerState<LoginWelcomeBack>  with Login
   void initState() {
     super.initState();
     _tapGestureRecognizer = TapGestureRecognizer()
-      ..onTap = () =>
-          NavigatorManager.instance.navigatePage(context, CreateAccount());
+      ..onTap = () {
+        ref.read(formProvider.notifier).clearTextEmail();
+        ref.read(formProvider.notifier).clearTextPassword();
+        ref.read(formProvider.notifier).clearTextConfirmPassword();
+        NavigatorManager.instance.navigatePage(context, CreateAccount());
+      };
   }
 
   @override
@@ -48,9 +55,7 @@ class _LoginWelcomeBackState extends ConsumerState<LoginWelcomeBack>  with Login
 
   @override
   Widget build(BuildContext context) {
-    final emailController = ref
-        .watch(formProvider.notifier)
-        .emailController;
+    final emailController = ref.watch(formProvider.notifier).emailController;
     final passwordController = ref
         .watch(formProvider.notifier)
         .passwordController;
@@ -100,10 +105,15 @@ class _LoginWelcomeBackState extends ConsumerState<LoginWelcomeBack>  with Login
 
               Padding(
                 padding: PaddingsConstants.instance.welcomeLoginButtonPadding,
-                child: GlobalElevatedButton(text: LocaleKeys.login.tr(), 
-                onPressed: () => loginWithEmailAndPasswordCheck(ref, context),
-                 isLoading: ref.watch(authProvider).isLoading),
+                child: GlobalElevatedButton(
+                  text: LocaleKeys.login.tr(),
+                  onPressed: () => loginWithEmailAndPasswordCheck(context),
+                  isLoading: listenLoading(),
+                  child: loadingWidgetCheck(LocaleKeys.login.tr()),
+                ),
               ),
+
+              
 
               Center(
                 child: NormalText(

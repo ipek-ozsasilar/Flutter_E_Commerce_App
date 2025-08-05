@@ -35,10 +35,31 @@ class FormNotifier extends StateNotifier<FormState> {
 
   bool checkEmptyEmailAndPassword() => emailController.text.isEmpty || passwordController.text.isEmpty;
 
-  void clearText() {
+  bool checkPasswordLength() => passwordController.text.length >= 6;
+
+  bool checkConfirmPasswordLength() => confirmPasswordController.text.length >= 6;
+
+  bool checkForgotPasswordEmailEmpty() => forgotPasswordController.text.isEmpty;
+
+  
+
+  bool passwordsSame() => passwordController.text == confirmPasswordController.text;
+
+  void clearTextEmail() {
     emailController.clear();
   }
 
+  void clearTextPassword() {
+    passwordController.clear();
+  }
+
+  void clearTextConfirmPassword() {
+    confirmPasswordController.clear();
+  }
+
+  void clearTextForgotPassword() {
+    forgotPasswordController.clear();
+  }
 }
 
 class FormState extends Equatable {

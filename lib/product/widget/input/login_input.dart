@@ -2,7 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/connection_provider.dart';
-import 'package:flutter_e_commerce_app/features/login/provider/form_provider.dart' hide FormState;
+import 'package:flutter_e_commerce_app/features/login/provider/form_provider.dart'
+    hide FormState;
 import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
 import 'package:flutter_e_commerce_app/generated/locale_keys.g.dart';
 import 'package:flutter_e_commerce_app/product/constants/border_radius.dart';
@@ -40,7 +41,7 @@ class loginInput extends ConsumerWidget {
       },
       //focus olunca kontrol yapılsın
       validator: (value) {
-        if (value == null || value.isEmpty) {
+        if (value == null || value.isEmpty || value.length < 6) {
           if (hintText == LocaleKeys.inputUsernameEmail.tr()) {
             return 'Lütfen geçerli bir e-mail adresi giriniz';
           } else {
@@ -49,16 +50,20 @@ class loginInput extends ConsumerWidget {
         }
         return null;
       },
-      keyboardType: hintText == LocaleKeys.inputUsernameEmail.tr()
+      keyboardType:
+          hintText == LocaleKeys.inputUsernameEmail.tr() ||
+              hintText == LocaleKeys.createAccount.tr()
           ? TextInputType.emailAddress
           : TextInputType.visiblePassword,
       inputFormatters: [
-        if (hintText == LocaleKeys.inputUsernameEmail.tr())
-          FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9@._-]'))
+        if (hintText == LocaleKeys.inputPassword.tr() ||
+            hintText == LocaleKeys.confirmPassword.tr())
+          FilteringTextInputFormatter.digitsOnly
         else
-          FilteringTextInputFormatter.digitsOnly,
+          FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9@._-]')),
       ],
-      maxLength: hintText == LocaleKeys.inputUsernameEmail.tr() ? 30 : 6,
+
+      maxLength: 30,
       controller: controller,
       decoration: InputDecoration(
         filled: true,

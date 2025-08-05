@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/connection_provider.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/form_provider.dart';
-import 'package:flutter_e_commerce_app/features/login/provider/login_view_model.dart';
+import 'package:flutter_e_commerce_app/features/login/view_model/forgot_password_view_model.dart';
+import 'package:flutter_e_commerce_app/features/login/view_model/login_view_model.dart';
 import 'package:flutter_e_commerce_app/product/constants/duration_constants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -15,7 +16,7 @@ class GlobalIconButton extends ConsumerStatefulWidget {
 }
 
 class _GlobalIconButtonState extends ConsumerState<GlobalIconButton>
-    with TickerProviderStateMixin, LoginViewModel {
+    with TickerProviderStateMixin, ForgotPasswordViewModel, LoginViewModel {
   late AnimationController _controller;
 
   @override
@@ -37,7 +38,8 @@ class _GlobalIconButtonState extends ConsumerState<GlobalIconButton>
           changeObscureText();
           listenObscureText() ? _controller.forward() : _controller.reverse();
         } else {
-          clearText();
+          clearTextEmail();
+          clearTextForgotPassword();
         }
       },
       child: AnimatedIcon(icon: widget.icon, progress: _controller),

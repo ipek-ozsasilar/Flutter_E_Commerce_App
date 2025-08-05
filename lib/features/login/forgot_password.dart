@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app/features/login/login_welcome_back.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/connection_provider.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/form_provider.dart' hide FormState;
+import 'package:flutter_e_commerce_app/features/login/view_model/forgot_password_view_model.dart';
 import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
 import 'package:flutter_e_commerce_app/generated/locale_keys.g.dart';
 import 'package:flutter_e_commerce_app/product/constants/paddings_constants.dart';
@@ -23,7 +24,7 @@ class ForgotPassword extends ConsumerStatefulWidget {
   ConsumerState<ForgotPassword> createState() => _ForgotPasswordState();
 }
 
-class _ForgotPasswordState extends ConsumerState<ForgotPassword> {
+class _ForgotPasswordState extends ConsumerState<ForgotPassword> with ForgotPasswordViewModel {
   late TapGestureRecognizer _tapGestureRecognizer;
   @override
   void initState() {
@@ -71,7 +72,12 @@ class _ForgotPasswordState extends ConsumerState<ForgotPassword> {
                 ),
               ),
 
-              GlobalElevatedButton(text: LocaleKeys.submit.tr()),
+              GlobalElevatedButton(
+                text: LocaleKeys.submit.tr(), onPressed: () async {
+                forgotPasswordCheck();
+              }, isLoading: listenLoading(), 
+              child: loadingWidgetCheck(LocaleKeys.submit.tr())
+              ),
             ],
           ),
         ),

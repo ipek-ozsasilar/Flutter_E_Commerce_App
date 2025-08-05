@@ -3,7 +3,9 @@ import 'package:flutter/gestures.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_e_commerce_app/features/login/login_welcome_back.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/connection_provider.dart';
-import 'package:flutter_e_commerce_app/features/login/provider/form_provider.dart' hide FormState;
+import 'package:flutter_e_commerce_app/features/login/provider/form_provider.dart'
+    hide FormState;
+import 'package:flutter_e_commerce_app/features/login/view_model/create_account_view_model.dart';
 import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
 import 'package:flutter_e_commerce_app/generated/locale_keys.g.dart';
 import 'package:flutter_e_commerce_app/product/constants/paddings_constants.dart';
@@ -23,7 +25,8 @@ class CreateAccount extends ConsumerStatefulWidget {
   ConsumerState<CreateAccount> createState() => _CreateAccountState();
 }
 
-class _CreateAccountState extends ConsumerState<CreateAccount> {
+class _CreateAccountState extends ConsumerState<CreateAccount>
+    with CreateAccountViewModel {
   late TapGestureRecognizer _tapGestureRecognizer;
 
   @override
@@ -42,9 +45,7 @@ class _CreateAccountState extends ConsumerState<CreateAccount> {
 
   @override
   Widget build(BuildContext context) {
-    final emailController = ref
-        .watch(formProvider.notifier)
-        .emailController;
+    final emailController = ref.watch(formProvider.notifier).emailController;
     final passwordController = ref
         .watch(formProvider.notifier)
         .passwordController;
@@ -82,10 +83,9 @@ class _CreateAccountState extends ConsumerState<CreateAccount> {
                 child: loginInput(
                   hintText: LocaleKeys.inputPassword.tr(),
                   prefixIcon: Icons.lock,
-                  suffixIcon: AnimatedIcons.pause_play,
+                  suffixIcon: AnimatedIcons.menu_home,
                   color: ColorName.loginInputIconsGrey,
                   controller: passwordController,
-
                   formKey: _formKey,
                 ),
               ),
@@ -94,7 +94,7 @@ class _CreateAccountState extends ConsumerState<CreateAccount> {
               loginInput(
                 hintText: LocaleKeys.confirmPassword.tr(),
                 prefixIcon: Icons.lock,
-                suffixIcon: AnimatedIcons.pause_play,
+                suffixIcon: AnimatedIcons.menu_home,
                 color: ColorName.loginInputIconsGrey,
                 formKey: _formKey,
                 controller:
@@ -107,7 +107,14 @@ class _CreateAccountState extends ConsumerState<CreateAccount> {
               ),
 
               // Create Account Button
-              GlobalElevatedButton(text: LocaleKeys.createAccount.tr()),
+              GlobalElevatedButton(
+                text: LocaleKeys.createAccount.tr(),
+                onPressed: () {
+                  createAccountCheck(context);
+                },
+                isLoading: listenLoading(),
+                child: loadingWidgetCheck(LocaleKeys.createAccount.tr(),),
+              ),
 
               Padding(
                 padding: PaddingsConstants.instance.orContinuePadding,
