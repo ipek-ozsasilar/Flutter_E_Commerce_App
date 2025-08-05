@@ -50,15 +50,6 @@ mixin LoginViewModel<T extends ConsumerStatefulWidget> on ConsumerState<T> {
         return;
       }
 
-      final passwordLengthResult = ref
-          .read(formProvider.notifier)
-          .checkPasswordLength();
-      if (passwordLengthResult) {
-        _logger.w('Şifre en az 6 karakter olmalıdır');
-        showSnackBar(context, 'Şifre en az 6 karakter olmalıdır');
-        return;
-      }
-
       // 3. Firebase login
       final user = await ref
           .read(authProvider.notifier)
@@ -109,14 +100,15 @@ mixin LoginViewModel<T extends ConsumerStatefulWidget> on ConsumerState<T> {
       _logger.w('Kullanıcı girişi başarılı ve email doğrulanmış');
       NavigatorManager.instance.navigatePage(context, HomeView());
     } on FirebaseAuthException catch (e) {
-      _logger.e('FirebaseAuthException -> code: ${e.code}, message: ${e.message}');
-      
-       if (e.code == 'invalid-email') {
+      _logger.e(
+        'FirebaseAuthException -> code: ${e.code}, message: ${e.message}',
+      );
+
+      if (e.code == 'invalid-email') {
         showSnackBar(context, 'E-mail formatı geçersiz');
-      } else if(e.code == 'invalid-credential') {
+      } else if (e.code == 'invalid-credential') {
         showSnackBar(context, 'Bir hata oluştu geçersiz giriş');
-      }
-      else{
+      } else {
         showSnackBar(context, 'Bir hata oluştu');
       }
     } finally {

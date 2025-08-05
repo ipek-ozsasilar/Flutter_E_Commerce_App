@@ -41,13 +41,24 @@ class loginInput extends ConsumerWidget {
       },
       //focus olunca kontrol yapılsın
       validator: (value) {
-        if (value == null || value.isEmpty || value.length < 6) {
-          if (hintText == LocaleKeys.inputUsernameEmail.tr()) {
+        if (value == null || value.isEmpty) {
+          if (hintText == LocaleKeys.inputUsernameEmail.tr() ||
+              hintText == LocaleKeys.enterYourEmail.tr() ||
+              hintText == LocaleKeys.createAccount.tr()) {
             return 'Lütfen geçerli bir e-mail adresi giriniz';
           } else {
             return 'Lütfen geçerli bir şifre giriniz';
           }
         }
+
+        // Sadece şifre alanları için 6 karakter kontrolü
+        if (hintText == LocaleKeys.inputPassword.tr() ||
+            hintText == LocaleKeys.confirmPassword.tr()) {
+          if (value.length < 6) {
+            return 'Şifre en az 6 karakter olmalı';
+          }
+        }
+
         return null;
       },
       keyboardType:

@@ -67,7 +67,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: const LoginWelcomeBack(),
+      home: SplashView(),
     );
   }
 }
