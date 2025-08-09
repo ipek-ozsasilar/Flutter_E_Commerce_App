@@ -32,9 +32,21 @@ class AppInitiliazer {
     //Configure firebase auth providers
     firebaseAuthUI.FirebaseUIAuth.configureProviders([
       firebaseAuthUI.EmailAuthProvider(),
-      GoogleProvider(clientId: ''),
-      AppleProvider(),
-      FacebookProvider(clientId: ''),
+      //Google gibi OAuth sağlayıcıları, hangi uygulamanın Google ile giriş yapmaya çalıştığını bilmek ister.
+      GoogleProvider(
+        clientId: const String.fromEnvironment(
+          'GOOGLE_CLIENT_ID_ANDROID',
+          defaultValue:
+              '631494873953-k4oabd7l6a6fq5tm5h538i6j79tafm2g.apps.googleusercontent.com',
+        ),
+      ),
+      // AppleProvider(),
+      FacebookProvider(
+        clientId: const String.fromEnvironment(
+          'FACEBOOK_APP_ID',
+          defaultValue: '1909138999942825',
+        ),
+      ),
     ]);
     //Start easy localization of app
     await EasyLocalization.ensureInitialized();
@@ -42,3 +54,12 @@ class AppInitiliazer {
     await getIt<secureStorageSetUp>().setUp();
   }
 }
+
+// Environment Variables kullanımı:
+// flutter run --dart-define=GOOGLE_CLIENT_ID_ANDROID=your-real-id
+// flutter run --dart-define=FACEBOOK_APP_ID=your-real-id
+
+// Default values (development için)
+// android: 631494873953-k4oabd7l6a6fq5tm5h538i6j79tafm2g.apps.googleusercontent.com
+// web: 631494873953-o680qu8537u4u9g8jdk2e36tjrtjibnv.apps.googleusercontent.com
+//flutter build apk --dart-define=GOOGLE_CLIENT_ID_ANDROID=prod-id --dart-define=FACEBOOK_APP_ID=prod-id

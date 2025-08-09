@@ -6,16 +6,16 @@ class otherLoginButton extends StatelessWidget {
   const otherLoginButton({
     super.key,
     required this.icon,
-    required this.color,
+    required this.onPressed,
   });
 
-  final IconData icon;
-  final Color color;
+  final Widget icon;
+  final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () {},
-      icon: Icon(icon, color: color),
+      onPressed: onPressed,
+      icon: icon,
       iconSize: 35,
       style: IconButton.styleFrom(
         shape: CircleBorder(

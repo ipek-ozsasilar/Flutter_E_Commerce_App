@@ -19,7 +19,7 @@ mixin LoginViewModel<T extends ConsumerStatefulWidget> on ConsumerState<T> {
   final Logger _logger = Logger();
 
   Widget loadingWidgetCheck(String text) {
-    return ref.watch(authProvider).isLoading
+    return ref.watch(authProvider).isLoadingEmail
         ? const CircularProgressIndicator(color: ColorName.whiteColor)
         : NormalText(
             text: text,
@@ -112,7 +112,7 @@ mixin LoginViewModel<T extends ConsumerStatefulWidget> on ConsumerState<T> {
         showSnackBar(context, 'Bir hata oluştu');
       }
     } finally {
-      ref.read(authProvider.notifier).setLoading(false);
+      ref.read(authProvider.notifier).setLoadingEmail(false);
     }
   }
 
@@ -125,7 +125,7 @@ mixin LoginViewModel<T extends ConsumerStatefulWidget> on ConsumerState<T> {
   }
 
   bool listenLoading() {
-    return ref.watch(authProvider).isLoading;
+    return ref.watch(authProvider).isLoadingEmail;
   }
 
   bool listenObscureText() {

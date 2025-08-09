@@ -68,7 +68,7 @@ class _CreateAccountState extends ConsumerState<CreateAccount>
             children: [
               // Username/email
               loginInput(
-                hintText: LocaleKeys.createAccount.tr(),
+                hintText: LocaleKeys.exampleEmail.tr(),
                 prefixIcon: Icons.person_rounded,
                 suffixIcon: AnimatedIcons.close_menu,
                 color: ColorName.loginInputIconsGrey,
@@ -112,7 +112,7 @@ class _CreateAccountState extends ConsumerState<CreateAccount>
                 onPressed: () {
                   createAccountCheck(context);
                 },
-                isLoading: listenLoading(),
+                isLoadingEmail:   listenLoading(),
                 child: loadingWidgetCheck(LocaleKeys.createAccount.tr(),),
               ),
 
@@ -132,21 +132,21 @@ class _CreateAccountState extends ConsumerState<CreateAccount>
 
                 children: [
                   otherLoginButton(
-                    icon: Icons.g_mobiledata,
-                    color: ColorName.boldBlack,
+                    icon: Text(""),
+                    onPressed: () {},
                   ),
                   Padding(
                     padding: PaddingsConstants
                         .instance
                         .otherLoginButtonHorizontalPadding,
                     child: otherLoginButton(
-                      icon: Icons.apple,
-                      color: ColorName.boldBlack,
+                      icon: Text(""),
+                      onPressed: () {},
                     ),
                   ),
                   otherLoginButton(
-                    icon: Icons.facebook_outlined,
-                    color: ColorName.facebookBlue,
+                    icon: Text(""),
+                    onPressed: () {},
                   ),
                 ],
               ),

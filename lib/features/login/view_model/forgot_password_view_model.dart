@@ -59,7 +59,7 @@ mixin ForgotPasswordViewModel<T extends ConsumerStatefulWidget>
         showSnackBar(context, 'Geçersiz kullanıcı');
       }
     } finally {
-      ref.read(authProvider.notifier).setLoading(false);
+      ref.read(authProvider.notifier).setLoadingEmail(false);
     }
   }
 
@@ -74,11 +74,11 @@ mixin ForgotPasswordViewModel<T extends ConsumerStatefulWidget>
   }
 
   bool listenLoading() {
-    return ref.watch(authProvider).isLoading;
+    return ref.watch(authProvider).isLoadingEmail;
   }
 
   Widget loadingWidgetCheck(String text) {
-    return ref.watch(authProvider).isLoading
+    return ref.watch(authProvider).isLoadingEmail
         ? const CircularProgressIndicator(color: ColorName.whiteColor)
         : NormalText(
             text: text,

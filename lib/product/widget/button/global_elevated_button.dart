@@ -16,17 +16,17 @@ class GlobalElevatedButton extends StatelessWidget {
     required this.text,
     required this.onPressed,
     required this.child,
-    required this.isLoading,
+    required this.isLoadingEmail,
   });
 
   final String text;
   VoidCallback? onPressed;
   Widget? child;
-  bool? isLoading;
+  bool? isLoadingEmail;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: isLoading == false ? onPressed : null,
+      onPressed: isLoadingEmail == false ? onPressed : null,
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(
           borderRadius:

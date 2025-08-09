@@ -66,8 +66,11 @@ class MyApp extends StatelessWidget {
           //4K
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
-      ),
+      ), 
+      //fixme : reset password sayfasını ekle harf gırılemesını engelleyen kodu ekle
+      
       home: SplashView(),
+      //SplashView(),
     );
   }
 }

@@ -3,7 +3,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app/features/login/login_welcome_back.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/connection_provider.dart';
-import 'package:flutter_e_commerce_app/features/login/provider/form_provider.dart' hide FormState;
+import 'package:flutter_e_commerce_app/features/login/provider/form_provider.dart'
+    hide FormState;
 import 'package:flutter_e_commerce_app/features/login/view_model/forgot_password_view_model.dart';
 import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
 import 'package:flutter_e_commerce_app/generated/locale_keys.g.dart';
@@ -24,7 +25,8 @@ class ForgotPassword extends ConsumerStatefulWidget {
   ConsumerState<ForgotPassword> createState() => _ForgotPasswordState();
 }
 
-class _ForgotPasswordState extends ConsumerState<ForgotPassword> with ForgotPasswordViewModel {
+class _ForgotPasswordState extends ConsumerState<ForgotPassword>
+    with ForgotPasswordViewModel {
   late TapGestureRecognizer _tapGestureRecognizer;
   @override
   void initState() {
@@ -42,7 +44,10 @@ class _ForgotPasswordState extends ConsumerState<ForgotPassword> with ForgotPass
     final _formKey = GlobalKey<FormState>();
     return Scaffold(
       appBar:
-          CustomAppbarLogin(title: LocaleKeys.forgotPassword.tr())
+          CustomAppbarLogin(
+                title: LocaleKeys.forgotPassword.tr(),
+                showBackButton: true,
+              )
               as PreferredSizeWidget,
       body: Padding(
         padding: PaddingsConstants.instance.loginBodyPadding,
@@ -73,10 +78,12 @@ class _ForgotPasswordState extends ConsumerState<ForgotPassword> with ForgotPass
               ),
 
               GlobalElevatedButton(
-                text: LocaleKeys.submit.tr(), onPressed: () async {
-                forgotPasswordCheck();
-              }, isLoading: listenLoading(), 
-              child: loadingWidgetCheck(LocaleKeys.submit.tr())
+                text: LocaleKeys.submit.tr(),
+                onPressed: () async {
+                  forgotPasswordCheck();
+                },
+                isLoadingEmail: listenLoading(),
+                child: loadingWidgetCheck(LocaleKeys.submit.tr()),
               ),
             ],
           ),

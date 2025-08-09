@@ -16,7 +16,7 @@ mixin CreateAccountViewModel<T extends ConsumerStatefulWidget>
   final Logger _logger = Logger();
 
   Widget loadingWidgetCheck(String text) {
-    return ref.watch(authProvider).isLoading
+    return ref.watch(authProvider).isLoadingEmail
         ? const CircularProgressIndicator(color: ColorName.whiteColor)
         : NormalText(
             text: text,
@@ -88,7 +88,7 @@ mixin CreateAccountViewModel<T extends ConsumerStatefulWidget>
       showSnackBar(context, 'Kullanıcı oluşturma başarısız');
       return;
     } finally {
-      ref.read(authProvider.notifier).setLoading(false);
+      ref.read(authProvider.notifier).setLoadingEmail(false);
     }
   }
 
@@ -105,7 +105,7 @@ mixin CreateAccountViewModel<T extends ConsumerStatefulWidget>
   }
 
   bool listenLoading() {
-    return ref.watch(authProvider).isLoading;
+    return ref.watch(authProvider).isLoadingEmail;
   }
 
   void showSnackBar(BuildContext context, String message) {

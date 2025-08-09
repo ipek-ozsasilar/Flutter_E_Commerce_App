@@ -65,7 +65,7 @@ class loginInput extends ConsumerWidget {
           hintText == LocaleKeys.inputUsernameEmail.tr() ||
               hintText == LocaleKeys.createAccount.tr()
           ? TextInputType.emailAddress
-          : TextInputType.visiblePassword,
+          : TextInputType.number,
       inputFormatters: [
         if (hintText == LocaleKeys.inputPassword.tr() ||
             hintText == LocaleKeys.confirmPassword.tr())

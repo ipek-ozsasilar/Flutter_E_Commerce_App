@@ -35,6 +35,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
 
+
   #extensions
   kartal: ^4.2.0
 
@@ -48,6 +49,7 @@ dependencies:
   firebase_ui_oauth_apple: ^1.2.0
   firebase_ui_oauth_facebook: ^1.2.0
   firebase_ui_oauth_google: ^1.4.2
+
 
   #scripts
   rps: ^0.9.1

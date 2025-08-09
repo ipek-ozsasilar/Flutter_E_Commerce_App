@@ -8,8 +8,10 @@ import 'package:flutter_e_commerce_app/features/login/provider/auth_provider.dar
 import 'package:flutter_e_commerce_app/features/login/provider/connection_provider.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/form_provider.dart'
     hide FormState;
+import 'package:flutter_e_commerce_app/features/login/view_model/facebook_view_model.dart';
 import 'package:flutter_e_commerce_app/features/login/view_model/login_view_model.dart';
-import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
+import 'package:flutter_e_commerce_app/features/login/view_model/google_view_model.dart';
+  import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
 import 'package:flutter_e_commerce_app/generated/locale_keys.g.dart';
 import 'package:flutter_e_commerce_app/product/constants/paddings_constants.dart';
 import 'package:flutter_e_commerce_app/product/enums/sizes_enum.dart';
@@ -31,7 +33,7 @@ class LoginWelcomeBack extends ConsumerStatefulWidget {
 }
 
 class _LoginWelcomeBackState extends ConsumerState<LoginWelcomeBack>
-    with LoginViewModel {
+    with LoginViewModel, FacebookViewModel, GoogleViewModel {
   late TapGestureRecognizer _tapGestureRecognizer;
   final _formKey = GlobalKey<FormState>();
 
@@ -108,12 +110,10 @@ class _LoginWelcomeBackState extends ConsumerState<LoginWelcomeBack>
                 child: GlobalElevatedButton(
                   text: LocaleKeys.login.tr(),
                   onPressed: () => loginWithEmailAndPasswordCheck(context),
-                  isLoading: listenLoading(),
+                  isLoadingEmail: listenLoading(),
                   child: loadingWidgetCheck(LocaleKeys.login.tr()),
                 ),
               ),
-
-              
 
               Center(
                 child: NormalText(
@@ -129,22 +129,19 @@ class _LoginWelcomeBackState extends ConsumerState<LoginWelcomeBack>
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const otherLoginButton(
-                      icon: Icons.g_mobiledata,
-                      color: ColorName.boldBlack,
-                    ),
+                      otherLoginButton(icon: googleLoadingWidgetCheck(), 
+                      onPressed: () {
+                      googleLoginCheck();
+                    }),
                     Padding(
                       padding: PaddingsConstants
                           .instance
                           .otherLoginButtonHorizontalPadding,
-                      child: const otherLoginButton(
-                        icon: Icons.apple,
-                        color: ColorName.boldBlack,
-                      ),
+                      child: otherLoginButton(icon: Icon(Icons.apple,color: ColorName.boldBlack,), onPressed: () {}),
                     ),
-                    const otherLoginButton(
-                      icon: Icons.facebook_outlined,
-                      color: ColorName.facebookBlue,
+                    otherLoginButton(
+                      icon: facebookLoadingWidgetCheck(),
+                      onPressed: () => facebookLoginCheck(),
                     ),
                   ],
                 ),
