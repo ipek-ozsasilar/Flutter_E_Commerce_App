@@ -35,6 +35,15 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
 
+  #lottie
+  lottie: ^3.3.1
+
+  #url
+  url_launcher: ^6.3.0
+
+  #deep link listen
+  app_links: ^6.1.1
+
 
   #extensions
   kartal: ^4.2.0
@@ -101,6 +110,7 @@ dependencies:
 
 
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -139,6 +149,7 @@ flutter:
     - assets/colors/
     - assets/translations/
     - assets/images/
+    - assets/animations/
 
 #flutter gen configurations
 flutter_gen:

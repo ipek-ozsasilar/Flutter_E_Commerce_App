@@ -1,6 +1,6 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-//Secure Storage instance set up for caching data
+//SecureStorage'ın nesnesini oluşturur.
 class secureStorageSetUp {
   secureStorageSetup() {}
 

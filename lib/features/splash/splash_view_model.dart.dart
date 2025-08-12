@@ -5,6 +5,8 @@ import 'package:flutter_e_commerce_app/features/home/home_view.dart';
 import 'package:flutter_e_commerce_app/features/login/login_welcome_back.dart';
 import 'package:flutter_e_commerce_app/features/onboarding/onboarding_view.dart';
 import 'package:flutter_e_commerce_app/features/splash/splash_provider.dart';
+import 'package:flutter_e_commerce_app/features/login/provider/deeplink_provider.dart';
+import 'package:flutter_e_commerce_app/features/login/reset_password.dart';
 import 'package:flutter_e_commerce_app/features/splash/splash_view.dart';
 import 'package:flutter_e_commerce_app/generated/locale_keys.g.dart';
 import 'package:flutter_e_commerce_app/product/constants/duration_constants.dart';
@@ -41,6 +43,12 @@ mixin SplashViewModelMixin on ConsumerState<SplashView> {
   }
 
   void _performNavigation(AuthState authState, SplashState splashState) {
+    // If there is a pending password reset deep link, prioritize it
+    final pendingOobCode = ref.read(appLinkProvider).oobCode;
+    if (pendingOobCode != null && pendingOobCode.isNotEmpty) {
+      _navigateToReset(pendingOobCode);
+      return;
+    }
     if (authState.isLoggedIn) {
       log("🏠 → HOME (user logged in)");
       _navigateToHome();
@@ -68,6 +76,16 @@ mixin SplashViewModelMixin on ConsumerState<SplashView> {
   void _navigateToLogin() {
     if (mounted) {
       NavigatorManager.instance.navigatePage(context, const LoginWelcomeBack());
+    }
+  }
+
+  void _navigateToReset(String oobCode) {
+    if (mounted) {
+      // Clear the stack so later Splash redirects do not override
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (_) => ResetPassword(oobCode: oobCode)),
+        (route) => false,
+      );
     }
   }
 

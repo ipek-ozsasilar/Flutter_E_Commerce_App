@@ -1,14 +1,14 @@
-import 'dart:developer';
+// import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_e_commerce_app/features/auth/auth_provider.dart';
+// import 'package:flutter_e_commerce_app/features/auth/auth_provider.dart';
 import 'package:flutter_e_commerce_app/features/home/home_view.dart';
-import 'package:flutter_e_commerce_app/features/login/login_welcome_back.dart'
-    show LoginWelcomeBack;
+// import 'package:flutter_e_commerce_app/features/login/login_welcome_back.dart'
+//     show LoginWelcomeBack;
 import 'package:flutter_e_commerce_app/features/login/provider/auth_provider.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/connection_provider.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/form_provider.dart';
-import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
+import 'package:flutter_e_commerce_app/product/theme/app_colors_context.dart';
 import 'package:flutter_e_commerce_app/product/enums/sizes_enum.dart';
 import 'package:flutter_e_commerce_app/product/utility/navigator/navigator.dart';
 import 'package:flutter_e_commerce_app/product/widget/text/text_widget.dart';
@@ -20,10 +20,12 @@ mixin LoginViewModel<T extends ConsumerStatefulWidget> on ConsumerState<T> {
 
   Widget loadingWidgetCheck(String text) {
     return ref.watch(authProvider).isLoadingEmail
-        ? const CircularProgressIndicator(color: ColorName.whiteColor)
+        ? CircularProgressIndicator(
+            color: Theme.of(context).appColors.whiteColor,
+          )
         : NormalText(
             text: text,
-            color: ColorName.whiteColor,
+            color: Theme.of(context).appColors.whiteColor,
             fontSize: TextSizeEnum.loginButtonTextSize.value,
           );
   }

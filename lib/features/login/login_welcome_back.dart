@@ -1,17 +1,17 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_e_commerce_app/features/login/create_account.dart';
 import 'package:flutter_e_commerce_app/features/login/forgot_password.dart';
-import 'package:flutter_e_commerce_app/features/login/provider/auth_provider.dart';
-import 'package:flutter_e_commerce_app/features/login/provider/connection_provider.dart';
+// import 'package:flutter_e_commerce_app/features/login/provider/auth_provider.dart';
+// import 'package:flutter_e_commerce_app/features/login/provider/connection_provider.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/form_provider.dart'
     hide FormState;
 import 'package:flutter_e_commerce_app/features/login/view_model/facebook_view_model.dart';
 import 'package:flutter_e_commerce_app/features/login/view_model/login_view_model.dart';
 import 'package:flutter_e_commerce_app/features/login/view_model/google_view_model.dart';
-  import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
+import 'package:flutter_e_commerce_app/product/theme/app_colors_context.dart';
 import 'package:flutter_e_commerce_app/generated/locale_keys.g.dart';
 import 'package:flutter_e_commerce_app/product/constants/paddings_constants.dart';
 import 'package:flutter_e_commerce_app/product/enums/sizes_enum.dart';
@@ -77,9 +77,10 @@ class _LoginWelcomeBackState extends ConsumerState<LoginWelcomeBack>
                 hintText: LocaleKeys.inputUsernameEmail.tr(),
                 prefixIcon: Icons.person_rounded,
                 suffixIcon: AnimatedIcons.close_menu,
-                color: ColorName.loginInputIconsGrey,
+                color: Theme.of(context).appColors.loginInputIconsGrey,
                 formKey: _formKey,
                 controller: emailController,
+                inputType: LoginInputType.email,
               ),
               Padding(
                 padding: PaddingsConstants.instance.loginWelcomeInputPadding,
@@ -87,21 +88,28 @@ class _LoginWelcomeBackState extends ConsumerState<LoginWelcomeBack>
                   hintText: LocaleKeys.inputPassword.tr(),
                   prefixIcon: Icons.lock,
                   suffixIcon: AnimatedIcons.menu_home,
-                  color: ColorName.loginInputIconsGrey,
+                  color: Theme.of(context).appColors.loginInputIconsGrey,
                   formKey: _formKey,
                   controller: passwordController,
+                  inputType: LoginInputType.password,
                 ),
               ),
 
               Align(
                 alignment: Alignment.centerRight,
                 child: GlobalTextButton(
-                  onPressed: () => NavigatorManager.instance.navigatePage(
-                    context,
-                    ForgotPassword(),
-                  ),
+                  onPressed: () {
+                    ref.read(formProvider.notifier).clearTextEmail();
+                    ref.read(formProvider.notifier).clearTextPassword();
+                    NavigatorManager.instance.navigatePage(
+                      context,
+                      ForgotPassword(),
+                    );
+                  },
                   text: LocaleKeys.forgotPassword.tr(),
-                  color: ColorName.sizzlingRed.withOpacity(0.8),
+                  color: Theme.of(
+                    context,
+                  ).appColors.sizzlingRed.withOpacity(0.8),
                 ),
               ),
 
@@ -118,7 +126,7 @@ class _LoginWelcomeBackState extends ConsumerState<LoginWelcomeBack>
               Center(
                 child: NormalText(
                   text: LocaleKeys.continueOtherLogin.tr(),
-                  color: ColorName.loginShadowMountain,
+                  color: Theme.of(context).appColors.loginShadowMountain,
                   fontSize: TextSizeEnum.loginInputHintTextSize.value,
                 ),
               ),
@@ -129,15 +137,28 @@ class _LoginWelcomeBackState extends ConsumerState<LoginWelcomeBack>
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                      otherLoginButton(icon: googleLoadingWidgetCheck(), 
+                    otherLoginButton(
+                      icon: googleLoadingWidgetCheck(),
                       onPressed: () {
-                      googleLoginCheck();
-                    }),
+                        googleLoginCheck();
+                      },
+                    ),
                     Padding(
                       padding: PaddingsConstants
                           .instance
                           .otherLoginButtonHorizontalPadding,
-                      child: otherLoginButton(icon: Icon(Icons.apple,color: ColorName.boldBlack,), onPressed: () {}),
+                      child: otherLoginButton(
+                        icon: Icon(
+                          Icons.apple,
+                          color: Theme.of(context).appColors.boldBlack,
+                        ),
+                        onPressed: () {
+                          showSnackBar(
+                            context,
+                            'Şuanda apple ile login yapılamamaktadır...',
+                          );
+                        },
+                      ),
                     ),
                     otherLoginButton(
                       icon: facebookLoadingWidgetCheck(),

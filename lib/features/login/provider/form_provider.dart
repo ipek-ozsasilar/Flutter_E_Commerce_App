@@ -41,7 +41,7 @@ class FormNotifier extends StateNotifier<FormState> {
 
   bool checkForgotPasswordEmailEmpty() => forgotPasswordController.text.isEmpty;
 
-  
+  bool checkResetPasswordEmailEmpty() => passwordController.text.isEmpty || confirmPasswordController.text.isEmpty;
 
   bool passwordsSame() => passwordController.text == confirmPasswordController.text;
 

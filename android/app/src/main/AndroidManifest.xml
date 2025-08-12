@@ -2,11 +2,11 @@
     package="com.ipek.flutterecommerceapp"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- INTERNET izni buraya eklenmeli -->
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- INTERNET izni -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- (İsteğe bağlı) Reklam kimliği izninden çıkmak için -->
-    <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove"/>
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove" />
 
     <application
         android:label="@string/app_name"
@@ -14,9 +14,10 @@
         android:icon="@mipmap/ic_launcher">
 
         <!-- Facebook SDK için meta veriler -->
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-        <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id" />
+        <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token" />
 
+        <!-- Ana Activity -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -31,14 +32,27 @@
                 android:name="io.flutter.embedding.android.NormalTheme"
                 android:resource="@style/NormalTheme" />
 
+            <!-- Uygulama giriş noktası -->
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!-- Özel domain üzerinden şifre sıfırlama -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="https"
+                    android:host="flutter-e-commerce-app-7b592.web.app"
+                    android:pathPrefix="/reset-password" />
             </intent-filter>
         </activity>
 
         <!-- FacebookActivity -->
-        <activity android:name="com.facebook.FacebookActivity"
+        <activity
+            android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
 
@@ -59,13 +73,12 @@
             android:value="2" />
     </application>
 
-    <!-- Facebook yerel uygulamasını çağırmak için queries ekleniyor -->
+    <!-- Facebook yerel uygulamasını çağırmak için queries -->
     <queries>
         <intent>
-            <action android:name="android.intent.action.PROCESS_TEXT"/>
-            <data android:mimeType="text/plain"/>
+            <action android:name="android.intent.action.PROCESS_TEXT" />
+            <data android:mimeType="text/plain" />
         </intent>
         <provider android:authorities="com.facebook.katana.provider.PlatformProvider" />
     </queries>
-
 </manifest>

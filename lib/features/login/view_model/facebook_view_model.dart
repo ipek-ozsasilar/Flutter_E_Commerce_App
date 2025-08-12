@@ -2,12 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app/features/home/home_view.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/auth_provider.dart';
-import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
+import 'package:flutter_e_commerce_app/product/theme/app_colors_context.dart';
 import 'package:flutter_e_commerce_app/product/utility/navigator/navigator.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'package:flutter_e_commerce_app/features/login/view_model/google_view_model.dart';
+// import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+// import 'package:flutter_e_commerce_app/features/login/view_model/google_view_model.dart';
 
 mixin FacebookViewModel<T extends ConsumerStatefulWidget> on ConsumerState<T> {
   final _logger = Logger();
@@ -50,7 +50,6 @@ mixin FacebookViewModel<T extends ConsumerStatefulWidget> on ConsumerState<T> {
 
       //fix me : linking işlemi ekle
       if (e.code == 'account-exists-with-different-credential') {
-
         showSnackBar(context, 'Bu e-posta ile kayıtlı hesap var zaten.');
         // Diğer providerlar için benzer işlemler yapılabilir
       }
@@ -80,7 +79,12 @@ mixin FacebookViewModel<T extends ConsumerStatefulWidget> on ConsumerState<T> {
 
   Widget facebookLoadingWidgetCheck() {
     return ref.watch(authProvider).isLoadingFacebook
-        ? const CircularProgressIndicator(color: ColorName.sizzlingRed)
-        : Icon(Icons.facebook_outlined, color: ColorName.facebookBlue);
+        ? CircularProgressIndicator(
+            color: Theme.of(context).appColors.sizzlingRed,
+          )
+        : Icon(
+            Icons.facebook_outlined,
+            color: Theme.of(context).appColors.facebookBlue,
+          );
   }
 }

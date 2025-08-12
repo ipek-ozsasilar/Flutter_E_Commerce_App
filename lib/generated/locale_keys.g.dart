@@ -4,6 +4,7 @@
 
 abstract class  LocaleKeys {
   static const splashStylish = 'splashStylish';
+  static const resetPassword = 'resetPassword';
   static const next = 'next';
   static const prev = 'prev';
   static const skip = 'skip';

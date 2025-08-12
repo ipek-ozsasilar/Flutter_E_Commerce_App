@@ -1,0 +1,14 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.ipek.flutterecommerceapp",
+            "sha256_cert_fingerprints": [
+                "B8:DA:81:6A:BD:A5:DD:27:99:1D:0D:CD:2F:97:EC:1D:FD:31:72:D1:82:FD:DF:D5:69:9E:C8:DF:20:09:55:FC"
+            ]
+        }
+    }
+]

@@ -1,21 +1,21 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce_app/features/auth/auth_provider.dart';
+// import 'package:flutter_e_commerce_app/features/auth/auth_provider.dart';
 import 'package:flutter_e_commerce_app/features/login/login_welcome_back.dart';
 import 'package:flutter_e_commerce_app/features/onboarding/onboarding_provider.dart';
-import 'package:flutter_e_commerce_app/features/onboarding/onboarding_view.dart';
+// import 'package:flutter_e_commerce_app/features/onboarding/onboarding_view.dart';
 import 'package:flutter_e_commerce_app/features/splash/splash_provider.dart';
-import 'package:flutter_e_commerce_app/features/splash/splash_view.dart';
-import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
+// import 'package:flutter_e_commerce_app/features/splash/splash_view.dart';
+import 'package:flutter_e_commerce_app/product/theme/app_colors_context.dart';
 import 'package:flutter_e_commerce_app/generated/locale_keys.g.dart';
 import 'package:flutter_e_commerce_app/product/constants/paddings_constants.dart';
-import 'package:flutter_e_commerce_app/product/enums/secure_storage.dart';
+// import 'package:flutter_e_commerce_app/product/enums/secure_storage.dart';
 import 'package:flutter_e_commerce_app/product/enums/sizes_enum.dart';
 import 'package:flutter_e_commerce_app/product/utility/navigator/navigator.dart';
 import 'package:flutter_e_commerce_app/product/widget/button/global_text_button.dart';
 import 'package:flutter_e_commerce_app/product/widget/text/text_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kartal/kartal.dart';
+// import 'package:kartal/kartal.dart';
 
 //Onboarding Appbar for onboarding page's appbar
 class OnboardingAppbar extends ConsumerWidget implements PreferredSizeWidget {
@@ -35,12 +35,12 @@ class OnboardingAppbar extends ConsumerWidget implements PreferredSizeWidget {
             BoldOnboardingText(
               title: "${ref.watch(onboardingProvider).currentPage + 1}",
               titleSize: TextSizeEnum.onboardingSkipSize.value,
-              titleColor: ColorName.boldBlack,
+              titleColor: Theme.of(context).appColors.boldBlack,
             ),
             BoldOnboardingText(
               title: "/${ref.watch(onboardingProvider).totalPages}",
               titleSize: TextSizeEnum.onboardingSkipSize.value,
-              titleColor: ColorName.splashUltimateGreyText,
+              titleColor: Theme.of(context).appColors.splashUltimateGreyText,
             ),
           ],
         ),
@@ -58,7 +58,7 @@ class OnboardingAppbar extends ConsumerWidget implements PreferredSizeWidget {
             );
           },
           text: LocaleKeys.skip.tr(),
-          color: ColorName.boldBlack,
+          color: Theme.of(context).appColors.boldBlack,
         ),
       ],
     );

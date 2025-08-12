@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce_app/features/login/provider/auth_provider.dart';
-import 'package:flutter_e_commerce_app/features/login/provider/form_provider.dart';
-import 'package:flutter_e_commerce_app/features/login/view_model/create_account_view_model.dart';
-import 'package:flutter_e_commerce_app/features/login/view_model/login_view_model.dart';
-import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
+// import 'package:flutter_e_commerce_app/features/login/provider/auth_provider.dart';
+// import 'package:flutter_e_commerce_app/features/login/provider/form_provider.dart';
+// import 'package:flutter_e_commerce_app/features/login/view_model/create_account_view_model.dart';
+// import 'package:flutter_e_commerce_app/features/login/view_model/login_view_model.dart';
+import 'package:flutter_e_commerce_app/product/theme/app_colors_context.dart';
 import 'package:flutter_e_commerce_app/product/constants/border_radius.dart';
 import 'package:flutter_e_commerce_app/product/constants/paddings_constants.dart';
 import 'package:flutter_e_commerce_app/product/enums/sizes_enum.dart';
-import 'package:flutter_e_commerce_app/product/widget/text/text_widget.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+// import 'package:flutter_e_commerce_app/product/widget/text/text_widget.dart';
+// import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class GlobalElevatedButton extends StatelessWidget {
-  GlobalElevatedButton({
+  const GlobalElevatedButton({
     super.key,
     required this.text,
     required this.onPressed,
@@ -20,9 +20,9 @@ class GlobalElevatedButton extends StatelessWidget {
   });
 
   final String text;
-  VoidCallback? onPressed;
-  Widget? child;
-  bool? isLoadingEmail;
+  final VoidCallback? onPressed;
+  final Widget? child;
+  final bool? isLoadingEmail;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -37,7 +37,9 @@ class GlobalElevatedButton extends StatelessWidget {
           WidgetSizeEnum.loginButtonHeight.value,
         ),
 
-        backgroundColor: ColorName.sizzlingRed.withOpacity(0.8),
+        backgroundColor: Theme.of(
+          context,
+        ).appColors.sizzlingRed.withOpacity(0.8),
         padding: PaddingsConstants.instance.loginButtonPadding,
       ),
       child: child,

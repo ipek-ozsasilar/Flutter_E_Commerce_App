@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
+import 'package:flutter_e_commerce_app/product/theme/app_colors_context.dart';
 import 'package:kartal/kartal.dart';
 
 //Bold Onboarding Text for onboarding page's bold text
@@ -39,15 +39,19 @@ class BoldOnboardingTextDetail extends StatelessWidget {
       description,
       textAlign: TextAlign.center,
       style: context.general.appTheme.textTheme.bodyMedium?.copyWith(
-        color: ColorName.splashUltimateGreyText,
+        color: Theme.of(context).appColors.splashUltimateGreyText,
       ),
     );
   }
 }
 
-
 class NormalText extends StatelessWidget {
-  const NormalText({super.key, required this.text, required this.color, required this.fontSize});
+  const NormalText({
+    super.key,
+    required this.text,
+    required this.color,
+    required this.fontSize,
+  });
 
   final String text;
   final Color? color;

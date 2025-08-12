@@ -43,7 +43,7 @@ enum WidgetSizeEnum {
 }
 
 enum AppbarSizeEnum {
-  loginToolbarHeight(140),
+  loginToolbarHeight(200),
   loginLeadingWidth(220);
 
   final double value;

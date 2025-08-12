@@ -4,7 +4,7 @@ import 'package:flutter_e_commerce_app/features/login/login_welcome_back.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/auth_provider.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/connection_provider.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/form_provider.dart';
-import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
+import 'package:flutter_e_commerce_app/product/theme/app_colors_context.dart';
 import 'package:flutter_e_commerce_app/product/enums/sizes_enum.dart';
 import 'package:flutter_e_commerce_app/product/utility/navigator/navigator.dart';
 import 'package:flutter_e_commerce_app/product/widget/text/text_widget.dart';
@@ -17,10 +17,12 @@ mixin CreateAccountViewModel<T extends ConsumerStatefulWidget>
 
   Widget loadingWidgetCheck(String text) {
     return ref.watch(authProvider).isLoadingEmail
-        ? const CircularProgressIndicator(color: ColorName.whiteColor)
+        ? CircularProgressIndicator(
+            color: Theme.of(context).appColors.whiteColor,
+          )
         : NormalText(
             text: text,
-            color: ColorName.whiteColor,
+            color: Theme.of(context).appColors.whiteColor,
             fontSize: TextSizeEnum.loginButtonTextSize.value,
           );
   }
@@ -84,8 +86,14 @@ mixin CreateAccountViewModel<T extends ConsumerStatefulWidget>
       } else if (e.code == 'email-already-in-use') {
         showSnackBar(context, 'Bu e-mail adresi zaten kullanılıyor');
         return;
+      } else if (e.code == 'invalid-email') {
+        showSnackBar(context, 'Geçersiz e-mail adresi');
+        return;
       }
-      showSnackBar(context, 'Kullanıcı oluşturma başarısız');
+      showSnackBar(
+        context,
+        'Bir hata oluştu. Lütfen daha sonra tekrar deneyiniz',
+      );
       return;
     } finally {
       ref.read(authProvider.notifier).setLoadingEmail(false);

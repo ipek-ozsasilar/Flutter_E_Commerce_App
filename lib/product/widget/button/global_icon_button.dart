@@ -4,12 +4,15 @@ import 'package:flutter_e_commerce_app/features/login/provider/form_provider.dar
 import 'package:flutter_e_commerce_app/features/login/view_model/forgot_password_view_model.dart';
 import 'package:flutter_e_commerce_app/features/login/view_model/login_view_model.dart';
 import 'package:flutter_e_commerce_app/product/constants/duration_constants.dart';
+import 'package:flutter_e_commerce_app/product/widget/input/login_input.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class GlobalIconButton extends ConsumerStatefulWidget {
-  GlobalIconButton({super.key, required this.icon, required this.color});
+  GlobalIconButton({super.key, required this.icon, required this.color, required this.inputType});
   final AnimatedIconData icon;
   final Color color;
+  final LoginInputType inputType;
+
 
   @override
   ConsumerState<GlobalIconButton> createState() => _GlobalIconButtonState();
@@ -34,15 +37,19 @@ class _GlobalIconButtonState extends ConsumerState<GlobalIconButton>
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        if (widget.icon == AnimatedIcons.menu_home) {
+        if (widget.inputType == LoginInputType.password ||
+            widget.inputType == LoginInputType.confirmPassword) {
           changeObscureText();
           listenObscureText() ? _controller.forward() : _controller.reverse();
-        } else {
+        }else{
           clearTextEmail();
           clearTextForgotPassword();
         }
       },
-      child: AnimatedIcon(icon: widget.icon, progress: _controller),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0) + EdgeInsets.only(top: 5),
+        child: AnimatedIcon(icon: widget.icon, progress: _controller),
+      ),
     );
   }
 }

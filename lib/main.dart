@@ -1,18 +1,17 @@
+import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_e_commerce_app/features/home/home_view.dart';
-import 'package:flutter_e_commerce_app/features/login/forgot_password.dart';
 import 'package:flutter_e_commerce_app/features/login/login_welcome_back.dart';
-import 'package:flutter_e_commerce_app/product/theme/custom_theme.dart';
+import 'package:flutter_e_commerce_app/features/login/reset_password.dart';
+import 'package:flutter_e_commerce_app/features/splash/splash_view.dart';
+import 'package:flutter_e_commerce_app/product/theme/custom_theme_view_model.dart';
+import 'package:flutter_e_commerce_app/product/utility/navigator/navigator.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_e_commerce_app/core/injection_manager.dart';
-import 'package:flutter_e_commerce_app/features/splash/splash_view.dart';
 import 'package:flutter_e_commerce_app/product/initializer/app_initiliazer.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
+import 'package:flutter_e_commerce_app/features/login/provider/deeplink_provider.dart';
+import 'package:flutter_e_commerce_app/product/theme/theme_provider.dart';
 
 Future<void> main() async {
   //Start get it injection of app
@@ -21,12 +20,16 @@ Future<void> main() async {
   await getIt<AppInitiliazer>().init();
   runApp(
     ProviderScope(
+      //Bu ayarları burada yapmazsan, EasyLocalization framework’ü hangi dilleri yükleyeceğini
+      //ve hangi klasörden JSON dosyalarını okuyacağını bilmez.
       child: EasyLocalization(
+        //ingilizce türkçe dil desteği sağlar
         supportedLocales: const [Locale('en'), Locale('tr')],
+        //Çeviri dosyalarının bulunduğu klasör
         path: 'assets/translations',
-        //Default language when translations are missing or language is not supported
+        //Desteklenmeyen dilde kul    lanılacak dili belirtir.
         fallbackLocale: const Locale('en'),
-        //Support english language for beginning of app
+        //Uygulama başlangıç dilini belirtir.
         startLocale: const Locale('en'),
         child: const MyApp(),
       ),
@@ -34,28 +37,64 @@ Future<void> main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerStatefulWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  @override
+  ConsumerState<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends ConsumerState<MyApp> with CustomThemeViewModel{
+  @override
+  void initState() {
+    super.initState();
+    //Bu metot uygulamada derin bağlantı (deep link) dinlemeyi başlatıyor.
+    ref
+        .read(appLinkProvider.notifier)
+        .startListening(
+          //onOobCode parametresi bir callback (geri çağırma) fonksiyonu.
+          //Eğer deep link içinde oobCode (örneğin Firebase'in şifre sıfırlama kodu) gelirse, bu fonksiyon tetikleniyor
+          onOobCode: (oobCode) {
+            //Bu satır, gelen oobCode ile kullanıcıyı şifre sıfırlama sayfasına (ResetPassword) yönlendiriyor.
+            //context ile sayfa değişikliği yapıyor. ResetPassword widget’ına oobCode parametresi gönderiliyor.
+            NavigatorManager.instance.navigatePage(
+              context,
+              ResetPassword(oobCode: oobCode),
+            );
+          },
+        );
+  }
+
+  @override
+  void dispose() {
+    //Bu metot uygulamada derin bağlantı (deep link) dinlemeyi durduruyor.
+    //Kullanıcı uygulamayı kapatırken veya uygulama kapatılırken bu metot çağrılır.
+    //startListening() ile uygulama deep linkleri dinlemeye başlıyor (örneğin, kullanıcı bir reset password linkiyle uygulamayı
+    //açarsa bunu yakalıyor). stopListening() ise tam tersine, deep link dinlemeyi durduruyor.
+    ref.read(appLinkProvider.notifier).stopListening();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      //don't show debug banner
+      //debug banner gösterme
       debugShowCheckedModeBanner: false,
       title: 'Flutter E-Commerce Application',
-      //EasyLocalization configuration
+      //EasyLocalization yapılandırması burası MaterialApp’e, “Hangi çeviri ayarlarını kullanacağını” söylüyor.
       localizationsDelegates: context.localizationDelegates,
-
+      //Burası MaterialApp’e, “Desteklenen diller” yi söylüyor.
       supportedLocales: context.supportedLocales,
+      //Burası MaterialApp’e, Uygulama dilini belirtir yani hangi dili kullanacağını söylüyor.
       locale: context.locale,
-      //Custom Theme for app
-      theme: CustomTheme.theme,
-      //Responsive Breakpoints for app
+      //Uygulama teması
+      theme: themeCheck(),
+      //Responsive design (mobile, tablet, desktop) için kullanılır.
+      //Bu sayede responsive tasarım yapılır, yani uygulama her cihazda iyi görünür ve kullanışlı olur.
       builder: (context, child) => ResponsiveBreakpoints.builder(
-        //child
+        //Buradaki child, MaterialApp'in içindeki asıl uygulama widget’ıdır (yani senin uygulamanın geri kalan kısmı).
         child: child!,
-        //breakpoints
+        //breakpoint uygulamanın ekran genişliğine göre farklı davranmasını sağlar.
         breakpoints: [
           //mobile
           const Breakpoint(start: 0, end: 450, name: MOBILE),
@@ -66,29 +105,11 @@ class MyApp extends StatelessWidget {
           //4K
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
-      ), 
-      //fixme : reset password sayfasını ekle harf gırılemesını engelleyen kodu ekle
-      
+      ),
+
+      //fixme : apple login ekle ve linking yap facegogole
       home: SplashView(),
       //SplashView(),
     );
-  }
-}
-
-
-class AuthWrapper extends StatelessWidget {
-  const AuthWrapper({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser;
-
-    if (user != null) {
-      // Giriş yapılmışsa ana sayfa
-      return const HomeView();  // Buraya kendi Home sayfanı koy
-    } else {
-      // Giriş yapılmamışsa login ekranı
-      return const LoginWelcomeBack();
-    }
   }
 }

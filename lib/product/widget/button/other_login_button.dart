@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
-  
+import 'package:flutter_e_commerce_app/product/theme/app_colors_context.dart';
 
 class otherLoginButton extends StatelessWidget {
   const otherLoginButton({
@@ -20,7 +19,7 @@ class otherLoginButton extends StatelessWidget {
       style: IconButton.styleFrom(
         shape: CircleBorder(
           side: BorderSide(
-            color: ColorName.sizzlingRed.withOpacity(0.8),
+            color: Theme.of(context).appColors.sizzlingRed.withOpacity(0.8),
           ),
         ),
         minimumSize: Size(55, 55),

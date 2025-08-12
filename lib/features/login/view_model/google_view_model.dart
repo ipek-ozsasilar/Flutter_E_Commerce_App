@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app/features/home/home_view.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/auth_provider.dart';
-import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
+import 'package:flutter_e_commerce_app/product/theme/app_colors_context.dart';
 import 'package:flutter_e_commerce_app/product/utility/navigator/navigator.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
@@ -10,12 +10,8 @@ mixin GoogleViewModel<T extends ConsumerStatefulWidget> on ConsumerState<T> {
   void googleLoginCheck() async {
     final _logger = Logger();
     try {
-      final user = await ref.read(authProvider.notifier).signInWithGoogle();
-      if (user != null) {
-        NavigatorManager.instance.navigatePage(context, HomeView());
-      } else {
-        showSnackBar(context, 'Google girişi başarısız');
-      }
+      await ref.read(authProvider.notifier).signInWithGoogle();
+      NavigatorManager.instance.navigatePage(context, HomeView());
     } catch (e) {
       _logger.w('Google login failed: ${e.toString()}');
 
@@ -49,7 +45,12 @@ mixin GoogleViewModel<T extends ConsumerStatefulWidget> on ConsumerState<T> {
 
   Widget googleLoadingWidgetCheck() {
     return ref.watch(authProvider).isLoadingGoogle
-        ? const CircularProgressIndicator(color: ColorName.sizzlingRed)
-        : Icon(Icons.g_mobiledata, color: ColorName.boldBlack);
+        ? CircularProgressIndicator(
+            color: Theme.of(context).appColors.sizzlingRed,
+          )
+        : Icon(
+            Icons.g_mobiledata,
+            color: Theme.of(context).appColors.boldBlack,
+          );
   }
 }

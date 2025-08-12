@@ -1,12 +1,12 @@
-import 'dart:ui';
+// import 'dart:ui';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce_app/features/auth/auth_provider.dart';
+// import 'package:flutter_e_commerce_app/features/auth/auth_provider.dart';
 import 'package:flutter_e_commerce_app/features/login/login_welcome_back.dart';
 import 'package:flutter_e_commerce_app/features/onboarding/onboarding_provider.dart';
-import 'package:flutter_e_commerce_app/features/onboarding/onboarding_view.dart';
+// import 'package:flutter_e_commerce_app/features/onboarding/onboarding_view.dart';
 import 'package:flutter_e_commerce_app/features/splash/splash_provider.dart';
-import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
+import 'package:flutter_e_commerce_app/product/theme/app_colors_context.dart';
 import 'package:flutter_e_commerce_app/generated/locale_keys.g.dart';
 import 'package:flutter_e_commerce_app/product/constants/border_radius.dart';
 import 'package:flutter_e_commerce_app/product/constants/duration_constants.dart';
@@ -15,8 +15,8 @@ import 'package:flutter_e_commerce_app/product/enums/sizes_enum.dart';
 import 'package:flutter_e_commerce_app/product/utility/navigator/navigator.dart';
 import 'package:flutter_e_commerce_app/product/widget/button/global_text_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_e_commerce_app/features/onboarding/onboarding_view.dart';
-import 'package:kartal/kartal.dart';
+// import 'package:flutter_e_commerce_app/features/onboarding/onboarding_view.dart';
+// import 'package:kartal/kartal.dart';
 
 //Onboarding Bottom for onboarding page's bottom
 class OnboardingBottom extends ConsumerWidget {
@@ -38,7 +38,7 @@ class OnboardingBottom extends ConsumerWidget {
               _previousPage();
             },
             text: LocaleKeys.prev.tr(),
-            color: ColorName.prevColor,
+            color: Theme.of(context).appColors.prevColor,
           ),
           //page indicator
           Row(
@@ -51,8 +51,8 @@ class OnboardingBottom extends ConsumerWidget {
                     height: WidgetSizeEnum.bottomContainerWidthAndHeight.value,
                     decoration: BoxDecoration(
                       color: ref.watch(onboardingProvider).currentPage == i
-                          ? ColorName.selectedPageBlue
-                          : ColorName.prevColor,
+                          ? Theme.of(context).appColors.selectedPageBlue
+                          : Theme.of(context).appColors.prevColor,
                       borderRadius: BorderRadiusConstants
                           .instance
                           .circularSmallBorderRadius,
@@ -80,7 +80,7 @@ class OnboardingBottom extends ConsumerWidget {
               }
             },
             text: LocaleKeys.next.tr(),
-            color: ColorName.sizzlingRed,
+            color: Theme.of(context).appColors.sizzlingRed,
           ),
         ],
       ),

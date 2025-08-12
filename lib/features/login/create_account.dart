@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_e_commerce_app/features/login/login_welcome_back.dart';
-import 'package:flutter_e_commerce_app/features/login/provider/connection_provider.dart';
+// import 'package:flutter_e_commerce_app/features/login/provider/connection_provider.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/form_provider.dart'
     hide FormState;
 import 'package:flutter_e_commerce_app/features/login/view_model/create_account_view_model.dart';
-import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
+import 'package:flutter_e_commerce_app/product/theme/app_colors_context.dart';
 import 'package:flutter_e_commerce_app/generated/locale_keys.g.dart';
 import 'package:flutter_e_commerce_app/product/constants/paddings_constants.dart';
 import 'package:flutter_e_commerce_app/product/enums/sizes_enum.dart';
@@ -18,6 +18,10 @@ import 'package:flutter_e_commerce_app/product/widget/input/login_input.dart';
 import 'package:flutter_e_commerce_app/product/widget/text/rich_text.dart';
 import 'package:flutter_e_commerce_app/product/widget/text/text_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+// import 'package:flutter_e_commerce_app/features/login/provider/auth_provider.dart';
+import 'package:flutter_e_commerce_app/features/login/view_model/google_view_model.dart';
+import 'package:flutter_e_commerce_app/features/login/view_model/facebook_view_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CreateAccount extends ConsumerStatefulWidget {
   const CreateAccount({super.key});
@@ -26,20 +30,26 @@ class CreateAccount extends ConsumerStatefulWidget {
 }
 
 class _CreateAccountState extends ConsumerState<CreateAccount>
-    with CreateAccountViewModel {
-  late TapGestureRecognizer _tapGestureRecognizer;
+    with CreateAccountViewModel, GoogleViewModel, FacebookViewModel {
+  late TapGestureRecognizer _tapGestureRecognizerLogin;
+  late TapGestureRecognizer _tapGestureRecognizerPrivacy;
 
   @override
   void initState() {
     super.initState();
-    _tapGestureRecognizer = TapGestureRecognizer()
+    _tapGestureRecognizerLogin = TapGestureRecognizer()
       ..onTap = () =>
           NavigatorManager.instance.navigatePage(context, LoginWelcomeBack());
+
+    _tapGestureRecognizerPrivacy = TapGestureRecognizer()
+      ..onTap = () async => await _launchURL();
   }
 
   @override
   void dispose() {
-    _tapGestureRecognizer.dispose();
+    // gizlilik politikasını okudum lınkıne gıt
+    _tapGestureRecognizerLogin.dispose();
+    _tapGestureRecognizerPrivacy.dispose();
     super.dispose();
   }
 
@@ -71,9 +81,10 @@ class _CreateAccountState extends ConsumerState<CreateAccount>
                 hintText: LocaleKeys.exampleEmail.tr(),
                 prefixIcon: Icons.person_rounded,
                 suffixIcon: AnimatedIcons.close_menu,
-                color: ColorName.loginInputIconsGrey,
+                color: Theme.of(context).appColors.loginInputIconsGrey,
                 formKey: _formKey,
                 controller: emailController,
+                inputType: LoginInputType.email,
               ),
 
               // Password
@@ -84,9 +95,10 @@ class _CreateAccountState extends ConsumerState<CreateAccount>
                   hintText: LocaleKeys.inputPassword.tr(),
                   prefixIcon: Icons.lock,
                   suffixIcon: AnimatedIcons.menu_home,
-                  color: ColorName.loginInputIconsGrey,
+                  color: Theme.of(context).appColors.loginInputIconsGrey,
                   controller: passwordController,
                   formKey: _formKey,
+                  inputType: LoginInputType.password,
                 ),
               ),
 
@@ -95,10 +107,11 @@ class _CreateAccountState extends ConsumerState<CreateAccount>
                 hintText: LocaleKeys.confirmPassword.tr(),
                 prefixIcon: Icons.lock,
                 suffixIcon: AnimatedIcons.menu_home,
-                color: ColorName.loginInputIconsGrey,
+                color: Theme.of(context).appColors.loginInputIconsGrey,
                 formKey: _formKey,
                 controller:
                     confirmPasswordController, // Confirm password controller
+                inputType: LoginInputType.confirmPassword,
               ),
 
               Padding(
@@ -112,8 +125,8 @@ class _CreateAccountState extends ConsumerState<CreateAccount>
                 onPressed: () {
                   createAccountCheck(context);
                 },
-                isLoadingEmail:   listenLoading(),
-                child: loadingWidgetCheck(LocaleKeys.createAccount.tr(),),
+                isLoadingEmail: listenLoading(),
+                child: loadingWidgetCheck(LocaleKeys.createAccount.tr()),
               ),
 
               Padding(
@@ -121,7 +134,7 @@ class _CreateAccountState extends ConsumerState<CreateAccount>
                 child: Center(
                   child: NormalText(
                     text: LocaleKeys.continueOtherLogin.tr(),
-                    color: ColorName.loginShadowMountain,
+                    color: Theme.of(context).appColors.loginShadowMountain,
                     fontSize: 13,
                   ),
                 ),
@@ -132,21 +145,28 @@ class _CreateAccountState extends ConsumerState<CreateAccount>
 
                 children: [
                   otherLoginButton(
-                    icon: Text(""),
-                    onPressed: () {},
+                    icon: googleLoadingWidgetCheck(),
+                    onPressed: () {
+                      googleLoginCheck(); // Aynı fonksiyon!
+                    },
                   ),
                   Padding(
                     padding: PaddingsConstants
                         .instance
                         .otherLoginButtonHorizontalPadding,
                     child: otherLoginButton(
-                      icon: Text(""),
-                      onPressed: () {},
+                      icon: Icon(Icons.apple),
+                      onPressed: () {
+                        showSnackBar(
+                          context,
+                          'Şuanda apple ile login yapılamamaktadır...',
+                        );
+                      },
                     ),
                   ),
                   otherLoginButton(
-                    icon: Text(""),
-                    onPressed: () {},
+                    icon: facebookLoadingWidgetCheck(),
+                    onPressed: () => facebookLoginCheck(), // Aynı fonksiyon!
                   ),
                 ],
               ),
@@ -155,7 +175,7 @@ class _CreateAccountState extends ConsumerState<CreateAccount>
                     PaddingsConstants.instance.createAccountRichTextPadding,
                 child: Center(
                   child: RichTextWidget(
-                    tapGestureRecognizer: _tapGestureRecognizer,
+                    tapGestureRecognizer: _tapGestureRecognizerLogin,
                     text: LocaleKeys.IHaveAnAccount.tr(),
                     secondText: LocaleKeys.login.tr(),
                   ),
@@ -175,26 +195,33 @@ class _CreateAccountState extends ConsumerState<CreateAccount>
         text: LocaleKeys.byClickingThe.tr() + " ",
         style: TextStyle(
           fontSize: TextSizeEnum.loginInputHintTextSize.value,
-          color: ColorName.loginShadowMountain,
+          color: Theme.of(context).appColors.loginShadowMountain,
         ),
         children: [
           TextSpan(
             text: LocaleKeys.register.tr() + " ",
             style: TextStyle(
-              color: ColorName.sizzlingRed.withOpacity(0.8),
+              color: Theme.of(context).appColors.sizzlingRed.withOpacity(0.8),
               fontWeight: FontWeight.bold,
             ),
-            recognizer: _tapGestureRecognizer,
+            recognizer: _tapGestureRecognizerPrivacy,
           ),
           TextSpan(
             text: LocaleKeys.buttonYouAgreeToThePublicOffer.tr(),
             style: TextStyle(
               fontSize: TextSizeEnum.loginInputHintTextSize.value,
-              color: ColorName.loginShadowMountain,
+              color: Theme.of(context).appColors.loginShadowMountain,
             ),
           ),
         ],
       ),
     );
+  }
+
+  Future<void> _launchURL() async {
+    final Uri url = Uri.parse('https://policies.google.com/privacy?hl=tr');
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      showSnackBar(context, 'Link acilamadi');
+    }
   }
 }
