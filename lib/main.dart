@@ -1,23 +1,33 @@
+//dart
 import 'dart:async';
+//easy_localization
 import 'package:easy_localization/easy_localization.dart';
+//material
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce_app/features/login/login_welcome_back.dart';
+//flutter_riverpod
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+//features
 import 'package:flutter_e_commerce_app/features/login/reset_password.dart';
 import 'package:flutter_e_commerce_app/features/splash/splash_view.dart';
+import 'package:flutter_e_commerce_app/features/login/provider/deeplink_provider.dart';
+//product
 import 'package:flutter_e_commerce_app/product/theme/custom_theme_view_model.dart';
 import 'package:flutter_e_commerce_app/product/utility/navigator/navigator.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_e_commerce_app/core/injection_manager.dart';
 import 'package:flutter_e_commerce_app/product/initializer/app_initiliazer.dart';
+import 'package:flutter_e_commerce_app/product/enums/secure_storage.dart';
+//responsive_framework
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:flutter_e_commerce_app/features/login/provider/deeplink_provider.dart';
-import 'package:flutter_e_commerce_app/product/theme/theme_provider.dart';
+//core
+import 'package:flutter_e_commerce_app/core/injection_manager.dart';
 
 Future<void> main() async {
-  //Start get it injection of app
+  //setupLocator() içinde servislerin kayıt işlemi yapıyorsun. Eğer runApp’ten sonra yaparsan, widget’lar çalışmaya başlar ve getIt’ten
+  //servis çağırmaya çalıştığında henüz kayıtlı olmadığı için hata alırsın. Böylece UI çalışmaya başladığında tüm bağımlılıklar hazır olur.
   setupLocator();
-  //before starting the app, we need to initialize the app
-  await getIt<AppInitiliazer>().init();
+  //uygulama başlamadan önce app initiliazer başlatılıyor
+  await getItInstance<AppInitiliazer>().init();
+  //uygulama başlangıç dilini cache'den alır. Eğer kullanıcı bir dil seçmediyse, default olarak ingilizce kullanılır.
+  final Locale? savedLocale = await SecureStorageKeys.getSavedLocale();
   runApp(
     ProviderScope(
       //Bu ayarları burada yapmazsan, EasyLocalization framework’ü hangi dilleri yükleyeceğini
@@ -27,10 +37,10 @@ Future<void> main() async {
         supportedLocales: const [Locale('en'), Locale('tr')],
         //Çeviri dosyalarının bulunduğu klasör
         path: 'assets/translations',
-        //Desteklenmeyen dilde kul    lanılacak dili belirtir.
+        //Desteklenmeyen dilde kullanılacak dili belirtir.
         fallbackLocale: const Locale('en'),
         //Uygulama başlangıç dilini belirtir.
-        startLocale: const Locale('en'),
+        startLocale: savedLocale ?? const Locale('en'),
         child: const MyApp(),
       ),
     ),
@@ -44,11 +54,13 @@ class MyApp extends ConsumerStatefulWidget {
   ConsumerState<MyApp> createState() => _MyAppState();
 }
 
-class _MyAppState extends ConsumerState<MyApp> with CustomThemeViewModel{
+class _MyAppState extends ConsumerState<MyApp> with CustomThemeViewModel {
   @override
   void initState() {
     super.initState();
     //Bu metot uygulamada derin bağlantı (deep link) dinlemeyi başlatıyor.
+    //Eğer deep link içinde oobCode varsa, bu kod onOobCode callback’ine gönderiliyor.
+    //Callback içinde kullanıcı ResetPassword sayfasına yönlendiriliyor ve oobCode bu sayfaya parametre olarak veriliyor.
     ref
         .read(appLinkProvider.notifier)
         .startListening(
@@ -109,7 +121,6 @@ class _MyAppState extends ConsumerState<MyApp> with CustomThemeViewModel{
 
       //fixme : apple login ekle ve linking yap facegogole
       home: SplashView(),
-      //SplashView(),
     );
   }
 }

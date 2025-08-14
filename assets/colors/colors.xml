@@ -11,4 +11,12 @@
     <color name="selected_page_blue">#17223B</color>
     <color name="white_color">#FFFFFF</color>
     <color name="facebook_blue">#3D4DA6</color>
+    <!-- Dark theme specific colors -->
+    <color name="dark_background">#000000</color>
+    <color name="bold_black_dark">#FFFFFF</color>
+    <color name="login_input_hint_text_dark">#B0B0B0</color>
+    <color name="login_input_icons_grey_dark">#B0B0B0</color>
+    <color name="login_shadow_mountain_dark">#BDBDBD</color>
+    <color name="prev_color_dark">#8D8D8D</color>
+    <color name="splash_ultimate_grey_text_dark">#9E9E9E</color>
 </resources>

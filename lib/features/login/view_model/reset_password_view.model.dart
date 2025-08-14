@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app/features/login/login_welcome_back.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_e_commerce_app/features/login/provider/auth_provider.dar
 import 'package:flutter_e_commerce_app/features/login/provider/connection_provider.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/deeplink_provider.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/form_provider.dart';
+import 'package:flutter_e_commerce_app/generated/locale_keys.g.dart';
 import 'package:flutter_e_commerce_app/product/theme/app_colors_context.dart';
 import 'package:flutter_e_commerce_app/product/enums/sizes_enum.dart';
 import 'package:flutter_e_commerce_app/product/utility/navigator/navigator.dart';
@@ -19,7 +21,7 @@ mixin ResetPasswordViewModel<T extends ConsumerStatefulWidget>
   void resetPasswordCheck() async {
     final oobCode = ref.read(appLinkProvider.notifier).oobCodeEmptyCheck();
     if (oobCode == null) {
-      showSnackBar(context, 'Geçersiz veya eksik sıfırlama kodu.');
+      showSnackBar(context, LocaleKeys.invalidOrMissingResetCode.tr());
       return;
     }
 
@@ -30,7 +32,7 @@ mixin ResetPasswordViewModel<T extends ConsumerStatefulWidget>
           .checkInternetConnection();
       if (!connectionResult) {
         _logger.w('İnternet bağlantısı yok');
-        showSnackBar(context, 'İnternet bağlantısı yok');
+        showSnackBar(context, LocaleKeys.noInternetConnectionError.tr());
         return;
       }
 
@@ -38,7 +40,7 @@ mixin ResetPasswordViewModel<T extends ConsumerStatefulWidget>
           .read(formProvider.notifier)
           .checkResetPasswordEmailEmpty();
       if (resetPasswordEmptyResult) {
-        showSnackBar(context, 'Şifre alanı boş olamaz');
+        showSnackBar(context, LocaleKeys.passwordFieldEmpty.tr());
         return;
       }
 
@@ -49,7 +51,7 @@ mixin ResetPasswordViewModel<T extends ConsumerStatefulWidget>
           .read(formProvider.notifier)
           .checkConfirmPasswordLength();
       if (!passwordLengthResult || !confirmPasswordLengthResult) {
-        showSnackBar(context, 'Şifre en az 6 karakter olmalıdır');
+        showSnackBar(context, LocaleKeys.passwordTooShort.tr());
         return;
       }
 
@@ -57,7 +59,7 @@ mixin ResetPasswordViewModel<T extends ConsumerStatefulWidget>
           .read(formProvider.notifier)
           .passwordsSame();
       if (!passwordSameResult) {
-        showSnackBar(context, 'Şifreler eşleşmiyor');
+        showSnackBar(context, LocaleKeys.passwordsDoNotMatch.tr());
         return;
       }
       //Uygulama, Firebase Auth API’sine oobCode + yeni şifreyi birlikte gönderir. Firebase:
@@ -70,7 +72,7 @@ mixin ResetPasswordViewModel<T extends ConsumerStatefulWidget>
             ref.read(formProvider.notifier).passwordController.text,
           );
 
-      showSnackBar(context, 'Şifre sıfırlama başarılı');
+      showSnackBar(context, LocaleKeys.passwordResetSuccessful.tr());
       NavigatorManager.instance.navigatePage(context, LoginWelcomeBack());
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message ?? 'Bir hata oluştu');

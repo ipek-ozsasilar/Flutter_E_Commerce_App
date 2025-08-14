@@ -1,13 +1,12 @@
 // import 'dart:developer';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:flutter_e_commerce_app/features/auth/auth_provider.dart';
 import 'package:flutter_e_commerce_app/features/home/home_view.dart';
-// import 'package:flutter_e_commerce_app/features/login/login_welcome_back.dart'
-//     show LoginWelcomeBack;
 import 'package:flutter_e_commerce_app/features/login/provider/auth_provider.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/connection_provider.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/form_provider.dart';
+import 'package:flutter_e_commerce_app/generated/locale_keys.g.dart';
 import 'package:flutter_e_commerce_app/product/theme/app_colors_context.dart';
 import 'package:flutter_e_commerce_app/product/enums/sizes_enum.dart';
 import 'package:flutter_e_commerce_app/product/utility/navigator/navigator.dart';
@@ -38,7 +37,7 @@ mixin LoginViewModel<T extends ConsumerStatefulWidget> on ConsumerState<T> {
           .checkInternetConnection();
       if (!connectionResult) {
         _logger.w('İnternet bağlantısı yok');
-        showSnackBar(context, 'İnternet bağlantısı yok');
+        showSnackBar(context, LocaleKeys.noInternetConnectionError.tr());
         return;
       }
 
@@ -48,7 +47,7 @@ mixin LoginViewModel<T extends ConsumerStatefulWidget> on ConsumerState<T> {
           .checkEmptyEmailAndPassword();
       if (emptyEmailAndPasswordResult) {
         _logger.w('Email veya password boş');
-        showSnackBar(context, 'E-mail veya şifre boş bırakılamaz');
+        showSnackBar(context, LocaleKeys.emailOrPasswordEmpty.tr());
         return;
       }
 
@@ -58,10 +57,7 @@ mixin LoginViewModel<T extends ConsumerStatefulWidget> on ConsumerState<T> {
           .signInWithEmailAndPassword();
       if (user == null) {
         _logger.w('Kullanıcı girişi başarısız');
-        showSnackBar(
-          context,
-          'Giriş başarısız. E-mail ve şifrenizi kontrol ediniz',
-        );
+        showSnackBar(context, LocaleKeys.loginFailedCheckCredentials.tr());
         return;
       }
 
@@ -70,7 +66,7 @@ mixin LoginViewModel<T extends ConsumerStatefulWidget> on ConsumerState<T> {
           .read(authProvider.notifier)
           .isEmailVerified();
       if (!isVerified) {
-        showSnackBar(context, 'E-mail adresinizi doğrulayınız');
+        showSnackBar(context, LocaleKeys.verifyEmailAddress.tr());
         await showDialog(
           context: context,
           builder: (context) {
@@ -85,7 +81,7 @@ mixin LoginViewModel<T extends ConsumerStatefulWidget> on ConsumerState<T> {
                     Navigator.of(context).pop();
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text('Doğrulama maili tekrar gönderildi.'),
+                        content: Text(LocaleKeys.verificationEmailResent.tr()),
                       ),
                     );
                   },
@@ -107,11 +103,11 @@ mixin LoginViewModel<T extends ConsumerStatefulWidget> on ConsumerState<T> {
       );
 
       if (e.code == 'invalid-email') {
-        showSnackBar(context, 'E-mail formatı geçersiz');
+        showSnackBar(context, LocaleKeys.invalidEmailFormat.tr());
       } else if (e.code == 'invalid-credential') {
-        showSnackBar(context, 'Bir hata oluştu geçersiz giriş');
+        showSnackBar(context, LocaleKeys.invalidCredentials.tr());
       } else {
-        showSnackBar(context, 'Bir hata oluştu');
+        showSnackBar(context, LocaleKeys.anErrorOccurred.tr());
       }
     } finally {
       ref.read(authProvider.notifier).setLoadingEmail(false);

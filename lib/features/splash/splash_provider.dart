@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_e_commerce_app/core/injection_manager.dart';
 import 'package:flutter_e_commerce_app/models/version_model.dart';
@@ -69,7 +68,7 @@ class SplashProvider extends StateNotifier<SplashState> {
       final databaseVersion = versionData.number;
 
       //compare client version and database version
-      final isNeedUpdate = getIt<VersionManager>().versionProcess(
+      final isNeedUpdate = getItInstance<VersionManager>().versionProcess(
         clientVersion,
         databaseVersion,
       );

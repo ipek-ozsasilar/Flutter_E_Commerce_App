@@ -57,18 +57,15 @@ class AppColors extends ThemeExtension<AppColors> {
 
   factory AppColors.dark() {
     return const AppColors(
-      // In dark mode, use white for places that used boldBlack as foreground
-      boldBlack: Color(0xFFFFFFFF),
-      // Dark background
-      lightBackground: Color(0xFF000000),
-      // Lighten hints and icon greys for contrast on dark
-      loginInputHintText: Color(0xFFB0B0B0),
-      loginInputIconsGrey: Color(0xFFB0B0B0),
-      loginShadowMountain: Color(0xFFBDBDBD),
-      prevColor: Color(0xFF8D8D8D),
+      boldBlack: ColorName.boldBlackDark,
+      lightBackground: ColorName.darkBackground,
+      loginInputHintText: ColorName.loginInputHintTextDark,
+      loginInputIconsGrey: ColorName.loginInputIconsGreyDark,
+      loginShadowMountain: ColorName.loginShadowMountainDark,
+      prevColor: ColorName.prevColorDark,
       selectedPageBlue: ColorName.selectedPageBlue,
       sizzlingRed: ColorName.sizzlingRed,
-      splashUltimateGreyText: Color(0xFF9E9E9E),
+      splashUltimateGreyText: ColorName.splashUltimateGreyTextDark,
       whiteColor: ColorName.whiteColor,
       facebookBlue: ColorName.facebookBlue,
     );

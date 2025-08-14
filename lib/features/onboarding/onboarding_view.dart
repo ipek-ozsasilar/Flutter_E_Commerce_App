@@ -1,18 +1,24 @@
+//easy localizasyon
 import 'package:easy_localization/easy_localization.dart';
+//material
 import 'package:flutter/material.dart';
+//features
 import 'package:flutter_e_commerce_app/features/onboarding/onboarding_provider.dart';
-// import 'package:flutter_e_commerce_app/features/splash/splash_provider.dart';
+//gen
 import 'package:flutter_e_commerce_app/gen/assets.gen.dart';
-import 'package:flutter_e_commerce_app/product/theme/app_colors_context.dart';
+//generated
 import 'package:flutter_e_commerce_app/generated/locale_keys.g.dart';
+import 'package:flutter_e_commerce_app/product/botttom_sheet/localization_bottom_sheet.dart';
+import 'package:flutter_e_commerce_app/product/enums/secure_storage.dart';
+//product
+import 'package:flutter_e_commerce_app/product/theme/app_colors_context.dart';
 import 'package:flutter_e_commerce_app/product/constants/paddings_constants.dart';
-// import 'package:flutter_e_commerce_app/product/enums/secure_storage.dart';
 import 'package:flutter_e_commerce_app/product/enums/sizes_enum.dart';
 import 'package:flutter_e_commerce_app/product/widget/appbar/onboarding_appbar.dart';
 import 'package:flutter_e_commerce_app/product/widget/bottom_appbar/onboarding_bottom.dart';
 import 'package:flutter_e_commerce_app/product/widget/text/text_widget.dart';
+//riverpod
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-// import 'package:kartal/kartal.dart';
 
 //forveupdate, en tr json locale keys, bottom kısmı , get token
 class OnboardingView extends ConsumerStatefulWidget {
@@ -27,63 +33,23 @@ class _OnboardingViewState extends ConsumerState<OnboardingView> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+    //Ne yapar: İlk ekran çizimi tamamlandıktan sonra tek seferlik bir geri çağrı (callback) çalıştırır.
+    //Ne zaman çalışır: initState çağrıldıktan hemen sonra, ilk frame render edildikten sonra.
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _showLanguageBottomSheet(context);
+      // Sadece kullanıcı daha önce dil seçmemişse göster
+      SecureStorageKeys.getSavedLocale().then((saved) {
+        if (saved == null) {
+          LocalizationBottomSheet.showBottomSheetLocalization(context);
+        }
+      });
     });
-  }
-
-  void _showLanguageBottomSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      isDismissible: true, // kullanıcı kapatabilir
-      enableDrag: false,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-      ),
-      builder: (context) {
-        return Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                'Select Language'.tr(),
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 16),
-              ListTile(
-                leading: const Icon(Icons.language),
-                title: const Text('Türkçe'),
-                onTap: () async {
-                  await context.setLocale(const Locale('tr'));
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.language),
-                title: const Text('English'),
-                onTap: () async {
-                  await context.setLocale(const Locale('en'));
-                  Navigator.pop(context);
-                },
-              ),
-            ],
-          ),
-        );
-      },
-    );
   }
 
   @override
   void dispose() {
     _pageController.dispose();
     super.dispose();
-    _pageController.dispose();
   }
 
   void onPageChanged(int index) {

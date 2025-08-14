@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app/features/login/login_welcome_back.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/auth_provider.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/connection_provider.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/form_provider.dart';
+import 'package:flutter_e_commerce_app/generated/locale_keys.g.dart';
 import 'package:flutter_e_commerce_app/product/theme/app_colors_context.dart';
 import 'package:flutter_e_commerce_app/product/enums/sizes_enum.dart';
 import 'package:flutter_e_commerce_app/product/utility/navigator/navigator.dart';
@@ -35,7 +37,7 @@ mixin CreateAccountViewModel<T extends ConsumerStatefulWidget>
           .checkInternetConnection();
       if (!connectionResult) {
         _logger.w('İnternet bağlantısı yok');
-        showSnackBar(context, 'İnternet bağlantısı yok');
+        showSnackBar(context, LocaleKeys.noInternetConnectionError.tr());
         return;
       }
 
@@ -45,7 +47,7 @@ mixin CreateAccountViewModel<T extends ConsumerStatefulWidget>
           .checkEmptyEmailAndPassword();
       if (emptyEmailAndPasswordResult) {
         _logger.w('Email veya password boş');
-        showSnackBar(context, 'E-mail veya şifre boş bırakılamaz');
+        showSnackBar(context, LocaleKeys.emailOrPasswordEmpty.tr());
         return;
       }
 
@@ -54,7 +56,7 @@ mixin CreateAccountViewModel<T extends ConsumerStatefulWidget>
           .passwordsSame();
       if (!passwordsSameResult) {
         _logger.w('Şifreler eşleşmiyor');
-        showSnackBar(context, 'Şifreler eşleşmiyor');
+        showSnackBar(context, LocaleKeys.passwordsDoNotMatch.tr());
         return;
       }
 
@@ -64,36 +66,27 @@ mixin CreateAccountViewModel<T extends ConsumerStatefulWidget>
           .createAccountWithEmailAndPassword();
       if (user == null) {
         _logger.w('Kullanıcı oluşturma başarısız');
-        showSnackBar(
-          context,
-          'Giriş başarısız. E-mail ve şifrenizi kontrol ediniz',
-        );
+        showSnackBar(context, LocaleKeys.loginFailedCheckCredentials.tr());
         return;
       } else {
         _logger.w('Kullanıcı oluşturma başarılı');
         user.sendEmailVerification();
-        showSnackBar(
-          context,
-          'Mail adresinize doğrulama linki gönderildi. Lütfen mailinizi doğrulayıp tekrar giriş yapın',
-        );
+        showSnackBar(context, LocaleKeys.emailVerificationSentToMail.tr());
         NavigatorManager.instance.navigatePage(context, LoginWelcomeBack());
         return;
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        showSnackBar(context, 'Şifre en az 6 karakter olmalıdır');
+        showSnackBar(context, LocaleKeys.passwordTooShort.tr());
         return;
       } else if (e.code == 'email-already-in-use') {
-        showSnackBar(context, 'Bu e-mail adresi zaten kullanılıyor');
+        showSnackBar(context, LocaleKeys.emailAlreadyInUse.tr());
         return;
       } else if (e.code == 'invalid-email') {
-        showSnackBar(context, 'Geçersiz e-mail adresi');
+        showSnackBar(context, LocaleKeys.invalidEmailAddress.tr());
         return;
       }
-      showSnackBar(
-        context,
-        'Bir hata oluştu. Lütfen daha sonra tekrar deneyiniz',
-      );
+      showSnackBar(context, LocaleKeys.errorTryAgainLater.tr());
       return;
     } finally {
       ref.read(authProvider.notifier).setLoadingEmail(false);

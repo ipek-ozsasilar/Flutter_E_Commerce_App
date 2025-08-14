@@ -155,7 +155,7 @@ class _LoginWelcomeBackState extends ConsumerState<LoginWelcomeBack>
                         onPressed: () {
                           showSnackBar(
                             context,
-                            'Şuanda apple ile login yapılamamaktadır...',
+                            LocaleKeys.appleLoginNotAvailable.tr(),
                           );
                         },
                       ),

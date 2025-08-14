@@ -23,4 +23,6 @@ class PaddingsConstants {
   final EdgeInsets createAccountPasswordPadding = EdgeInsets.symmetric(vertical: 30);
   final EdgeInsets orContinuePadding = EdgeInsets.only(top: 40,bottom: 20);
   final EdgeInsets createAccountRichTextPadding = EdgeInsets.only(top: 20);
+  final EdgeInsets bottomSheetPadding = EdgeInsets.all(16.0);
+  final EdgeInsets bottomSheetListTilePadding = EdgeInsets.only(top: 16);
 } 

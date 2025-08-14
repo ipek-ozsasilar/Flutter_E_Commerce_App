@@ -43,6 +43,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Uygulamanın hangi URL’leri dinlediğini burada söylersin:-->
                 <data
                     android:scheme="https"
                     android:host="flutter-e-commerce-app-7b592.web.app"

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce_app/features/auth/auth_provider.dart';
+import 'package:flutter_e_commerce_app/features/login/provider/auth_provider.dart';
 import 'package:flutter_e_commerce_app/features/splash/splash_provider.dart';
 import 'package:flutter_e_commerce_app/gen/assets.gen.dart';
 
@@ -9,7 +9,6 @@ import 'package:flutter_e_commerce_app/product/constants/paddings_constants.dart
 import 'package:flutter_e_commerce_app/product/enums/sizes_enum.dart';
 import 'package:flutter_e_commerce_app/features/splash/splash_view_model.dart.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_e_commerce_app/product/constants/duration_constants.dart';
 part '../../product/animation/splash_icon_text.dart';
 
 //Splash View for app splash screen
@@ -39,7 +38,7 @@ class _SplashViewState extends ConsumerState<SplashView>
     //parallel process check version, auth and onboarding
     await Future.wait<void>([
       //check auth status
-      ref.read(authhProvider.notifier).checkAuthStatus(),
+      ref.read(authProvider.notifier).checkAuthStatus(),
       //check version app
       ref.read(splashProvider.notifier).checkVersion("1.0.0"),
       //check onboarding has seen for navigation which screen will be shown

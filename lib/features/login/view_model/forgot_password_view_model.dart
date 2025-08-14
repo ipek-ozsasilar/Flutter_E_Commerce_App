@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/auth_provider.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/connection_provider.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/form_provider.dart';
+import 'package:flutter_e_commerce_app/generated/locale_keys.g.dart';
 // import 'package:flutter_e_commerce_app/firebase_options.dart';
 import 'package:flutter_e_commerce_app/product/theme/app_colors_context.dart';
 import 'package:flutter_e_commerce_app/product/enums/sizes_enum.dart';
@@ -25,7 +27,7 @@ mixin ForgotPasswordViewModel<T extends ConsumerStatefulWidget>
           .checkInternetConnection();
       if (!connectionResult) {
         _logger.w('İnternet bağlantısı yok');
-        showSnackBar(context, 'İnternet bağlantısı yok');
+        showSnackBar(context, LocaleKeys.noInternetConnectionError.tr());
         return;
       }
 
@@ -33,7 +35,7 @@ mixin ForgotPasswordViewModel<T extends ConsumerStatefulWidget>
           .read(formProvider.notifier)
           .checkForgotPasswordEmailEmpty();
       if (emailEmptyResult) {
-        showSnackBar(context, 'E-mail alanı boş olamaz');
+        showSnackBar(context, LocaleKeys.emailFieldEmpty.tr());
         return;
       }
 
@@ -43,17 +45,17 @@ mixin ForgotPasswordViewModel<T extends ConsumerStatefulWidget>
           .forgotPasswordController
           .text;
       if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email)) {
-        showSnackBar(context, 'Geçerli bir e-mail adresi giriniz');
+        showSnackBar(context, LocaleKeys.enterValidEmail.tr());
         return;
       }
       await ref.read(authProvider.notifier).sendPasswordResetEmail();
 
-      showSnackBar(context, 'Şifre sıfırlama linki e-postaya gönderildi');
+      showSnackBar(context, LocaleKeys.passwordResetLinkSent.tr());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'invalid-email') {
-        showSnackBar(context, 'E-mail formatı geçersiz');
+        showSnackBar(context, LocaleKeys.invalidEmailFormat.tr());
       } else {
-        showSnackBar(context, 'Geçersiz kullanıcı');
+        showSnackBar(context, LocaleKeys.invalidUser.tr());
       }
     } finally {
       ref.read(authProvider.notifier).setLoadingEmail(false);

@@ -1,13 +1,14 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app/features/home/home_view.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/auth_provider.dart';
+import 'package:flutter_e_commerce_app/generated/locale_keys.g.dart';
 import 'package:flutter_e_commerce_app/product/theme/app_colors_context.dart';
 import 'package:flutter_e_commerce_app/product/utility/navigator/navigator.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-// import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-// import 'package:flutter_e_commerce_app/features/login/view_model/google_view_model.dart';
+
 
 mixin FacebookViewModel<T extends ConsumerStatefulWidget> on ConsumerState<T> {
   final _logger = Logger();
@@ -43,25 +44,25 @@ mixin FacebookViewModel<T extends ConsumerStatefulWidget> on ConsumerState<T> {
       if (user != null) {
         NavigatorManager.instance.navigatePage(context, HomeView());
       } else {
-        showSnackBar(context, 'Facebook girişi iptal edildi veya başarısız.');
+        showSnackBar(context, LocaleKeys.facebookSignInCancelledOrFailed.tr());
       }
     } on FirebaseAuthException catch (e) {
       _logger.w('Firebase hatası: ${e.code}');
 
       //fix me : linking işlemi ekle
       if (e.code == 'account-exists-with-different-credential') {
-        showSnackBar(context, 'Bu e-posta ile kayıtlı hesap var zaten.');
+        showSnackBar(context, LocaleKeys.accountExistsWithEmail.tr());
         // Diğer providerlar için benzer işlemler yapılabilir
       }
       if (e.code == 'invalid-credential') {
-        showSnackBar(context, 'Geçersiz kimlik bilgisi.');
+        showSnackBar(context, LocaleKeys.invalidCredentialError.tr());
       }
       if (e.code == 'user-disabled') {
-        showSnackBar(context, 'Bu hesap devre dışı bırakılmış.');
+        showSnackBar(context, LocaleKeys.accountDisabled.tr());
       }
     } catch (e) {
       _logger.w('Genel hata: $e');
-      showSnackBar(context, 'Beklenmeyen bir hata oluştu.');
+      showSnackBar(context, LocaleKeys.unexpectedError.tr());
     } finally {
       ref.read(authProvider.notifier).setLoadingFacebook(false);
     }

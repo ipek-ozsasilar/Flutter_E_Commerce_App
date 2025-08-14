@@ -71,7 +71,7 @@ class AppInitiliazer {
     //Bu yapılmadan tr() gibi çeviri fonksiyonları hata verir.
     await EasyLocalization.ensureInitialized();
     //SecureStorage'ı başlatır. Verileri saklamak için kullanılır.
-    await getIt<secureStorageSetUp>().setUp();
+    await getItInstance<secureStorageSetUp>().setUp();
   }
 }
 

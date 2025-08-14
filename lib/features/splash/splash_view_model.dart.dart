@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce_app/features/auth/auth_provider.dart';
-import 'package:flutter_e_commerce_app/features/home/home_view.dart';
+  import 'package:flutter_e_commerce_app/features/home/home_view.dart';
+import 'package:flutter_e_commerce_app/features/login/provider/auth_provider.dart';
 import 'package:flutter_e_commerce_app/features/login/login_welcome_back.dart';
 import 'package:flutter_e_commerce_app/features/onboarding/onboarding_view.dart';
 import 'package:flutter_e_commerce_app/features/splash/splash_provider.dart';
@@ -25,13 +25,13 @@ mixin SplashViewModelMixin on ConsumerState<SplashView> {
 
       // ✅ Splash ready olduğunda, mevcut auth state ile navigation yap
       if (next.isRedirectStart) {
-        final currentAuthState = ref.read(authhProvider);
+        final currentAuthState = ref.read(authProvider);
         _performNavigation(currentAuthState, next);
       }
     });
 
     // ✅ Auth state değişikliklerini dinle
-    ref.listen<AuthState>(authhProvider, (previous, next) {
+    ref.listen<AuthState>(authProvider, (previous, next) {
       final currentSplashState = ref.read(splashProvider);
 
       // ✅ Sadece splash ready ise navigation yap

@@ -1,11 +1,11 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/form_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_e_commerce_app/product/enums/secure_storage.dart';
 
 final authProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref) {
   return AuthNotifier(ref);
@@ -17,7 +17,8 @@ class AuthNotifier extends StateNotifier<AuthState> {
 
   AuthNotifier(this.ref)
     : super(
-        AuthState(
+        const AuthState(
+          isLoggedIn: false,
           isValidEmail: false,
           isLoadingEmail: false,
           isLoadingFacebook: false,
@@ -39,6 +40,42 @@ class AuthNotifier extends StateNotifier<AuthState> {
     await FacebookAuth.instance.logOut();
   }
 
+  Future<void> checkAuthStatus() async {
+    try {
+      // Firebase Auth user kontrolü
+      final User? user = FirebaseAuth.instance.currentUser;
+
+      //if user is not null update logged in true
+      if (user != null) {
+        updateLoggedInTrue();
+      } else {
+        //if user is null update logged in false
+        updateLoggedInFalse();
+      }
+    } catch (e) {
+      //if error update logged in false
+      updateLoggedInFalse();
+    }
+  }
+
+  //logout function
+  void logout() async {
+    await FirebaseAuth.instance.signOut();
+    // Token clear
+    await SecureStorageKeys.token.writeKeys('');
+    state = state.copyWith(isLoggedIn: false);
+  }
+
+  //update logged in true
+  void updateLoggedInTrue() {
+    state = state.copyWith(isLoggedIn: true);
+  }
+
+  //update logged in false
+  void updateLoggedInFalse() {
+    state = state.copyWith(isLoggedIn: false);
+  }
+
   Future<User?> signInWithFacebook() async {
     setFacebookLoading(true);
     //Facebook oturum açma işlemini başlatır. LoginResult sınıfı, Facebook oturum açma işleminin sonucunu içerir.
@@ -58,7 +95,10 @@ class AuthNotifier extends StateNotifier<AuthState> {
       //tokenı giriş için buraya veriyoruz. Firebase Authentication üzerinden kullanıcı giriş yapar.
       final UserCredential userCredential = await FirebaseAuth.instance
           .signInWithCredential(credential);
-      return userCredential.user;
+      final user = userCredential.user;
+      await _persistIdToken(user);
+      updateLoggedInTrue();
+      return user;
     } else if (result.status == LoginStatus.cancelled) {
       _logger.w('Facebook login cancelled');
       return null;
@@ -88,7 +128,11 @@ class AuthNotifier extends StateNotifier<AuthState> {
       idToken: googleAuth.idToken,
     );
 
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+    final UserCredential userCredential = await FirebaseAuth.instance
+        .signInWithCredential(credential);
+    await _persistIdToken(userCredential.user);
+    updateLoggedInTrue();
+    return userCredential;
   }
 
   void setFacebookLoading(bool value) {
@@ -128,7 +172,10 @@ class AuthNotifier extends StateNotifier<AuthState> {
           password: ref.read(formProvider.notifier).passwordController.text,
         );
     setLoadingEmail(false);
-    return userCredential.user;
+    final user = userCredential.user;
+    await _persistIdToken(user);
+    updateLoggedInTrue();
+    return user;
   }
 
   Future<User?> createAccountWithEmailAndPassword() async {
@@ -151,7 +198,10 @@ class AuthNotifier extends StateNotifier<AuthState> {
           password: ref.read(formProvider.notifier).passwordController.text,
         );
     setLoadingEmail(false);
-    return userCredential.user;
+    final user = userCredential.user;
+    await _persistIdToken(user);
+    updateLoggedInTrue();
+    return user;
   }
 
   Future<void> sendPasswordResetEmail() async {
@@ -169,15 +219,29 @@ class AuthNotifier extends StateNotifier<AuthState> {
   }
 
   Future<void> signOutAuth() async => await FirebaseAuth.instance.signOut();
+
+  // Persist Firebase ID token securely
+  Future<void> _persistIdToken(User? user) async {
+    try {
+      final String? idToken = await user?.getIdToken();
+      if (idToken != null && idToken.isNotEmpty) {
+        await SecureStorageKeys.token.writeKeys(idToken);
+      }
+    } catch (e) {
+      _logger.w('Failed to persist ID token: $e');
+    }
+  }
 }
 
 class AuthState extends Equatable {
+  final bool isLoggedIn;
   final bool isValidEmail;
   final bool isLoadingEmail;
   final bool isLoadingFacebook;
   final bool isLoadingGoogle;
 
   const AuthState({
+    required this.isLoggedIn,
     required this.isValidEmail,
     required this.isLoadingEmail,
     required this.isLoadingFacebook,
@@ -185,12 +249,14 @@ class AuthState extends Equatable {
   });
 
   AuthState copyWith({
+    bool? isLoggedIn,
     bool? isValidEmail,
     bool? isLoadingEmail,
     bool? isLoadingFacebook,
     bool? isLoadingGoogle,
   }) {
     return AuthState(
+      isLoggedIn: isLoggedIn ?? this.isLoggedIn,
       isValidEmail: isValidEmail ?? this.isValidEmail,
       isLoadingEmail: isLoadingEmail ?? this.isLoadingEmail,
       isLoadingFacebook: isLoadingFacebook ?? this.isLoadingFacebook,
@@ -200,6 +266,7 @@ class AuthState extends Equatable {
 
   @override
   List<Object?> get props => [
+    isLoggedIn,
     isValidEmail,
     isLoadingEmail,
     isLoadingFacebook,

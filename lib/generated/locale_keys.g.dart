@@ -2,7 +2,7 @@
 
 // ignore_for_file: constant_identifier_names
 
-abstract class  LocaleKeys {
+abstract class LocaleKeys {
   static const splashStylish = 'splashStylish';
   static const resetPassword = 'resetPassword';
   static const next = 'next';
@@ -39,5 +39,67 @@ abstract class  LocaleKeys {
   static const update = 'update';
   static const byClickingThe = 'byClickingThe';
   static const register = 'register';
-  static const buttonYouAgreeToThePublicOffer = 'buttonYouAgreeToThePublicOffer';
+  static const buttonYouAgreeToThePublicOffer =
+      'buttonYouAgreeToThePublicOffer';
+  static const success = 'success';
+  static const error = 'error';
+  static const warning = 'warning';
+  static const info = 'info';
+  static const loginSuccessful = 'loginSuccessful';
+  static const loginFailed = 'loginFailed';
+  static const accountCreated = 'accountCreated';
+  static const accountCreationFailed = 'accountCreationFailed';
+  static const passwordResetEmailSent = 'passwordResetEmailSent';
+  static const passwordResetFailed = 'passwordResetFailed';
+  static const invalidEmail = 'invalidEmail';
+  static const passwordTooShort = 'passwordTooShort';
+  static const passwordsDoNotMatch = 'passwordsDoNotMatch';
+  static const fieldRequired = 'fieldRequired';
+  static const networkError = 'networkError';
+  static const unknownError = 'unknownError';
+  static const googleSignInFailed = 'googleSignInFailed';
+  static const facebookSignInFailed = 'facebookSignInFailed';
+  static const emailVerificationSent = 'emailVerificationSent';
+  static const emailNotVerified = 'emailNotVerified';
+  static const logoutSuccessful = 'logoutSuccessful';
+  static const saved = 'saved';
+  static const deleted = 'deleted';
+  static const updated = 'updated';
+  static const noInternetConnection = 'noInternetConnection';
+  static const tryAgain = 'tryAgain';
+  static const operationCancelled = 'operationCancelled';
+  static const fileUploadFailed = 'fileUploadFailed';
+  static const permissionDenied = 'permissionDenied';
+  static const sessionExpired = 'sessionExpired';
+  static const noInternetConnectionError = 'noInternetConnectionError';
+  static const emailOrPasswordEmpty = 'emailOrPasswordEmpty';
+  static const loginFailedCheckCredentials = 'loginFailedCheckCredentials';
+  static const verifyEmailAddress = 'verifyEmailAddress';
+  static const verificationEmailResent = 'verificationEmailResent';
+  static const invalidEmailFormat = 'invalidEmailFormat';
+  static const invalidCredentials = 'invalidCredentials';
+  static const anErrorOccurred = 'anErrorOccurred';
+  static const emailVerificationSentToMail = 'emailVerificationSentToMail';
+  static const emailAlreadyInUse = 'emailAlreadyInUse';
+  static const invalidEmailAddress = 'invalidEmailAddress';
+  static const errorTryAgainLater = 'errorTryAgainLater';
+  static const facebookAccountExists = 'facebookAccountExists';
+  static const accountDisabled = 'accountDisabled';
+  static const googleSignInNotEnabled = 'googleSignInNotEnabled';
+  static const weakPassword = 'weakPassword';
+  static const googleSignInFailedError = 'googleSignInFailedError';
+  static const emailFieldEmpty = 'emailFieldEmpty';
+  static const enterValidEmail = 'enterValidEmail';
+  static const passwordResetLinkSent = 'passwordResetLinkSent';
+  static const invalidUser = 'invalidUser';
+  static const facebookSignInCancelledOrFailed =
+      'facebookSignInCancelledOrFailed';
+  static const accountExistsWithEmail = 'accountExistsWithEmail';
+  static const invalidCredentialError = 'invalidCredentialError';
+  static const unexpectedError = 'unexpectedError';
+  static const invalidOrMissingResetCode = 'invalidOrMissingResetCode';
+  static const passwordFieldEmpty = 'passwordFieldEmpty';
+  static const passwordResetSuccessful = 'passwordResetSuccessful';
+  static const appleLoginNotAvailable = 'appleLoginNotAvailable';
+  static const linkCouldNotOpen = 'linkCouldNotOpen';
 }

@@ -159,7 +159,7 @@ class _CreateAccountState extends ConsumerState<CreateAccount>
                       onPressed: () {
                         showSnackBar(
                           context,
-                          'Şuanda apple ile login yapılamamaktadır...',
+                          LocaleKeys.appleLoginNotAvailable.tr(),
                         );
                       },
                     ),
@@ -221,7 +221,7 @@ class _CreateAccountState extends ConsumerState<CreateAccount>
   Future<void> _launchURL() async {
     final Uri url = Uri.parse('https://policies.google.com/privacy?hl=tr');
     if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
-      showSnackBar(context, 'Link acilamadi');
+      showSnackBar(context, LocaleKeys.linkCouldNotOpen.tr());
     }
   }
 }

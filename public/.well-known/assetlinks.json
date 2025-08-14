@@ -1,5 +1,6 @@
 [
     {
+        "_comment": "Bu dosya ile domain, uygulamayi “benim URLlerimi açmaya yetkili” olarak doğrular.Bu domain (myapp.com) gerçekten bu Android uygulamasına ait, ve ben bu domain’in sahibiyim.Android, assetlinks.json dosyasını senin domain’inden şu adreste kontrol eder:https://myapp.com/.well-known/assetlinks.json Bu dosya HTTPS üzerinden erişilebilir olmalı.Android cihaz, linke tıklanınca bu dosyayı arka planda indirip kontrol eder.",
         "relation": [
             "delegate_permission/common.handle_all_urls"
         ],
