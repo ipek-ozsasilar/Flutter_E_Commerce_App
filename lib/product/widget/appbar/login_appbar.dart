@@ -60,53 +60,56 @@ class _CustomAppbarLoginState extends ConsumerState<CustomAppbarLogin>
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: 30),
-          child: IconButton(
-            onPressed: () async {
-              if (_isAnimating) return;
-              _isAnimating = true;
-
-              // Mevcut tema durumuna göre animasyon yönünü belirle
-              final isCurrentlyLight =
-                  ref.read(themeStateProvider).themeMode == ThemeMode.light;
-
-              // Tema değiştir
-              ref.read(themeStateProvider.notifier).toggleTheme();
-
-              // Animasyon mantığı:
-              // Light -> Dark: 0.5'ten 0.0'a (güneşten aya)
-              // Dark -> Light: 0.0'dan 0.5'e (aydan güneşe)
-              if (isCurrentlyLight) {
-                // Light'tan Dark'a geçerken
-                await controller.animateTo(
-                  0.0,
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.easeInOut,
-                );
-              } else {
-                // Dark'tan Light'a geçerken
-                await controller.animateTo(
-                  0.5,
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.easeInOut,
-                );
-              }
-
-              _isAnimating = false;
-            },
-            icon: AnimatedBuilder(
-              animation: controller,
-              builder: (context, _) {
-                return Transform.translate(
-                  offset: Offset(0, 0),
-                  child: Lottie.asset(
-                    'assets/animations/theme.json',
-                    controller: controller,
-                    repeat: false,
-                    width: 100,
-                    height: 100,
-                  ),
-                );
+          child: Semantics(
+            identifier:  'theme_button',
+            child: IconButton(
+              onPressed: () async {
+                if (_isAnimating) return;
+                _isAnimating = true;
+            
+                // Mevcut tema durumuna göre animasyon yönünü belirle
+                final isCurrentlyLight =
+                    ref.read(themeStateProvider).themeMode == ThemeMode.light;
+            
+                // Tema değiştir
+                ref.read(themeStateProvider.notifier).toggleTheme();
+            
+                // Animasyon mantığı:
+                // Light -> Dark: 0.5'ten 0.0'a (güneşten aya)
+                // Dark -> Light: 0.0'dan 0.5'e (aydan güneşe)
+                if (isCurrentlyLight) {
+                  // Light'tan Dark'a geçerken
+                  await controller.animateTo(
+                    0.0,
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeInOut,
+                  );
+                } else {
+                  // Dark'tan Light'a geçerken
+                  await controller.animateTo(
+                    0.5,
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeInOut,
+                  );
+                }
+            
+                _isAnimating = false;
               },
+              icon: AnimatedBuilder(
+                animation: controller,
+                builder: (context, _) {
+                  return Transform.translate(
+                    offset: Offset(0, 0),
+                    child: Lottie.asset(
+                      'assets/animations/theme.json',
+                      controller: controller,
+                      repeat: false,
+                      width: 100,
+                      height: 100,
+                    ),
+                  );
+                },
+              ),
             ),
           ),
         ),

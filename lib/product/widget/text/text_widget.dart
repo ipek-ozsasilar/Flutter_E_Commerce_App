@@ -10,20 +10,24 @@ class BoldOnboardingText extends StatelessWidget {
     required this.title,
     required this.titleSize,
     required this.titleColor,
+    this.textAlign = TextAlign.left,
   });
 
   final String title;
   final double? titleSize;
   final Color? titleColor;
+  final TextAlign textAlign;
   @override
   Widget build(BuildContext context) {
     return Text(
       title,
+      textAlign: textAlign,
       style: context.general.appTheme.textTheme.headlineSmall?.copyWith(
         fontWeight: FontWeight.bold,
         fontSize: titleSize,
         color: titleColor,
       ),
+      key: const Key('bold_onboarding_text'),
     );
   }
 }

@@ -4,4 +4,11 @@ scripts:
   run_app: flutter run
   reset: flutter clean && flutter pub get
   build_all: flutter clean && flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
-  gen_flutter: flutter pub run build_runner build --delete-conflicting-outputs 
+  gen_flutter: flutter pub run build_runner build --delete-conflicting-outputs
+  # Yeni eklenenler
+  build_apk: flutter build apk
+  install_apk: adb install -r build/app/outputs/flutter-apk/app-debug.apk
+  run_maestro_login: maestro test -c ui_test/login_flow.yaml
+
+  # Hepsini sırayla yapan adım
+  full_test_maestro: flutter build apk && adb install -r build/app/outputs/flutter-apk/app-debug.apk && maestro test -c ui_test/login_flow.yaml

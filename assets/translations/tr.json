@@ -75,9 +75,7 @@
     "invalidEmailFormat": "E-mail formatı geçersiz",
     "invalidCredentials": "Bir hata oluştu geçersiz giriş",
     "anErrorOccurred": "Bir hata oluştu",
-    "passwordsDoNotMatch": "Şifreler eşleşmiyor",
     "emailVerificationSentToMail": "Mail adresinize doğrulama linki gönderildi. Lütfen mailinizi doğrulayıp tekrar giriş yapın",
-    "passwordTooShort": "Şifre en az 6 karakter olmalıdır",
     "emailAlreadyInUse": "Bu e-mail adresi zaten kullanılıyor",
     "invalidEmailAddress": "Geçersiz e-mail adresi",
     "errorTryAgainLater": "Bir hata oluştu. Lütfen daha sonra tekrar deneyiniz",
@@ -96,7 +94,9 @@
     "unexpectedError": "Beklenmeyen bir hata oluştu.",
     "invalidOrMissingResetCode": "Geçersiz veya eksik sıfırlama kodu.",
     "passwordFieldEmpty": "Şifre alanı boş olamaz",
-    "passwordResetSuccessful": "Şifre sıfırlama başarılı",
     "appleLoginNotAvailable": "Şuanda apple ile login yapılamamaktadır...",
-    "linkCouldNotOpen": "Link acilamadi"
+    "linkCouldNotOpen": "Link acilamadi",
+    "homeTitle": "Authentic istediğin, burada var!",
+    "homeDescription": "Burada bul, hemen al!"
+
 }

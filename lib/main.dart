@@ -4,6 +4,9 @@ import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 //material
 import 'package:flutter/material.dart';
+import 'package:flutter_e_commerce_app/features/home/get_started_view.dart';
+import 'package:flutter_e_commerce_app/features/home/home_view.dart';
+import 'package:flutter_e_commerce_app/features/login/forgot_password.dart';
 //flutter_riverpod
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 //features
@@ -120,7 +123,7 @@ class _MyAppState extends ConsumerState<MyApp> with CustomThemeViewModel {
       ),
 
       //fixme : apple login ekle ve linking yap facegogole
-      home: SplashView(),
+      home: HomeView(),
     );
   }
 }

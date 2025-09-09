@@ -1,6 +1,5 @@
 part of '../../features/splash/splash_view.dart';
 
-
 class SplashAnimationScreen extends StatefulWidget {
   const SplashAnimationScreen({super.key});
 
@@ -8,7 +7,8 @@ class SplashAnimationScreen extends StatefulWidget {
   State<SplashAnimationScreen> createState() => _SplashAnimationScreenState();
 }
 
-class _SplashAnimationScreenState extends State<SplashAnimationScreen> with TickerProviderStateMixin {
+class _SplashAnimationScreenState extends State<SplashAnimationScreen>
+    with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _bounceAnimation;
 
@@ -44,10 +44,10 @@ class _SplashAnimationScreenState extends State<SplashAnimationScreen> with Tick
   }
 
   TweenSequenceItem<double> _createBounceStep(
-    double begin, 
-    double end, 
-    double weight, 
-    Curve curve
+    double begin,
+    double end,
+    double weight,
+    Curve curve,
   ) {
     return TweenSequenceItem(
       tween: Tween(begin: begin, end: end).chain(CurveTween(curve: curve)),
@@ -71,10 +71,7 @@ class _SplashAnimationScreenState extends State<SplashAnimationScreen> with Tick
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        _buildBounceIcon(),
-        _buildAnimatedText(),
-      ],
+      children: [_buildBounceIcon(), _buildAnimatedText()],
     );
   }
 
@@ -87,6 +84,7 @@ class _SplashAnimationScreenState extends State<SplashAnimationScreen> with Tick
           child: Assets.icons.splashIcon.image(
             width: IconSizeEnum.splashIconWidthAndHeight.value,
             height: IconSizeEnum.splashIconWidthAndHeight.value,
+            semanticLabel: "splash_icon",
           ),
         );
       },

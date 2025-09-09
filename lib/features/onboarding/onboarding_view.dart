@@ -74,19 +74,20 @@ class _OnboardingViewState extends ConsumerState<OnboardingView> {
             height: ImageSizeEnum.chooseProductWidthAndHeight.value,
           ),
           _OnboardingImageText(
-            genImage: Assets.images.makePayment,
-            title: LocaleKeys.makePayment.tr(),
-            description: LocaleKeys.makePaymentDetail.tr(),
-            width: ImageSizeEnum.makePaymentWidth.value,
-            height: ImageSizeEnum.makePaymentHeight.value,
+          genImage: Assets.images.makePayment,
+          title: LocaleKeys.makePayment.tr(),
+          description: LocaleKeys.makePaymentDetail.tr(),
+          width: ImageSizeEnum.makePaymentWidth.value,
+              height: ImageSizeEnum.makePaymentHeight.value,
           ),
           _OnboardingImageText(
-            genImage: Assets.images.getYourOrder,
-            title: LocaleKeys.getYourOrder.tr(),
-            description: LocaleKeys.getYourOrderDetail.tr(),
-            width: ImageSizeEnum.getYourOrderWidthAndHeight.value,
-            height: ImageSizeEnum.getYourOrderWidthAndHeight.value,
-          ),
+          genImage: Assets.images.getYourOrder,
+          title: LocaleKeys.getYourOrder.tr(),
+          description: LocaleKeys.getYourOrderDetail.tr(),
+          width: ImageSizeEnum.getYourOrderWidthAndHeight.value,
+          height: ImageSizeEnum.getYourOrderWidthAndHeight.value,
+                    )
+
         ],
       ),
       bottomNavigationBar: OnboardingBottom(pageController: _pageController),
@@ -108,6 +109,7 @@ class _OnboardingImageText extends StatelessWidget {
   final String description;
   final double width;
   final double height;
+  
   @override
   Widget build(BuildContext context) {
     return Padding(

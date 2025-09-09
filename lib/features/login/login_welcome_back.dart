@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:easy_localization/easy_localization.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -61,6 +62,7 @@ class _LoginWelcomeBackState extends ConsumerState<LoginWelcomeBack>
     final passwordController = ref
         .watch(formProvider.notifier)
         .passwordController;
+
     return Scaffold(
       appBar:
           CustomAppbarLogin(title: LocaleKeys.welcomeBack.tr())

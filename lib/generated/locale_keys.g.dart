@@ -102,4 +102,6 @@ abstract class LocaleKeys {
   static const passwordResetSuccessful = 'passwordResetSuccessful';
   static const appleLoginNotAvailable = 'appleLoginNotAvailable';
   static const linkCouldNotOpen = 'linkCouldNotOpen';
+  static const homeTitle = 'homeTitle';
+  static const homeDescription = 'homeDescription';
 }

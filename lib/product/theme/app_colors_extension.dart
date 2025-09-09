@@ -24,7 +24,29 @@ class AppColors extends ThemeExtension<AppColors> {
   final Color splashUltimateGreyText;
   final Color whiteColor;
   final Color facebookBlue;
-
+  final Color drawerBackground;
+  // Home Page Colors
+  final Color homePageDiscountIndicatorPink;
+  final Color homePageDiscountIndicatorGrey;
+  final Color dealOfTheDayBlue;
+  // Product Colors
+  final Color offRedColor;
+  final Color starNumberGreyColor;
+  final Color oldPriceGreyColor;
+  final Color starYellowColor;
+  final Color flatAndHeelsBlack;
+  final Color trendingProductsPink;
+  final Color bottomAppBarSelectedColor;
+  // Shop Colors
+  final Color sizeButtonPink;
+  final Color shopPageGrey;
+  final Color shopPageBuyGreen;
+  final Color shopPageBlue;
+  final Color shopPagePink;
+  final Color totalTextColor;
+  final Color paymentTextColor;
+  final Color hideCardNumberGrey;
+  final Color paymentBoxFillGrey;
   const AppColors({
     required this.boldBlack,
     required this.lightBackground,
@@ -37,12 +59,35 @@ class AppColors extends ThemeExtension<AppColors> {
     required this.splashUltimateGreyText,
     required this.whiteColor,
     required this.facebookBlue,
+    required this.drawerBackground,
+    // Home Page Colors
+    required this.homePageDiscountIndicatorPink,
+    required this.homePageDiscountIndicatorGrey,
+    required this.dealOfTheDayBlue,
+    // Product Colors
+    required this.offRedColor,
+    required this.starNumberGreyColor,
+    required this.oldPriceGreyColor,
+    required this.starYellowColor,
+    required this.flatAndHeelsBlack,
+    required this.trendingProductsPink,
+    required this.bottomAppBarSelectedColor,
+    // Shop Colors
+    required this.sizeButtonPink,
+    required this.shopPageGrey,
+    required this.shopPageBuyGreen,
+    required this.shopPageBlue,
+    required this.shopPagePink,
+    required this.totalTextColor,
+    required this.paymentTextColor,
+    required this.hideCardNumberGrey,
+    required this.paymentBoxFillGrey,
   });
 
   factory AppColors.light() {
     return const AppColors(
       boldBlack: ColorName.boldBlack,
-      lightBackground: ColorName.lightBackground,
+      lightBackground: ColorName.whiteColor,
       loginInputHintText: ColorName.loginInputHintText,
       loginInputIconsGrey: ColorName.loginInputIconsGrey,
       loginShadowMountain: ColorName.loginShadowMountain,
@@ -52,13 +97,36 @@ class AppColors extends ThemeExtension<AppColors> {
       splashUltimateGreyText: ColorName.splashUltimateGreyText,
       whiteColor: ColorName.whiteColor,
       facebookBlue: ColorName.facebookBlue,
+      drawerBackground: ColorName.drawerBackground,
+      // Home Page Colors
+      homePageDiscountIndicatorPink: ColorName.homePageDiscountIndicatorPink,
+      homePageDiscountIndicatorGrey: ColorName.homePageDiscountIndicatorGrey,
+      dealOfTheDayBlue: ColorName.dealOfTheDayBlue,
+      // Product Colors
+      offRedColor: ColorName.offRedColor,
+      starNumberGreyColor: ColorName.starNumberGreyColor,
+      oldPriceGreyColor: ColorName.oldPriceGreyColor,
+      starYellowColor: ColorName.starYellowColor,
+      flatAndHeelsBlack: ColorName.flatAndHeelsBlack,
+      trendingProductsPink: ColorName.trendingProductsPink,
+      bottomAppBarSelectedColor: ColorName.bottomAppBarSelectedColor,
+      // Shop Colors
+      sizeButtonPink: ColorName.sizeButtonPink,
+      shopPageGrey: ColorName.shopPageGrey,
+      shopPageBuyGreen: ColorName.shopPageBuyGreen,
+      shopPageBlue: ColorName.shopPageBlue,
+      shopPagePink: ColorName.shopPagePink,
+      totalTextColor: ColorName.totalTextColor,
+      paymentTextColor: ColorName.paymentTextColor,
+      hideCardNumberGrey: ColorName.hideCardNumberGrey,
+      paymentBoxFillGrey: ColorName.paymentBoxFillGrey,
     );
   }
 
   factory AppColors.dark() {
     return const AppColors(
       boldBlack: ColorName.boldBlackDark,
-      lightBackground: ColorName.darkBackground,
+      lightBackground: ColorName.boldBlack,
       loginInputHintText: ColorName.loginInputHintTextDark,
       loginInputIconsGrey: ColorName.loginInputIconsGreyDark,
       loginShadowMountain: ColorName.loginShadowMountainDark,
@@ -68,6 +136,29 @@ class AppColors extends ThemeExtension<AppColors> {
       splashUltimateGreyText: ColorName.splashUltimateGreyTextDark,
       whiteColor: ColorName.whiteColor,
       facebookBlue: ColorName.facebookBlue,
+      drawerBackground: ColorName.drawerBackground,
+      // Home Page Colors
+      homePageDiscountIndicatorPink: ColorName.homePageDiscountIndicatorPink,
+      homePageDiscountIndicatorGrey: ColorName.homePageDiscountIndicatorGrey,
+      dealOfTheDayBlue: ColorName.dealOfTheDayBlue,
+      // Product Colors
+      offRedColor: ColorName.offRedColor,
+      starNumberGreyColor: ColorName.starNumberGreyColor,
+      oldPriceGreyColor: ColorName.oldPriceGreyColor,
+      starYellowColor: ColorName.starYellowColor,
+      flatAndHeelsBlack: ColorName.flatAndHeelsBlack,
+      trendingProductsPink: ColorName.trendingProductsPink,
+      bottomAppBarSelectedColor: ColorName.bottomAppBarSelectedColor,
+      // Shop Colors
+      sizeButtonPink: ColorName.sizeButtonPink,
+      shopPageGrey: ColorName.shopPageGrey,
+      shopPageBuyGreen: ColorName.shopPageBuyGreen,
+      shopPageBlue: ColorName.shopPageBlue,
+      shopPagePink: ColorName.shopPagePink,
+      totalTextColor: ColorName.totalTextColor,
+      paymentTextColor: ColorName.paymentTextColor,
+      hideCardNumberGrey: ColorName.hideCardNumberGrey,
+      paymentBoxFillGrey: ColorName.paymentBoxFillGrey,
     );
   }
 
@@ -84,6 +175,29 @@ class AppColors extends ThemeExtension<AppColors> {
     Color? splashUltimateGreyText,
     Color? whiteColor,
     Color? facebookBlue,
+    Color? drawerBackground,
+    // Home Page Colors
+    Color? homePageDiscountIndicatorPink,
+    Color? homePageDiscountIndicatorGrey,
+    Color? dealOfTheDayBlue,
+    // Product Colors
+    Color? offRedColor,
+    Color? starNumberGreyColor,
+    Color? oldPriceGreyColor,
+    Color? starYellowColor,
+    Color? flatAndHeelsBlack,
+    Color? trendingProductsPink,
+    Color? bottomAppBarSelectedColor,
+    // Shop Colors
+    Color? sizeButtonPink,
+    Color? shopPageGrey,
+    Color? shopPageBuyGreen,
+    Color? shopPageBlue,
+    Color? shopPagePink,
+    Color? totalTextColor,
+    Color? paymentTextColor,
+    Color? hideCardNumberGrey,
+    Color? paymentBoxFillGrey,
   }) {
     return AppColors(
       boldBlack: boldBlack ?? this.boldBlack,
@@ -98,6 +212,32 @@ class AppColors extends ThemeExtension<AppColors> {
           splashUltimateGreyText ?? this.splashUltimateGreyText,
       whiteColor: whiteColor ?? this.whiteColor,
       facebookBlue: facebookBlue ?? this.facebookBlue,
+      drawerBackground: drawerBackground ?? this.drawerBackground,
+      // Home Page Colors
+      homePageDiscountIndicatorPink:
+          homePageDiscountIndicatorPink ?? this.homePageDiscountIndicatorPink,
+      homePageDiscountIndicatorGrey:
+          homePageDiscountIndicatorGrey ?? this.homePageDiscountIndicatorGrey,
+      dealOfTheDayBlue: dealOfTheDayBlue ?? this.dealOfTheDayBlue,
+      // Product Colors
+      offRedColor: offRedColor ?? this.offRedColor,
+      starNumberGreyColor: starNumberGreyColor ?? this.starNumberGreyColor,
+      oldPriceGreyColor: oldPriceGreyColor ?? this.oldPriceGreyColor,
+      starYellowColor: starYellowColor ?? this.starYellowColor,
+      flatAndHeelsBlack: flatAndHeelsBlack ?? this.flatAndHeelsBlack,
+      trendingProductsPink: trendingProductsPink ?? this.trendingProductsPink,
+      bottomAppBarSelectedColor:
+          bottomAppBarSelectedColor ?? this.bottomAppBarSelectedColor,
+      // Shop Colors
+      sizeButtonPink: sizeButtonPink ?? this.sizeButtonPink,
+      shopPageGrey: shopPageGrey ?? this.shopPageGrey,
+      shopPageBuyGreen: shopPageBuyGreen ?? this.shopPageBuyGreen,
+      shopPageBlue: shopPageBlue ?? this.shopPageBlue,
+      shopPagePink: shopPagePink ?? this.shopPagePink,
+      totalTextColor: totalTextColor ?? this.totalTextColor,
+      paymentTextColor: paymentTextColor ?? this.paymentTextColor,
+      hideCardNumberGrey: hideCardNumberGrey ?? this.hideCardNumberGrey,
+      paymentBoxFillGrey: paymentBoxFillGrey ?? this.paymentBoxFillGrey,
     );
   }
 
@@ -142,6 +282,81 @@ class AppColors extends ThemeExtension<AppColors> {
       )!,
       whiteColor: Color.lerp(whiteColor, other.whiteColor, t)!,
       facebookBlue: Color.lerp(facebookBlue, other.facebookBlue, t)!,
+      drawerBackground: Color.lerp(
+        drawerBackground,
+        other.drawerBackground,
+        t,
+      )!,
+      // Home Page Colors
+      homePageDiscountIndicatorPink: Color.lerp(
+        homePageDiscountIndicatorPink,
+        other.homePageDiscountIndicatorPink,
+        t,
+      )!,
+      homePageDiscountIndicatorGrey: Color.lerp(
+        homePageDiscountIndicatorGrey,
+        other.homePageDiscountIndicatorGrey,
+        t,
+      )!,
+      dealOfTheDayBlue: Color.lerp(
+        dealOfTheDayBlue,
+        other.dealOfTheDayBlue,
+        t,
+      )!,
+      // Product Colors
+      offRedColor: Color.lerp(offRedColor, other.offRedColor, t)!,
+      starNumberGreyColor: Color.lerp(
+        starNumberGreyColor,
+        other.starNumberGreyColor,
+        t,
+      )!,
+      oldPriceGreyColor: Color.lerp(
+        oldPriceGreyColor,
+        other.oldPriceGreyColor,
+        t,
+      )!,
+      starYellowColor: Color.lerp(starYellowColor, other.starYellowColor, t)!,
+      flatAndHeelsBlack: Color.lerp(
+        flatAndHeelsBlack,
+        other.flatAndHeelsBlack,
+        t,
+      )!,
+      trendingProductsPink: Color.lerp(
+        trendingProductsPink,
+        other.trendingProductsPink,
+        t,
+      )!,
+      bottomAppBarSelectedColor: Color.lerp(
+        bottomAppBarSelectedColor,
+        other.bottomAppBarSelectedColor,
+        t,
+      )!,
+      // Shop Colors
+      sizeButtonPink: Color.lerp(sizeButtonPink, other.sizeButtonPink, t)!,
+      shopPageGrey: Color.lerp(shopPageGrey, other.shopPageGrey, t)!,
+      shopPageBuyGreen: Color.lerp(
+        shopPageBuyGreen,
+        other.shopPageBuyGreen,
+        t,
+      )!,
+      shopPageBlue: Color.lerp(shopPageBlue, other.shopPageBlue, t)!,
+      shopPagePink: Color.lerp(shopPagePink, other.shopPagePink, t)!,
+      totalTextColor: Color.lerp(totalTextColor, other.totalTextColor, t)!,
+      paymentTextColor: Color.lerp(
+        paymentTextColor,
+        other.paymentTextColor,
+        t,
+      )!,
+      hideCardNumberGrey: Color.lerp(
+        hideCardNumberGrey,
+        other.hideCardNumberGrey,
+        t,
+      )!,
+      paymentBoxFillGrey: Color.lerp(
+        paymentBoxFillGrey,
+        other.paymentBoxFillGrey,
+        t,
+      )!,
     );
   }
 }

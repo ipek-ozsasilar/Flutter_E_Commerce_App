@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce_app/features/home/home_view.dart';
+import 'package:flutter_e_commerce_app/features/home/get_started_view.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/auth_provider.dart';
 import 'package:flutter_e_commerce_app/generated/locale_keys.g.dart';
 import 'package:flutter_e_commerce_app/product/theme/app_colors_context.dart';
@@ -13,7 +13,7 @@ mixin GoogleViewModel<T extends ConsumerStatefulWidget> on ConsumerState<T> {
     final _logger = Logger();
     try {
       await ref.read(authProvider.notifier).signInWithGoogle();
-      NavigatorManager.instance.navigatePage(context, HomeView());
+      NavigatorManager.instance.navigatePage(context, GetStartedView());
     } catch (e) {
       _logger.w('Google login failed: ${e.toString()}');
 

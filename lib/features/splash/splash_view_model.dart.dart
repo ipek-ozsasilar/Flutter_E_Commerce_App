@@ -1,6 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
-  import 'package:flutter_e_commerce_app/features/home/home_view.dart';
+  import 'package:flutter_e_commerce_app/features/home/get_started_view.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/auth_provider.dart';
 import 'package:flutter_e_commerce_app/features/login/login_welcome_back.dart';
 import 'package:flutter_e_commerce_app/features/onboarding/onboarding_view.dart';
@@ -69,7 +69,7 @@ mixin SplashViewModelMixin on ConsumerState<SplashView> {
 
   void _navigateToHome() {
     if (mounted) {
-      NavigatorManager.instance.navigatePage(context, const HomeView());
+      NavigatorManager.instance.navigatePage(context, const GetStartedView());
     }
   }
 

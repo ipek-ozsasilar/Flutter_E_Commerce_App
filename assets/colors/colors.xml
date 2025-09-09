@@ -1,22 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Primary Colors -->
     <color name="sizzling_red">#F83758</color>
-    <color name="light_background">#FFFFFF</color>
+    <color name="white_color">#FFFFFF</color>
     <color name="bold_black">#000000</color>
+    
+    <!-- Text Colors -->
     <color name="splash_ultimate_grey_text">#A8A8A9</color>
     <color name="login_input_hint_text">#676767</color>
     <color name="login_input_icons_grey">#626262</color>
     <color name="login_shadow_mountain">#575757</color>
+    
+    <!-- UI Colors -->
     <color name="prevColor">#C4C4C4</color>
     <color name="selected_page_blue">#17223B</color>
-    <color name="white_color">#FFFFFF</color>
     <color name="facebook_blue">#3D4DA6</color>
+    <color name="drawer_background">#F2F2F2</color>
+    
     <!-- Dark theme specific colors -->
-    <color name="dark_background">#000000</color>
     <color name="bold_black_dark">#FFFFFF</color>
     <color name="login_input_hint_text_dark">#B0B0B0</color>
     <color name="login_input_icons_grey_dark">#B0B0B0</color>
     <color name="login_shadow_mountain_dark">#BDBDBD</color>
     <color name="prev_color_dark">#8D8D8D</color>
     <color name="splash_ultimate_grey_text_dark">#9E9E9E</color>
+    
+    <!-- Home Page Colors -->
+    <color name="home_page_discount_indicator_pink">#FFA3B3</color>
+    <color name="home_page_discount_indicator_grey">#DEDBDB</color>
+    <color name="deal_of_the_day_blue">#4392F9</color>
+    
+    <!-- Product Colors -->
+    <color name="off_red_color">#FE735C</color>
+    <color name="star_number_grey_color">#A4A9B3</color>
+    <color name="old_price_grey_color">#808488</color>
+    <color name="star_yellow_color">#EDB310</color>
+    <color name="flat_and_heels_black">#232327</color>
+    <color name="trending_products_pink">#FD6E87</color>
+    <color name="bottom_app_bar_selected_color">#EB3030</color>
+
+    <!-- Shop Colors -->
+    <color name="size_button_pink">#FA7189</color>
+    <color name="shop_page_grey">#828282</color>
+    <color name="shop_page_buy_green">#31B769</color>
+    <color name="shop_page_blue">#0B3689</color>
+    <color name="shop_page_pink">#FFCCD5</color>
+    <color name="total_text_color">#4C5059</color>
+    <color name="payment_text_color">#222222</color>
+    <color name="hide_card_number_grey">#6E7179</color>
+    <color name="payment_box_fill_grey">#F4F4F4</color>
+    
+    
+    
+    
 </resources>

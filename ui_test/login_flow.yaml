@@ -1,0 +1,26 @@
+appId: com.ipek.flutterecommerceapp
+env:
+    USER_PASSWORD: "123456"
+---
+- assertVisible: "Tekrar Hoş Geldin!"
+- tapOn: "Giriş Yap"
+- assertVisible: "E-mail veya şifre boş bırakılamaz"
+#- tapOn: "Email"
+#- inputRandomEmail
+#- tapOn: "Şifre"
+#- inputText: ${USER_PASSWORD}
+#- tapOn: "Giriş Yap"
+#- assertVisible: ".*Bir hata oluştu.*"
+- hideKeyboard
+- swipe:
+    direction: RIGHT
+    duration: 1000
+- tapOn:
+    id: "theme_button"
+- tapOn: "Email"
+- inputText: "ipek@gmail.com"
+- tapOn: "Şifre"
+- inputText: "123456"
+- tapOn: "Giriş Yap"
+- runFlow:
+    file: home_flow.yaml

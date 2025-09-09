@@ -1,0 +1,44 @@
+appId: com.ipek.flutterecommerceapp
+---
+- launchApp
+- assertVisible:
+    id: "onboarding_choose_products"
+- assertVisible: "1/3"
+- assertVisible: "Skip"
+- assertVisible: "Next"
+- assertVisible: "Prev"
+- swipe:
+    direction: RIGHT
+    times: 1
+- assertVisible: "2/3"
+- assertVisible: "Make Payment"
+- swipe:
+    direction: RIGHT
+    times: 1
+- assertVisible: "3/3"
+- assertVisible: "Get Your Order"
+- swipe:
+    direction: LEFT
+    times: 1
+- assertVisible: "Make Payment"
+- assertVisible: "2/3"
+- swipe:
+    direction: LEFT
+    times: 1
+- assertVisible: "1/3"
+- assertVisible: "Choose Products"
+- tapOn: "Next"
+- assertVisible: "2/3"
+- assertVisible: "Make Payment"
+- tapOn: "Prev"
+- assertVisible: "1/3"
+- assertVisible: "Choose Products"
+- tapOn: "Skip"
+- runFlow:
+    when:
+      visible: "Welcome Back"
+    file: login_flow.yaml
+- runFlow:
+    when:
+      visible: "Tekrar Hoş Geldin!"
+    file: login_flow.yaml

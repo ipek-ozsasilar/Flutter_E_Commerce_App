@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce_app/features/home/home_view.dart';
+import 'package:flutter_e_commerce_app/features/home/get_started_view.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/auth_provider.dart';
 import 'package:flutter_e_commerce_app/generated/locale_keys.g.dart';
 import 'package:flutter_e_commerce_app/product/theme/app_colors_context.dart';
@@ -42,7 +42,7 @@ mixin FacebookViewModel<T extends ConsumerStatefulWidget> on ConsumerState<T> {
     try {
       final user = await ref.read(authProvider.notifier).signInWithFacebook();
       if (user != null) {
-        NavigatorManager.instance.navigatePage(context, HomeView());
+        NavigatorManager.instance.navigatePage(context, GetStartedView());
       } else {
         showSnackBar(context, LocaleKeys.facebookSignInCancelledOrFailed.tr());
       }

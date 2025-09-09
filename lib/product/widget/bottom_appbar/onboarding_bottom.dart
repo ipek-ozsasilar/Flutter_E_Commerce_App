@@ -32,13 +32,16 @@ class OnboardingBottom extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           //previous page button
-          GlobalTextButton(
-            onPressed: () {
-              ref.read(onboardingProvider.notifier).previousPage();
-              _previousPage();
-            },
-            text: LocaleKeys.prev.tr(),
-            color: Theme.of(context).appColors.prevColor,
+          Semantics(
+            label: 'Prev',
+            child: GlobalTextButton(
+              onPressed: () {
+                ref.read(onboardingProvider.notifier).previousPage();
+                _previousPage();
+              },
+              text: LocaleKeys.prev.tr(),
+              color: Theme.of(context).appColors.prevColor,
+            ),
           ),
           //page indicator
           Row(
@@ -62,25 +65,28 @@ class OnboardingBottom extends ConsumerWidget {
             ],
           ),
           //next page button
-          GlobalTextButton(
-            onPressed: () {
-              if ((ref.watch(onboardingProvider).currentPage ==
-                  ref.watch(onboardingProvider).totalPages - 1)) {
-                // AuthProvider kullanarak onboarding completion'ı işaretle
-                ref
-                    .read(splashProvider.notifier)
-                    .setOnboardingWriteHasSeenOnboarding();
-                NavigatorManager.instance.navigatePage(
-                  context,
-                  const LoginWelcomeBack(),
-                );
-              } else {
-                ref.read(onboardingProvider.notifier).nextPage();
-                _nextPage();
-              }
-            },
-            text: LocaleKeys.next.tr(),
-            color: Theme.of(context).appColors.sizzlingRed,
+          Semantics(
+            label: 'Next',
+            child: GlobalTextButton(
+              onPressed: () {
+                if ((ref.watch(onboardingProvider).currentPage ==
+                    ref.watch(onboardingProvider).totalPages - 1)) {
+                  // AuthProvider kullanarak onboarding completion'ı işaretle
+                  ref
+                      .read(splashProvider.notifier)
+                      .setOnboardingWriteHasSeenOnboarding();
+                  NavigatorManager.instance.navigatePage(
+                    context,
+                    const LoginWelcomeBack(),
+                  );
+                } else {
+                  ref.read(onboardingProvider.notifier).nextPage();
+                  _nextPage();
+                }
+              },
+              text: LocaleKeys.next.tr(),
+              color: Theme.of(context).appColors.sizzlingRed,
+            ),
           ),
         ],
       ),

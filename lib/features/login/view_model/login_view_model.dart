@@ -2,7 +2,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_e_commerce_app/features/home/home_view.dart';
+import 'package:flutter_e_commerce_app/features/home/get_started_view.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/auth_provider.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/connection_provider.dart';
 import 'package:flutter_e_commerce_app/features/login/provider/form_provider.dart';
@@ -96,7 +96,7 @@ mixin LoginViewModel<T extends ConsumerStatefulWidget> on ConsumerState<T> {
       }
       // 5. Başarılı login → yönlendirme
       _logger.w('Kullanıcı girişi başarılı ve email doğrulanmış');
-      NavigatorManager.instance.navigatePage(context, HomeView());
+      NavigatorManager.instance.navigatePage(context, GetStartedView());
     } on FirebaseAuthException catch (e) {
       _logger.e(
         'FirebaseAuthException -> code: ${e.code}, message: ${e.message}',

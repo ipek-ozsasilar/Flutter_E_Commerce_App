@@ -1,0 +1,40 @@
+appId: com.ipek.flutterecommerceapp
+env:
+    USER_EMAIL: "ipek@gmail.com"
+    USER_PASSWORD: "123456"
+---
+#app açılıyor
+- launchApp
+
+
+
+
+# Maestro 8 saniyeye kadar ekranda "Stylish" yazısını veya bu label’a sahip bir elementi arar.
+# 8 saniye içinde görünmezse test fail olur
+- extendedWaitUntil:
+    visible: "Stylish"
+    timeout: 5000
+
+#Maestro’da runFlow → başka bir test dosyasını çalıştırmak demek.
+#Şartlara göre farklı YAML dosyalarını çağırabilirsin.
+- runFlow:
+    when:
+      visible: "Welcome Back"
+    file: login_flow.yaml
+
+- runFlow:
+    #Bu satır, runFlow’un koşullu olarak çalışmasını sağlar
+    when:
+      visible: "Tekrar Hoş Geldin!"
+    # Bu dosyadaki test adımlarını çalıştır
+    file: login_flow.yaml
+
+- runFlow:
+    when:
+      visible: "Home"
+    file: home_flow.yaml
+
+- runFlow:
+    when:
+      visible: "Select Language"
+    file: onboarding_flow.yaml

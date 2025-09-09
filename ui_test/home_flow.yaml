@@ -1,0 +1,9 @@
+appId: com.ipek.flutterecommerceapp
+---
+- extendedWaitUntil:
+    visible: "Home"
+    timeout: 10000
+- scroll
+#- openLink: "https://www.google.com"
+#- clearState
+- stopApp

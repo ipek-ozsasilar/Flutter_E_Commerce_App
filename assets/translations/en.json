@@ -64,5 +64,8 @@
     "invalidOrMissingResetCode": "Invalid or missing reset code.",
     "passwordFieldEmpty": "Password field cannot be empty",
     "appleLoginNotAvailable": "Apple login is currently not available...",
-    "linkCouldNotOpen": "Link could not be opened"
+    "linkCouldNotOpen": "Link could not be opened", 
+    "homeTitle": "You want Authentic, here you go!",
+    "homeDescription": "Find it here, buy it now!"
+
 }
