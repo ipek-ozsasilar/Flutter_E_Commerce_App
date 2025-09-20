@@ -1,6 +1,11 @@
 //Icon Size Enum for get icon size
 enum IconSizeEnum {
-  splashIconWidthAndHeight(125);
+  splashIconWidthAndHeight(125),
+  homeAppbarIconSize(60),
+  homeSortFilterIconSize(20),
+  homeIconSize(30),
+  homeStarIconSize(14);
+
 
   final double value;
 
@@ -12,7 +17,8 @@ enum ImageSizeEnum {
   chooseProductWidthAndHeight(300),
   getYourOrderWidthAndHeight(350),
   makePaymentWidth(350),
-  makePaymentHeight(230);
+  makePaymentHeight(230),
+  homeSponsordWidth(400);
 
   final double value;
 
@@ -27,7 +33,12 @@ enum TextSizeEnum {
   loginInputHintTextSize(13),
   loginButtonTextSize(15),
   homeTitleSize(40),
-  homeDescriptionSize(15);
+  homeDescriptionSize(15),
+  homeAppbarTitleSize(30),
+  homeCardsTitleSize(14),
+  homeCardsDetailSize(12),
+  homeSpecialOffersTitleSize(18),
+  homeTrendingDealTitleSize(20);
 
   final double value;
 
@@ -37,7 +48,21 @@ enum TextSizeEnum {
 //Widget Size Enum for get widget size
 enum WidgetSizeEnum {
   bottomContainerWidthAndHeight(10),
-  loginButtonHeight(55);
+  loginButtonHeight(55),
+  categoryContainerHeight(110),
+  homeIndicatorSize(10),
+  homeCardsContainerHeight(250),
+  homeCardsContainerWidth(180),
+  homeDiscountStackHeight(190),
+  homeDiscountStackWidth(340),
+  homeSponsordHeight(300),
+  newArrivalsContainerHeight(300),
+  circleAvatarRadius(25),
+  flatAndHeelsContainerHeight(170),
+  homeSearchHeight(60),
+  homeBottomNavigationBarHeight(90);
+
+
 
   final double value;
 
@@ -46,9 +71,20 @@ enum WidgetSizeEnum {
 
 enum AppbarSizeEnum {
   loginToolbarHeight(200),
-  loginLeadingWidth(220);
+  loginLeadingWidth(220),
+  homeToolbarHeight(75),
+  homeLeadingWidth(70);
 
   final double value;
 
   const AppbarSizeEnum(this.value);
+}
+
+enum BottomNavigationBarSizeEnum {
+  homeBottomNavigationBarIconSize(30),
+  homeBottomNavigationBarTextSize(13);
+
+  final double value;
+
+  const BottomNavigationBarSizeEnum(this.value);
 }

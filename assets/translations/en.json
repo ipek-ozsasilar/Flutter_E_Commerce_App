@@ -66,6 +66,42 @@
     "appleLoginNotAvailable": "Apple login is currently not available...",
     "linkCouldNotOpen": "Link could not be opened", 
     "homeTitle": "You want Authentic, here you go!",
-    "homeDescription": "Find it here, buy it now!"
+    "homeDescription": "Find it here, buy it now!",
+    "searchAnyProduct": "Search any Product...",
+    "allFeatured": "All Featured",
+    "sort": "Sort",
+    "filter": "Filter",
+    "beauty": "Beauty",
+    "fashion": "Fashion",
+    "kids": "Kids",
+    "mens": "Mens",
+    "womens": "Womens",
+    "jewelry": "Jewelry",
+    "shoes": "Shoes",
+    "bags": "Bags",
+    "accessories": "Accessories",
+    "offDiscount": "50-40% OFF",
+    "nowInProduct": "Now in (product)",
+    "allColours": "All colours",
+    "shopNow": "Shop Now",
+    "dealOfTheDay": "Deal of the Day",
+    "viewAll": "View All",
+    "timer": "22h 55m 20s remaining",
+    "womenPrintedKurta": "Women Printed Kurta",
+    "containerCardDetail": "Neque porro quisquam est qui dolorem ipsum quia",
+    "visitNow": "Visit now",
+    "trendingProducts": "Trending Products",
+    "trendingProductsSubText": "Last Date 29/02/22",
+    "specialOffers": "Special Offers 😱",
+    "weMakeSureYouGetTheOfferYouNeedAtBestPrices": "We make sure you get the offer you need at best prices",
+    "flatAndHeels": "Flat and Heels",
+    "standAChanceToGetRewarded": "Stand a chance to get rewarded",
+    "home": "Home",
+    "wishlist": "Wishlist",
+    "settings": "Settings",
+    "search": "Search"
+
+    
+
 
 }

@@ -51,7 +51,7 @@ mixin ResetPasswordViewModel<T extends ConsumerStatefulWidget>
           .read(formProvider.notifier)
           .checkConfirmPasswordLength();
       if (!passwordLengthResult || !confirmPasswordLengthResult) {
-        showSnackBar(context, LocaleKeys.passwordTooShort.tr());
+        showSnackBar(context, LocaleKeys.passwordFieldEmpty.tr());
         return;
       }
 
@@ -59,8 +59,8 @@ mixin ResetPasswordViewModel<T extends ConsumerStatefulWidget>
           .read(formProvider.notifier)
           .passwordsSame();
       if (!passwordSameResult) {
-        showSnackBar(context, LocaleKeys.passwordsDoNotMatch.tr());
-        return;
+        showSnackBar(context, LocaleKeys.passwordFieldEmpty.tr());
+        return; 
       }
       //Uygulama, Firebase Auth API’sine oobCode + yeni şifreyi birlikte gönderir. Firebase:
       //oobCodeyu doğrular (geçerli mi, süresi doldu mu vs), Geçerliyse kullanıcının şifresini günceller.
@@ -72,7 +72,7 @@ mixin ResetPasswordViewModel<T extends ConsumerStatefulWidget>
             ref.read(formProvider.notifier).passwordController.text,
           );
 
-      showSnackBar(context, LocaleKeys.passwordResetSuccessful.tr());
+        showSnackBar(context, LocaleKeys.passwordResetLinkSent.tr());
       NavigatorManager.instance.navigatePage(context, LoginWelcomeBack());
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message ?? 'Bir hata oluştu');

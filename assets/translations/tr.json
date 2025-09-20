@@ -97,6 +97,42 @@
     "appleLoginNotAvailable": "Şuanda apple ile login yapılamamaktadır...",
     "linkCouldNotOpen": "Link acilamadi",
     "homeTitle": "Authentic istediğin, burada var!",
-    "homeDescription": "Burada bul, hemen al!"
+    "homeDescription": "Burada bul, hemen al!",
+    "searchAnyProduct": "Herhangi bir ürün ara...",
+    "allFeatured": "Tümü",
+    "sort": "Sırala",
+    "filter": "Filtrele",
+    "beauty": "Güzellik",
+    "fashion": "Moda",
+    "kids": "Çocuk",
+    "mens": "Erkek",
+    "womens": "Kadın",
+    "jewelry": "Takı",
+    "shoes": "Ayakkabı",
+    "bags": "Çanta",
+    "accessories": "Aksesuar",
+    "offDiscount": "50-40% OFF",
+    "nowInProduct": "Şimdi (ürün)",
+    "allColours": "Tüm renkler",
+    "shopNow": "Satın Al",
+    "dealOfTheDay": "Günün Teklifleri",
+    "viewAll": "Tümünü Gör",
+    "timer": "22h 55m 20s kaldı",
+    "womenPrintedKurta": "Kadın Yazılı Kurta",
+    "containerCardDetail": "Neque porro quisquam est qui dolorem ipsum quia",
+    "visitNow": "Ziyaret et",
+    "trendingProducts": " Popüler Ürünler",
+    "trendingProductsSubText": "Son Tarih 29/02/22",
+    "specialOffers": "Özel Teklifler 😱",
+    "weMakeSureYouGetTheOfferYouNeedAtBestPrices": "En iyi fiyatları almak için size ihtiyacınız olan teklifi garanti ediyoruz",
+    "flatAndHeels": "Düz ve Yüksek Ayaklı",
+    "standAChanceToGetRewarded": "Ödül kazanma fırsatını kaçırma",
+    "home": "Anasayfa",
+    "wishlist": "Favoriler",
+    "settings": "Ayarlar",
+    "search": "Ara"
+
+
+
 
 }

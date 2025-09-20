@@ -25,6 +25,7 @@ class AppColors extends ThemeExtension<AppColors> {
   final Color whiteColor;
   final Color facebookBlue;
   final Color drawerBackground;
+  final Color searchHintGrey;
   // Home Page Colors
   final Color homePageDiscountIndicatorPink;
   final Color homePageDiscountIndicatorGrey;
@@ -47,6 +48,7 @@ class AppColors extends ThemeExtension<AppColors> {
   final Color paymentTextColor;
   final Color hideCardNumberGrey;
   final Color paymentBoxFillGrey;
+  final Color secondaryBackgroundColor;
   const AppColors({
     required this.boldBlack,
     required this.lightBackground,
@@ -60,6 +62,7 @@ class AppColors extends ThemeExtension<AppColors> {
     required this.whiteColor,
     required this.facebookBlue,
     required this.drawerBackground,
+    required this.searchHintGrey,
     // Home Page Colors
     required this.homePageDiscountIndicatorPink,
     required this.homePageDiscountIndicatorGrey,
@@ -82,6 +85,7 @@ class AppColors extends ThemeExtension<AppColors> {
     required this.paymentTextColor,
     required this.hideCardNumberGrey,
     required this.paymentBoxFillGrey,
+    required this.secondaryBackgroundColor,
   });
 
   factory AppColors.light() {
@@ -98,6 +102,7 @@ class AppColors extends ThemeExtension<AppColors> {
       whiteColor: ColorName.whiteColor,
       facebookBlue: ColorName.facebookBlue,
       drawerBackground: ColorName.drawerBackground,
+      searchHintGrey: ColorName.searchHintGrey,
       // Home Page Colors
       homePageDiscountIndicatorPink: ColorName.homePageDiscountIndicatorPink,
       homePageDiscountIndicatorGrey: ColorName.homePageDiscountIndicatorGrey,
@@ -120,6 +125,7 @@ class AppColors extends ThemeExtension<AppColors> {
       paymentTextColor: ColorName.paymentTextColor,
       hideCardNumberGrey: ColorName.hideCardNumberGrey,
       paymentBoxFillGrey: ColorName.paymentBoxFillGrey,
+      secondaryBackgroundColor: ColorName.secondaryBackgroundColor,
     );
   }
 
@@ -137,6 +143,7 @@ class AppColors extends ThemeExtension<AppColors> {
       whiteColor: ColorName.whiteColor,
       facebookBlue: ColorName.facebookBlue,
       drawerBackground: ColorName.drawerBackground,
+      searchHintGrey: ColorName.searchHintGrey,
       // Home Page Colors
       homePageDiscountIndicatorPink: ColorName.homePageDiscountIndicatorPink,
       homePageDiscountIndicatorGrey: ColorName.homePageDiscountIndicatorGrey,
@@ -159,6 +166,7 @@ class AppColors extends ThemeExtension<AppColors> {
       paymentTextColor: ColorName.paymentTextColor,
       hideCardNumberGrey: ColorName.hideCardNumberGrey,
       paymentBoxFillGrey: ColorName.paymentBoxFillGrey,
+      secondaryBackgroundColor: ColorName.secondaryBackgroundColor,
     );
   }
 
@@ -176,6 +184,7 @@ class AppColors extends ThemeExtension<AppColors> {
     Color? whiteColor,
     Color? facebookBlue,
     Color? drawerBackground,
+    Color? searchHintGrey,
     // Home Page Colors
     Color? homePageDiscountIndicatorPink,
     Color? homePageDiscountIndicatorGrey,
@@ -198,6 +207,7 @@ class AppColors extends ThemeExtension<AppColors> {
     Color? paymentTextColor,
     Color? hideCardNumberGrey,
     Color? paymentBoxFillGrey,
+    Color? secondaryBackgroundColor,
   }) {
     return AppColors(
       boldBlack: boldBlack ?? this.boldBlack,
@@ -213,6 +223,7 @@ class AppColors extends ThemeExtension<AppColors> {
       whiteColor: whiteColor ?? this.whiteColor,
       facebookBlue: facebookBlue ?? this.facebookBlue,
       drawerBackground: drawerBackground ?? this.drawerBackground,
+      searchHintGrey: searchHintGrey ?? this.searchHintGrey,
       // Home Page Colors
       homePageDiscountIndicatorPink:
           homePageDiscountIndicatorPink ?? this.homePageDiscountIndicatorPink,
@@ -238,6 +249,7 @@ class AppColors extends ThemeExtension<AppColors> {
       paymentTextColor: paymentTextColor ?? this.paymentTextColor,
       hideCardNumberGrey: hideCardNumberGrey ?? this.hideCardNumberGrey,
       paymentBoxFillGrey: paymentBoxFillGrey ?? this.paymentBoxFillGrey,
+      secondaryBackgroundColor: secondaryBackgroundColor ?? this.secondaryBackgroundColor,
     );
   }
 
@@ -287,7 +299,12 @@ class AppColors extends ThemeExtension<AppColors> {
         other.drawerBackground,
         t,
       )!,
-      // Home Page Colors
+      searchHintGrey: Color.lerp(
+        searchHintGrey,
+        other.searchHintGrey,
+        t,
+      )!,
+        // Home Page Colors
       homePageDiscountIndicatorPink: Color.lerp(
         homePageDiscountIndicatorPink,
         other.homePageDiscountIndicatorPink,
@@ -355,6 +372,11 @@ class AppColors extends ThemeExtension<AppColors> {
       paymentBoxFillGrey: Color.lerp(
         paymentBoxFillGrey,
         other.paymentBoxFillGrey,
+        t,
+      )!,
+      secondaryBackgroundColor: Color.lerp(
+        secondaryBackgroundColor,
+        other.secondaryBackgroundColor,
         t,
       )!,
     );

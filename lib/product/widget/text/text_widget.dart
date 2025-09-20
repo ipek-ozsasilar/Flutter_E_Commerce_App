@@ -55,7 +55,9 @@ class NormalText extends StatelessWidget {
     required this.text,
     required this.color,
     required this.fontSize,
+    this.textLine = false,
   });
+  final bool textLine;
 
   final String text;
   final Color? color;
@@ -64,7 +66,7 @@ class NormalText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: TextStyle(fontSize: fontSize, color: color),
+      style: TextStyle(fontSize: fontSize, color: color,decoration: textLine ? TextDecoration.lineThrough : TextDecoration.none),
     );
   }
 }

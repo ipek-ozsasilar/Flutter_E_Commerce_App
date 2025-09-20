@@ -49,6 +49,8 @@
     <color name="payment_text_color">#222222</color>
     <color name="hide_card_number_grey">#6E7179</color>
     <color name="payment_box_fill_grey">#F4F4F4</color>
+    <color name="search_hint_grey">#BBBBBB</color>
+    <color name="secondary_background_color">#F9F9F9</color>
     
     
     

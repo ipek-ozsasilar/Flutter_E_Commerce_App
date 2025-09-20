@@ -65,6 +65,10 @@ class $AssetsImagesGen {
   AssetGenImage get makePayment =>
       const AssetGenImage('assets/images/make_payment.png');
 
+  /// File path: assets/images/shop_page.png
+  AssetGenImage get shopPage =>
+      const AssetGenImage('assets/images/shop_page.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
     chooseProduct,
@@ -72,6 +76,7 @@ class $AssetsImagesGen {
     getYourOrder,
     homeBackground,
     makePayment,
+    shopPage,
   ];
 }
 

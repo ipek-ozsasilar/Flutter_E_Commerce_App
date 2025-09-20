@@ -59,10 +59,27 @@ class PaddingsConstants {
   final EdgeInsets createAccountRichTextPadding = EdgeInsets.only(top: 20);
   final EdgeInsets bottomSheetPadding = EdgeInsets.all(16.0);
   final EdgeInsets bottomSheetListTilePadding = EdgeInsets.only(top: 16);
-  final EdgeInsets getStartedPagePadding = EdgeInsets.only(
-    right: 60,
-    left: 60,
-    bottom: 40,
-  );
+  final EdgeInsets getStartedPagePadding = EdgeInsets.only(right: 60,left: 60,bottom: 40,);
   final EdgeInsets getStartedTitlePadding = EdgeInsets.only(top: 15, bottom: 45);
+  final EdgeInsets homePagePadding = EdgeInsets.symmetric(horizontal: 20);
+  final EdgeInsets homeSearchPadding = EdgeInsets.only(top: 25, bottom: 15);
+  final EdgeInsets homeSearchInsidePadding = EdgeInsets.symmetric(horizontal: 15, vertical: 12);
+  final EdgeInsets homeSortPadding = EdgeInsets.only(right: 10);
+  final EdgeInsets homeSortInsidePadding = EdgeInsets.symmetric(horizontal: 6, vertical: 4);
+  final EdgeInsets homeSingleChildScrollViewPadding = EdgeInsets.symmetric(vertical: 15);
+  final EdgeInsets homeSingleChildScrollViewInsidePadding = EdgeInsets.all(5);
+  final EdgeInsets homeSingleChildScrollElementPadding = EdgeInsets.only(right: 15);
+  final EdgeInsets homeAppbarPadding = EdgeInsets.only(top: 25, left: 30, right: 30);
+  final EdgeInsets homeAppbarLeadingPadding = EdgeInsets.only(left: 20, top: 25);
+  final EdgeInsets homeAppbarActionsPadding = EdgeInsets.only(right: 20, top: 25);
+  final EdgeInsets homeSortFilterPadding = EdgeInsets.only(right: 5);
+  final EdgeInsets homeIndicatorInsidePadding = EdgeInsets.symmetric(horizontal: 5.0);
+  final EdgeInsets homeTrendingDealInsidePadding = EdgeInsets.all(12);
+  final EdgeInsets homeStarTextPadding = EdgeInsets.only(left: 4);
+  final EdgeInsets homeSponsordPadding = EdgeInsets.only(top: 10);
+  final EdgeInsets homeOutlinedButtonPadding = EdgeInsets.symmetric(horizontal: 12, vertical: 8);
+  final EdgeInsets homeFlatBottomPadding = EdgeInsets.only(bottom: 12);
+  final EdgeInsets homeFlatAndHeelsPadding = EdgeInsets.only(bottom:4);
+  final EdgeInsets homeBottomNavigationBarPadding = EdgeInsets.symmetric(horizontal: 20)+EdgeInsets.only(top: 10);
+  final EdgeInsets homeBottomNavigationBarBasketInsidePadding = EdgeInsets.all(5);
 }

@@ -68,6 +68,9 @@ class ColorName {
   /// Color: #808488
   static const Color oldPriceGreyColor = Color(0xFF808488);
 
+  /// Color: #BBBBBB
+  static const Color searchHintGrey = Color(0xFFBBBBBB);
+
   /// Color: #F4F4F4
   static const Color paymentBoxFillGrey = Color(0xFFF4F4F4);
 
@@ -121,4 +124,7 @@ class ColorName {
 
   /// Color: #FFFFFF
   static const Color whiteColor = Color(0xFFFFFFFF);
+
+  /// Color: #F9F9F9
+  static const Color secondaryBackgroundColor = Color(0xFFF9F9F9);
 }

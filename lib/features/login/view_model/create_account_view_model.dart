@@ -56,7 +56,7 @@ mixin CreateAccountViewModel<T extends ConsumerStatefulWidget>
           .passwordsSame();
       if (!passwordsSameResult) {
         _logger.w('Şifreler eşleşmiyor');
-        showSnackBar(context, LocaleKeys.passwordsDoNotMatch.tr());
+        showSnackBar(context, LocaleKeys.passwordFieldEmpty.tr());
         return;
       }
 
@@ -77,7 +77,7 @@ mixin CreateAccountViewModel<T extends ConsumerStatefulWidget>
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        showSnackBar(context, LocaleKeys.passwordTooShort.tr());
+        showSnackBar(context, LocaleKeys.passwordFieldEmpty.tr());
         return;
       } else if (e.code == 'email-already-in-use') {
         showSnackBar(context, LocaleKeys.emailAlreadyInUse.tr());
