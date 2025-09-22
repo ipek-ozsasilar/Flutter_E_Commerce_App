@@ -82,4 +82,7 @@ class PaddingsConstants {
   final EdgeInsets homeFlatAndHeelsPadding = EdgeInsets.only(bottom:4);
   final EdgeInsets homeBottomNavigationBarPadding = EdgeInsets.symmetric(horizontal: 20)+EdgeInsets.only(top: 10);
   final EdgeInsets homeBottomNavigationBarBasketInsidePadding = EdgeInsets.all(5);
+    final EdgeInsets profileAppbarLeadingPadding = EdgeInsets.only(left: 10);
+     final EdgeInsets profileSaveButtonPadding = EdgeInsets.symmetric(vertical: 40);
+     final EdgeInsets profileTextAndInputPadding = EdgeInsets.only(bottom: 10, top: 25);
 }

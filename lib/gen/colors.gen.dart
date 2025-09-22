@@ -127,4 +127,7 @@ class ColorName {
 
   /// Color: #F9F9F9
   static const Color secondaryBackgroundColor = Color(0xFFF9F9F9);
+
+  /// Color: #2196F3
+  static const Color materialBlue = Color(0xFF2196F3);
 }

@@ -130,7 +130,26 @@
     "home": "Anasayfa",
     "wishlist": "Favoriler",
     "settings": "Ayarlar",
-    "search": "Ara"
+    "search": "Ara",
+    "changePassword": "Şifre Değiştir",
+    "save": "Kaydet",
+    "personalDetails": "Kişisel Bilgiler",
+    "businessAddressDetails": "İş Adresi Bilgileri",
+    "bankAccountDetails": "Banka Hesap Bilgileri",
+    "emailAddress": "Email Adresi",
+    "password": "Şifre",
+    "pincode": "Posta Kodu",
+    "address": "Adres",
+    "city": "Şehir",
+    "state": "İlçe",
+    "country": "Ülke",
+    "bankAccountNumber": "Banka Hesap Numarası",
+    "accountHolderName": "Hesap Sahibi Adı",
+    "ifscCode": "IFSC Kodu",
+    "checkout": "Ödeme",
+    "emailAddressHint": "ashika@gmail.com"
+
+
 
 
 

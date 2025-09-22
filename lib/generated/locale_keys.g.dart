@@ -106,4 +106,21 @@ abstract class LocaleKeys {
   static const wishlist = 'wishlist';
   static const settings = 'settings';
   static const search = 'search';
+  static const changePassword = 'changePassword';
+  static const save = 'save';
+  static const personalDetails = 'personalDetails';
+  static const businessAddressDetails = 'businessAddressDetails';
+  static const bankAccountDetails = 'bankAccountDetails';
+  static const emailAddress = 'emailAddress';
+  static const password = 'password';
+  static const pincode = 'pincode';
+  static const address = 'address';
+  static const city = 'city';
+  static const state = 'state';
+  static const country = 'country';
+  static const bankAccountNumber = 'bankAccountNumber';
+  static const accountHolderName = 'accountHolderName';
+  static const ifscCode = 'ifscCode';
+  static const checkout = 'checkout';
+  static const emailAddressHint = 'emailAddressHint';
 }

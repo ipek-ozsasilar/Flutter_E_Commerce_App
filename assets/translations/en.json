@@ -99,7 +99,25 @@
     "home": "Home",
     "wishlist": "Wishlist",
     "settings": "Settings",
-    "search": "Search"
+    "search": "Search",
+    "changePassword": "Change Password",
+    "save": "Save",
+    "personalDetails": "Personal Details",
+    "businessAddressDetails": "Business Address Details",
+    "bankAccountDetails": "Bank Account Details",
+    "emailAddress": "Email Address",
+    "password": "Password",
+    "pincode": "Pincode",
+    "address": "Address",
+    "city": "City",
+    "state": "State",
+    "country": "Country",
+    "bankAccountNumber": "Bank Account Number",
+    "accountHolderName": "Account Holder’s Name",
+    "ifscCode": "IFSC Code",
+    "checkout": "Checkout",
+    "emailAddressHint": "ashika@gmail.com"
+
 
     
 

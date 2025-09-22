@@ -10,12 +10,12 @@ class HomeIconButton extends StatelessWidget {
   const HomeIconButton({
     super.key,
     required this.icon,
-    this.haveBackground = false,
     required this.color,
     required this.size,
+    this.haveBackground,
   });
   final IconData icon;
-  final bool haveBackground;
+  final Color? haveBackground;
   final Color color;
   final double size;
   @override
@@ -24,9 +24,9 @@ class HomeIconButton extends StatelessWidget {
       onPressed: () {},
       iconSize: IconSizeEnum.homeIconSize.value,
       style: IconButton.styleFrom(
-        backgroundColor: haveBackground
-            ? Theme.of(context).appColors.drawerBackground
-            : Colors.transparent,
+        backgroundColor: haveBackground!=null
+              ? haveBackground!
+              : Colors.transparent,
       ),
       icon: GlobalIcon(icon: icon, size: size, color: color),
     );

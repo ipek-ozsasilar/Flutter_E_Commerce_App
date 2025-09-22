@@ -52,6 +52,8 @@
     <color name="search_hint_grey">#BBBBBB</color>
     <color name="secondary_background_color">#F9F9F9</color>
     
+    <!-- Material Blue Color -->
+    <color name="material_blue">#2196F3</color>
     
     
     

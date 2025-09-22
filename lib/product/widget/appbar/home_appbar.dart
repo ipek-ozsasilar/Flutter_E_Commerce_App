@@ -46,6 +46,7 @@ import 'package:flutter_e_commerce_app/product/widget/text/text_widget.dart';
         child: HomeIconButton(
           icon: IconsEnum.iconMenu.icon,
           color: Theme.of(context).appColors.boldBlack,
+          haveBackground: Theme.of(context).appColors.drawerBackground,
           size: IconSizeEnum.homeSortFilterIconSize.value,
         ),
       ),

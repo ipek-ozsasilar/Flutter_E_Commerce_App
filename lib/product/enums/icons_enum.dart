@@ -14,7 +14,9 @@ enum IconsEnum {
   iconHome(Icons.home_outlined),
   iconSettings(Icons.settings_outlined),
   iconFavorite(Icons.favorite_border),
-  iconShoppingBasket(Icons.shopping_basket_outlined);
+  iconShoppingBasket(Icons.shopping_basket_outlined),
+  iconBack(Icons.arrow_back_ios),
+  iconEdit(Icons.edit);
 
   const IconsEnum(this.icon);
   final IconData icon;

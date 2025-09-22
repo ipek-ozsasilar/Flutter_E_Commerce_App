@@ -49,6 +49,7 @@ class AppColors extends ThemeExtension<AppColors> {
   final Color hideCardNumberGrey;
   final Color paymentBoxFillGrey;
   final Color secondaryBackgroundColor;
+  final Color materialBlue;
   const AppColors({
     required this.boldBlack,
     required this.lightBackground,
@@ -86,6 +87,7 @@ class AppColors extends ThemeExtension<AppColors> {
     required this.hideCardNumberGrey,
     required this.paymentBoxFillGrey,
     required this.secondaryBackgroundColor,
+    required this.materialBlue,
   });
 
   factory AppColors.light() {
@@ -126,7 +128,8 @@ class AppColors extends ThemeExtension<AppColors> {
       hideCardNumberGrey: ColorName.hideCardNumberGrey,
       paymentBoxFillGrey: ColorName.paymentBoxFillGrey,
       secondaryBackgroundColor: ColorName.secondaryBackgroundColor,
-    );
+      materialBlue: ColorName.materialBlue,
+    );    
   }
 
   factory AppColors.dark() {
@@ -167,6 +170,7 @@ class AppColors extends ThemeExtension<AppColors> {
       hideCardNumberGrey: ColorName.hideCardNumberGrey,
       paymentBoxFillGrey: ColorName.paymentBoxFillGrey,
       secondaryBackgroundColor: ColorName.secondaryBackgroundColor,
+      materialBlue: ColorName.materialBlue,
     );
   }
 
@@ -208,6 +212,7 @@ class AppColors extends ThemeExtension<AppColors> {
     Color? hideCardNumberGrey,
     Color? paymentBoxFillGrey,
     Color? secondaryBackgroundColor,
+    Color? materialBlue,
   }) {
     return AppColors(
       boldBlack: boldBlack ?? this.boldBlack,
@@ -249,7 +254,9 @@ class AppColors extends ThemeExtension<AppColors> {
       paymentTextColor: paymentTextColor ?? this.paymentTextColor,
       hideCardNumberGrey: hideCardNumberGrey ?? this.hideCardNumberGrey,
       paymentBoxFillGrey: paymentBoxFillGrey ?? this.paymentBoxFillGrey,
-      secondaryBackgroundColor: secondaryBackgroundColor ?? this.secondaryBackgroundColor,
+      secondaryBackgroundColor:
+          secondaryBackgroundColor ?? this.secondaryBackgroundColor,
+      materialBlue: materialBlue ?? this.materialBlue,
     );
   }
 
@@ -299,12 +306,8 @@ class AppColors extends ThemeExtension<AppColors> {
         other.drawerBackground,
         t,
       )!,
-      searchHintGrey: Color.lerp(
-        searchHintGrey,
-        other.searchHintGrey,
-        t,
-      )!,
-        // Home Page Colors
+      searchHintGrey: Color.lerp(searchHintGrey, other.searchHintGrey, t)!,
+      // Home Page Colors
       homePageDiscountIndicatorPink: Color.lerp(
         homePageDiscountIndicatorPink,
         other.homePageDiscountIndicatorPink,
@@ -379,6 +382,7 @@ class AppColors extends ThemeExtension<AppColors> {
         other.secondaryBackgroundColor,
         t,
       )!,
+      materialBlue: Color.lerp(materialBlue, other.materialBlue, t)!,
     );
   }
 }

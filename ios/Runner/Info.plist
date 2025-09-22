@@ -45,5 +45,14 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+
+	<!-- 📸 Fotoğraf/Video izin açıklamaları -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Profil resmi seçmek için fotoğraf galerisine erişim gerekiyor.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Profil resmi çekmek için kameraya erişim gerekiyor.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Video çekerken mikrofon kullanımı için erişim gerekiyor.</string>
+
 </dict>
 </plist>

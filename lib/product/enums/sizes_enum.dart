@@ -15,6 +15,8 @@ enum IconSizeEnum {
 //Image Size Enum for get image size
 enum ImageSizeEnum {
   chooseProductWidthAndHeight(300),
+  imagePickerWidthAndHeight(800),
+  imagePickerImageQuality(85),
   getYourOrderWidthAndHeight(350),
   makePaymentWidth(350),
   makePaymentHeight(230),
@@ -37,7 +39,8 @@ enum TextSizeEnum {
   homeCardsTitleSize(14),
   homeCardsDetailSize(12),
   homeSpecialOffersTitleSize(18),
-  homeTrendingDealTitleSize(20);
+  homeTrendingDealTitleSize(20),
+  ProfileCheckoutTitleSize(23);
 
   final double value;
 
@@ -61,7 +64,11 @@ enum WidgetSizeEnum {
   homeSearchHeight(60),
   homeBottomNavigationBarHeight(90),
   homeTrendingProductLongCardHeight(260),
-  homeTrendingProductShortCardHeight(220);
+  homeTrendingProductShortCardHeight(220),
+  profileCircleAvatarRadius(50),
+  profileEditButtonRight(-10),
+  profileEditButtonBottom(-10),
+  profileEditButtonWidthAndHeight(40);
 
   
 
