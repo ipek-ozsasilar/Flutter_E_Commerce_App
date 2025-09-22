@@ -34,7 +34,7 @@ import 'package:flutter_e_commerce_app/product/widget/text/text_widget.dart';
             ),
             BoldOnboardingText(
               title: LocaleKeys.splashStylish.tr(),
-              titleSize: TextSizeEnum.homeAppbarTitleSize.value,
+              titleSize: TextSizeEnum.homeTrendingDealTitleSize.value,
               titleColor: Theme.of(context).appColors.dealOfTheDayBlue,
             ),
           ],

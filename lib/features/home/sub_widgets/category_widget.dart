@@ -50,7 +50,7 @@ class HomeSingleChildScrollViewElement extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CircleAvatar(radius: TextSizeEnum.homeAppbarTitleSize.value, backgroundImage: AssetImage(image)),
+          CircleAvatar(radius: TextSizeEnum.homeTrendingDealTitleSize.value, backgroundImage: AssetImage(image)),
           NormalText(
             text: title,
             fontSize: TextSizeEnum.loginButtonTextSize.value,

@@ -10,7 +10,8 @@ import 'package:flutter_e_commerce_app/product/widget/text/text_widget.dart';
 
 
 class TextAndSortFilterWidget extends StatelessWidget {
-  const TextAndSortFilterWidget({super.key});
+  const TextAndSortFilterWidget({super.key, required this.title});
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +19,8 @@ class TextAndSortFilterWidget extends StatelessWidget {
       children: [
         Expanded(
           child: BoldOnboardingText(
-            title: LocaleKeys.allFeatured.tr(),
-            titleSize: TextSizeEnum.homeAppbarTitleSize.value,
+            title: title,
+            titleSize: TextSizeEnum.homeTrendingDealTitleSize.value,
             titleColor: Theme.of(context).appColors.boldBlack,
           ),
         ),

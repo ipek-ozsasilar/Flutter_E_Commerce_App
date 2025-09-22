@@ -49,7 +49,7 @@ class _HomeViewState extends State<HomeView> {
               child: HomeSearchWidget(),
             ),
 
-            TextAndSortFilterWidget(),
+            TextAndSortFilterWidget(title: LocaleKeys.allFeatured.tr()),
 
             Padding(
               padding:

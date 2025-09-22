@@ -34,7 +34,6 @@ enum TextSizeEnum {
   loginButtonTextSize(15),
   homeTitleSize(40),
   homeDescriptionSize(15),
-  homeAppbarTitleSize(30),
   homeCardsTitleSize(14),
   homeCardsDetailSize(12),
   homeSpecialOffersTitleSize(18),
@@ -60,7 +59,11 @@ enum WidgetSizeEnum {
   circleAvatarRadius(25),
   flatAndHeelsContainerHeight(170),
   homeSearchHeight(60),
-  homeBottomNavigationBarHeight(90);
+  homeBottomNavigationBarHeight(90),
+  homeTrendingProductLongCardHeight(260),
+  homeTrendingProductShortCardHeight(220);
+
+  
 
 
 
