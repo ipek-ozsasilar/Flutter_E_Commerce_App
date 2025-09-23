@@ -123,4 +123,6 @@ abstract class LocaleKeys {
   static const ifscCode = 'ifscCode';
   static const checkout = 'checkout';
   static const emailAddressHint = 'emailAddressHint';
+  static const deliveryAddress = 'deliveryAddress';
+  static const shoppingList = 'shoppingList';
 }

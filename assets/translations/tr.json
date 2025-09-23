@@ -147,7 +147,10 @@
     "accountHolderName": "Hesap Sahibi Adı",
     "ifscCode": "IFSC Kodu",
     "checkout": "Ödeme",
-    "emailAddressHint": "ashika@gmail.com"
+    "emailAddressHint": "ashika@gmail.com",
+    "deliveryAddress": "Kargo Adresi",
+    "shoppingList": "Alışveriş Listesi"
+
 
 
 

@@ -7,8 +7,6 @@ import 'package:flutter_e_commerce_app/product/theme/app_colors_context.dart';
 import 'package:flutter_e_commerce_app/product/widget/icon/global_icon.dart';
 import 'package:flutter_e_commerce_app/product/widget/text/text_widget.dart';
 
-
-
 class StarTextWidget extends StatelessWidget {
   const StarTextWidget({super.key});
 
@@ -16,15 +14,22 @@ class StarTextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        GlobalIcon(icon: IconsEnum.iconStar.icon, size: IconSizeEnum.homeStarIconSize.value, color: Theme.of(context).appColors.starYellowColor),
-        GlobalIcon(icon: IconsEnum.iconStar.icon, size: IconSizeEnum.homeStarIconSize.value, color: Theme.of(context).appColors.starYellowColor),
-        GlobalIcon(icon: IconsEnum.iconStar.icon, size: IconSizeEnum.homeStarIconSize.value, color: Theme.of(context).appColors.starYellowColor),
-        GlobalIcon(icon: IconsEnum.iconStar.icon, size: IconSizeEnum.homeStarIconSize.value, color: Theme.of(context).appColors.starYellowColor),
+        ...List.generate(5, (index) {
+          return Icon(
+            Icons.star,
+            size: IconSizeEnum.homeStarIconSize.value,
+            color: Theme.of(context).appColors.starYellowColor,
+          );
+        }),
+
         Padding(
           padding: PaddingsConstants.instance.homeStarTextPadding,
-           child: NormalText(text: "(56890)",
-           fontSize: TextSizeEnum.homeCardsDetailSize.value,
-            color: Theme.of(context).appColors.starYellowColor)),
+          child: NormalText(
+            text: "(56890)",
+            fontSize: TextSizeEnum.homeCardsDetailSize.value,
+            color: Theme.of(context).appColors.starYellowColor,
+          ),
+        ),
       ],
     );
   }

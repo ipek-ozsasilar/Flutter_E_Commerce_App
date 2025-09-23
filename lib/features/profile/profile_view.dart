@@ -11,6 +11,7 @@ import 'package:flutter_e_commerce_app/product/constants/paddings_constants.dart
 import 'package:flutter_e_commerce_app/product/enums/icons_enum.dart';
 import 'package:flutter_e_commerce_app/product/enums/sizes_enum.dart';
 import 'package:flutter_e_commerce_app/product/theme/app_colors_context.dart';
+import 'package:flutter_e_commerce_app/product/widget/appbar/checkout_profile_appbar.dart';
 import 'package:flutter_e_commerce_app/product/widget/button/global_elevated_button.dart';
 import 'package:flutter_e_commerce_app/product/widget/button/global_icon_button.dart';
 import 'package:flutter_e_commerce_app/product/widget/button/global_text_button.dart';
@@ -32,23 +33,7 @@ class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: BoldOnboardingText(
-          title: LocaleKeys.checkout.tr(),
-          titleSize: TextSizeEnum.ProfileCheckoutTitleSize.value,
-          titleColor: Theme.of(context).appColors.boldBlack,
-        ),
-        centerTitle: true,
-        leadingWidth: AppbarSizeEnum.homeLeadingWidth.value,
-        leading: Padding(
-          padding: PaddingsConstants.instance.profileAppbarLeadingPadding,
-          child: HomeIconButton(
-            icon: IconsEnum.iconBack.icon,
-            color: Theme.of(context).appColors.boldBlack,
-            size: TextSizeEnum.ProfileCheckoutTitleSize.value,
-          ),
-        ),
-      ),
+      appBar: CheckoutAppBar(),
       body: ListView(
         children: [
           Padding(

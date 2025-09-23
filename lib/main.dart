@@ -24,6 +24,7 @@ import 'package:flutter_e_commerce_app/product/enums/secure_storage.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 //core
 import 'package:flutter_e_commerce_app/core/injection_manager.dart';
+import 'package:flutter_e_commerce_app/features/checkout/checkout.dart';
 
 Future<void> main() async {
   //setupLocator() içinde servislerin kayıt işlemi yapıyorsun. Eğer runApp’ten sonra yaparsan, widget’lar çalışmaya başlar ve getIt’ten
@@ -125,7 +126,7 @@ class _MyAppState extends ConsumerState<MyApp> with CustomThemeViewModel {
       ),
 
       //fixme : apple login ekle ve linking yap facegogole
-      home:   ProfileView(),
+      home:   CheckoutView(),
     );
   }
 }

@@ -68,7 +68,9 @@ enum WidgetSizeEnum {
   profileCircleAvatarRadius(50),
   profileEditButtonRight(-10),
   profileEditButtonBottom(-10),
-  profileEditButtonWidthAndHeight(40);
+  profileEditButtonWidthAndHeight(40),
+  deliveryAddressContainerHeight(140);
+
 
   
 
