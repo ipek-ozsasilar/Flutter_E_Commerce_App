@@ -33,7 +33,7 @@ class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CheckoutAppBar(),
+      appBar: CheckoutAppBar(title: LocaleKeys.checkout.tr()),
       body: ListView(
         children: [
           Padding(

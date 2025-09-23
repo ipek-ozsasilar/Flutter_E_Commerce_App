@@ -85,4 +85,9 @@ class PaddingsConstants {
     final EdgeInsets profileAppbarLeadingPadding = EdgeInsets.only(left: 10);
      final EdgeInsets profileSaveButtonPadding = EdgeInsets.symmetric(vertical: 40);
      final EdgeInsets profileTextAndInputPadding = EdgeInsets.only(bottom: 10, top: 25);
+     final EdgeInsets profileAppbarActionsPadding = EdgeInsets.only(right: 10);
+     final EdgeInsets shoppingBagSizeAndQuantityPadding = EdgeInsets.symmetric(
+      horizontal: 8,
+      vertical: 4,
+    );
 }

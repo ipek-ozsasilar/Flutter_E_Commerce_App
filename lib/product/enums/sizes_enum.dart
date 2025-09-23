@@ -4,7 +4,10 @@ enum IconSizeEnum {
   homeAppbarIconSize(60),
   homeSortFilterIconSize(20),
   homeIconSize(30),
-  homeStarIconSize(14);
+  homeStarIconSize(14),
+  homeCouponIconSize(16),
+  homeCouponIconContainerSize(24);
+
 
 
   final double value;
@@ -20,7 +23,9 @@ enum ImageSizeEnum {
   getYourOrderWidthAndHeight(350),
   makePaymentWidth(350),
   makePaymentHeight(230),
-  homeSponsordWidth(400);
+  homeSponsordWidth(400),
+  shoppingBagImageWidth(150),
+  shoppingBagImageHeight(160);
 
   final double value;
 
@@ -69,7 +74,8 @@ enum WidgetSizeEnum {
   profileEditButtonRight(-10),
   profileEditButtonBottom(-10),
   profileEditButtonWidthAndHeight(40),
-  deliveryAddressContainerHeight(140);
+  deliveryAddressContainerHeight(140),
+  couponContainerBorderWidth(1.5);
 
 
   

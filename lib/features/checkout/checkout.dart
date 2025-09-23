@@ -25,7 +25,7 @@ class _CheckoutViewState extends State<CheckoutView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CheckoutAppBar(),
+      appBar: CheckoutAppBar(title: LocaleKeys.checkout.tr()),
       body: Padding(
         padding: PaddingsConstants.instance.homePagePadding,
         child: ListView(

@@ -149,8 +149,10 @@
     "checkout": "Ödeme",
     "emailAddressHint": "ashika@gmail.com",
     "deliveryAddress": "Kargo Adresi",
-    "shoppingList": "Alışveriş Listesi"
-
+    "shoppingList": "Alışveriş Listesi",
+    "shoppingBag": "Alışveriş Sepeti",
+    "orderPaymentDetails": "Ödeme Detayları",
+    "orderAmounts": "Ödeme Tutarları"
 
 
 

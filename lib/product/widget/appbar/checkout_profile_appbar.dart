@@ -9,13 +9,15 @@ import 'package:flutter_e_commerce_app/product/widget/button/home_icon_button.da
 import 'package:flutter_e_commerce_app/product/widget/text/text_widget.dart';
 
   class CheckoutAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CheckoutAppBar({super.key});
+  const CheckoutAppBar({super.key, this.actionIcon= null, required this.title});
+  final String? title; 
+  final IconData? actionIcon;   
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       title: BoldOnboardingText(
-        title: LocaleKeys.checkout.tr(),
+        title: title ?? "",
         titleSize: TextSizeEnum.ProfileCheckoutTitleSize.value,
         titleColor: Theme.of(context).appColors.boldBlack,
       ),
@@ -29,6 +31,17 @@ import 'package:flutter_e_commerce_app/product/widget/text/text_widget.dart';
           size: TextSizeEnum.ProfileCheckoutTitleSize.value,
         ),
       ),
+      actions: [
+        if(actionIcon != null)
+        Padding(
+        padding: PaddingsConstants.instance.profileAppbarActionsPadding,
+        child: HomeIconButton(
+          icon: actionIcon!,
+          color: Theme.of(context).appColors.boldBlack,
+          size: TextSizeEnum.ProfileCheckoutTitleSize.value,
+        ),
+      ),
+      ],
     );
   }
 

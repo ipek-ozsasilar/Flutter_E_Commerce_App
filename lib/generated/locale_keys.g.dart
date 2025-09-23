@@ -125,4 +125,7 @@ abstract class LocaleKeys {
   static const emailAddressHint = 'emailAddressHint';
   static const deliveryAddress = 'deliveryAddress';
   static const shoppingList = 'shoppingList';
+  static const shoppingBag = 'shoppingBag';
+  static const orderPaymentDetails = 'orderPaymentDetails';
+  static const orderAmounts = 'orderAmounts';
 }

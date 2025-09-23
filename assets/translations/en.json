@@ -118,7 +118,11 @@
     "checkout": "Checkout",
     "emailAddressHint": "ashika@gmail.com",
     "deliveryAddress": "Delivery Address",
-    "shoppingList": "Shopping List"
+    "shoppingList": "Shopping List",
+    "shoppingBag": "Shopping Bag",
+    "orderPaymentDetails": "Order Payment Details",
+    "orderAmounts": "Order Amounts"
+
 
 
 
