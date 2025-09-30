@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app/features/shipping/shipping_view.dart';
 import 'package:flutter_e_commerce_app/features/shipping/sub_view/payment_card.dart';
 import 'package:flutter_e_commerce_app/generated/locale_keys.g.dart';
+import 'package:flutter_e_commerce_app/models/add_card_model.dart';
 import 'package:flutter_e_commerce_app/product/enums/icons_enum.dart';
 import 'package:flutter_e_commerce_app/product/enums/sizes_enum.dart';
 import 'package:flutter_e_commerce_app/product/theme/app_colors_context.dart';
@@ -11,11 +12,13 @@ import 'package:flutter_e_commerce_app/product/widget/text/text_widget.dart';
 class PaymentMethodsSection extends StatelessWidget {
   final int selectedPaymentMethod;
   final Function(int) onPaymentMethodChanged;
+  final List<AddCardModel> cardsList;
 
   const PaymentMethodsSection({
     super.key,
     required this.selectedPaymentMethod,
     required this.onPaymentMethodChanged,
+    required this.cardsList,
   });
 
   @override
@@ -36,24 +39,16 @@ class PaymentMethodsSection extends StatelessWidget {
         ListView.builder(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
-          itemCount: 4,
+          itemCount: cardsList.length,
           itemBuilder: (context, index) {
-            List<String> titles = ["VISA", "PayPal", "Maestro", "Apple Pay"];
-            List<IconData> icons = [
-              IconsEnum.iconCreditCard.icon,
-              Icons.account_balance_wallet,
-              IconsEnum.iconCreditCard.icon,
-              Icons.apple,
-            ];
-
             return Padding(
               padding: EdgeInsets.only(bottom: 12),
               child: PaymentMethodCard(
+                
                 isSelected: selectedPaymentMethod == index,
                 onTap: () => onPaymentMethodChanged(index),
-                icon: icons[index],
-                title: titles[index],
-                subtitle: "************2109",
+                title: cardsList[index].name ?? "",
+                subtitle: cardsList[index].number.toString(),
               ),
             );
           },

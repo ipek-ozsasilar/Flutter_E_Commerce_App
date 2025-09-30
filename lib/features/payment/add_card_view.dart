@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_e_commerce_app/models/add_card_model.dart';
 import 'package:flutter_e_commerce_app/product/constants/paddings_constants.dart';
+import 'package:flutter_e_commerce_app/product/enums/firebase_collections.dart';
 import 'package:flutter_e_commerce_app/product/enums/sizes_enum.dart';
 import 'package:flutter_e_commerce_app/product/theme/app_colors_context.dart';
+import 'package:flutter_e_commerce_app/product/utility/firebase/base_firebase.dart';
 import 'package:flutter_e_commerce_app/product/widget/text/text_widget.dart';
 
 class AddCardView extends StatefulWidget {
@@ -84,6 +87,16 @@ class _AddCardViewState extends State<AddCardView> {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       _showSuccessDialog();
+                      BaseFirebase<AddCardModel>(
+                        firebaseCollections: FirebaseCollections.cards,
+                      ).sendData(
+                        _cardHolderController.text,
+                        int.parse(
+                          _cardNumberController.text.replaceAll(' ', ''),
+                        ),
+                        _expiryController.text,
+                        int.parse(_cvvController.text),
+                      );
                     }
                   },
                 ),

@@ -70,7 +70,7 @@ class _TrendingMasonryGridViewWidgetState
 
   void initState() {
     super.initState();
-    products = BaseFirebase(
+    products = BaseFirebase<ProductModel>(
       firebaseCollections: FirebaseCollections.products,
     ).getData();
   }

@@ -5,7 +5,8 @@ enum FirebaseCollections {
   version,
   android,
   ios,
-  products;
+  products,
+  cards;
 
   //Created Collection Reference for data fetch
   CollectionReference get collectionReference => FirebaseFirestore.instance.collection(name);

@@ -38,7 +38,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     super.initState();
-    products = BaseFirebase(
+    products = BaseFirebase<ProductModel>(
       firebaseCollections: FirebaseCollections.products,
     ).getData();
   }

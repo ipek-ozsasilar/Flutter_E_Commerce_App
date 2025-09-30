@@ -133,7 +133,7 @@ class _MyAppState extends ConsumerState<MyApp> with CustomThemeViewModel {
 
       //fixme : apple login ekle ve linking yap facegogole
       //homepage ve shoppage sonra tamamlanacak
-      home:   GetStartedView(),
+      home:   ProfileView(),
     );
   }
 }

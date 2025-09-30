@@ -8,15 +8,12 @@ import 'package:flutter_e_commerce_app/product/widget/text/text_widget.dart';
 class PaymentMethodCard extends StatelessWidget {
   final bool isSelected;
   final VoidCallback onTap;
-  final IconData icon;
   final String title;
   final String subtitle;
-
   const PaymentMethodCard({
     super.key,
     required this.isSelected,
     required this.onTap,
-    required this.icon,
     required this.title,
     required this.subtitle,
   });
@@ -27,16 +24,6 @@ class PaymentMethodCard extends StatelessWidget {
       decoration: PaymentContainerDecoration(context),
       child: ListTile(
         onTap: onTap,
-        leading: Container(
-          width: WidgetSizeEnum.profileEditButtonWidthAndHeight.value,
-          height: WidgetSizeEnum.profileEditButtonWidthAndHeight.value,
-          decoration: PaymentIconContainerDecoration(context),
-          child: GlobalIcon(
-            icon: icon,
-            color: Theme.of(context).appColors.boldBlack,
-            size: IconSizeEnum.homeCouponIconContainerSize.value,
-          ),
-        ),
         title: BoldOnboardingText(
           title: title,
           titleSize: TextSizeEnum.homeCardsTitleSize.value,
