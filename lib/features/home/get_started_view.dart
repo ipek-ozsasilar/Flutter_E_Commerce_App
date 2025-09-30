@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart' show tr, StringTranslateExtension;
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app/features/home/home_view.dart';
+import 'package:flutter_e_commerce_app/features/trending_product/trending_product_view.dart';
 import 'package:flutter_e_commerce_app/gen/assets.gen.dart';
 import 'package:flutter_e_commerce_app/generated/locale_keys.g.dart' show LocaleKeys;
 import 'package:flutter_e_commerce_app/product/constants/paddings_constants.dart';
@@ -50,7 +51,7 @@ class GetStartedView extends ConsumerWidget {
                 GlobalElevatedButton(
                   text: LocaleKeys.getStarted.tr(),
                   onPressed: () {
-                    NavigatorManager.instance.navigatePage(context,  HomeView());
+                    NavigatorManager.instance.navigatePage(context,  TrendingProductView());
                   },
                   child: NormalText(
                     text: LocaleKeys.getStarted.tr(),

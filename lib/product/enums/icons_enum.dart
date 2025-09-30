@@ -19,7 +19,9 @@ enum IconsEnum {
   iconEdit(Icons.edit),
   iconLocation(Icons.location_on),
   iconCoupon(Icons.local_offer_outlined),
-  iconArrowDown(Icons.keyboard_arrow_down);
+  iconArrowDown(Icons.keyboard_arrow_down),
+  iconCreditCard(Icons.credit_card),
+  iconCheck(Icons.check);
 
   const IconsEnum(this.icon);
   final IconData icon;

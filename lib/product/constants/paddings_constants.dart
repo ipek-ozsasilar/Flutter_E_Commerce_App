@@ -90,4 +90,6 @@ class PaddingsConstants {
       horizontal: 8,
       vertical: 4,
     );
+    final EdgeInsets paymentSuccessDialogPadding = EdgeInsets.all(24);
+    final EdgeInsets paymentSuccessDialogIconPadding = EdgeInsets.only(bottom: 24);
 }

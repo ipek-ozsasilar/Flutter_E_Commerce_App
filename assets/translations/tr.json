@@ -152,7 +152,11 @@
     "shoppingList": "Alışveriş Listesi",
     "shoppingBag": "Alışveriş Sepeti",
     "orderPaymentDetails": "Ödeme Detayları",
-    "orderAmounts": "Ödeme Tutarları"
+    "orderAmounts": "Ödeme Tutarları",
+    "continueButton": "Devam Et",
+    "payment": "Ödeme",
+    "paymentSuccess": "Ödeme başarıyla yapıldı."
+
 
 
 

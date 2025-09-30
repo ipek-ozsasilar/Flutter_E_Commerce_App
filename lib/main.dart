@@ -7,8 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_app/features/home/get_started_view.dart';
 import 'package:flutter_e_commerce_app/features/home/home_view.dart';
 import 'package:flutter_e_commerce_app/features/login/forgot_password.dart';
+import 'package:flutter_e_commerce_app/features/payment/add_card_view.dart';
 import 'package:flutter_e_commerce_app/features/place_order/place_order_view.dart';
 import 'package:flutter_e_commerce_app/features/profile/profile_view.dart';
+import 'package:flutter_e_commerce_app/features/shipping/shipping_view.dart';
+import 'package:flutter_e_commerce_app/features/shipping/sub_view/payment_card.dart';
+import 'package:flutter_e_commerce_app/features/shipping/sub_view/payment_methods_sections.dart';
 import 'package:flutter_e_commerce_app/features/trending_product/trending_product_view.dart';
 //flutter_riverpod
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -26,6 +30,7 @@ import 'package:responsive_framework/responsive_framework.dart';
 //core
 import 'package:flutter_e_commerce_app/core/injection_manager.dart';
 import 'package:flutter_e_commerce_app/features/checkout/checkout.dart';
+import 'package:flutter_e_commerce_app/features/shop_page/shop_page_view.dart';
 
 Future<void> main() async {
   //setupLocator() içinde servislerin kayıt işlemi yapıyorsun. Eğer runApp’ten sonra yaparsan, widget’lar çalışmaya başlar ve getIt’ten
@@ -127,7 +132,8 @@ class _MyAppState extends ConsumerState<MyApp> with CustomThemeViewModel {
       ),
 
       //fixme : apple login ekle ve linking yap facegogole
-      home:   PlaceOrderView(),
+      //homepage ve shoppage sonra tamamlanacak
+      home:   GetStartedView(),
     );
   }
 }

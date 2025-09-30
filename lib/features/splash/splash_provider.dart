@@ -125,8 +125,7 @@ class SplashProvider extends StateNotifier<SplashState> {
 
   //fetch version data from firebase firestore
   Future<VersionModel?> getFirebaseData() async {
-    final versionReference =
-        await FirebaseCollections.version.collectionReference;
+    final versionReference = await FirebaseCollections.version.collectionReference;
     final response = await versionReference
         .withConverter<VersionModel>(
           fromFirestore: (snapshot, _) =>

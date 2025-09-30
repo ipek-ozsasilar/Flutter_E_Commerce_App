@@ -121,7 +121,11 @@
     "shoppingList": "Shopping List",
     "shoppingBag": "Shopping Bag",
     "orderPaymentDetails": "Order Payment Details",
-    "orderAmounts": "Order Amounts"
+    "orderAmounts": "Order Amounts",
+    "continueButton": "Continue",
+    "payment": "Payment",
+     "paymentSuccess": "Payment done successfully."
+
 
 
 

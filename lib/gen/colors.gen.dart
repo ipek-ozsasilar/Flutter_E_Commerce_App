@@ -62,14 +62,14 @@ class ColorName {
   /// Color: #BDBDBD
   static const Color loginShadowMountainDark = Color(0xFFBDBDBD);
 
+  /// Color: #2196F3
+  static const Color materialBlue = Color(0xFF2196F3);
+
   /// Color: #FE735C
   static const Color offRedColor = Color(0xFFFE735C);
 
   /// Color: #808488
   static const Color oldPriceGreyColor = Color(0xFF808488);
-
-  /// Color: #BBBBBB
-  static const Color searchHintGrey = Color(0xFFBBBBBB);
 
   /// Color: #F4F4F4
   static const Color paymentBoxFillGrey = Color(0xFFF4F4F4);
@@ -82,6 +82,12 @@ class ColorName {
 
   /// Color: #8D8D8D
   static const Color prevColorDark = Color(0xFF8D8D8D);
+
+  /// Color: #BBBBBB
+  static const Color searchHintGrey = Color(0xFFBBBBBB);
+
+  /// Color: #F9F9F9
+  static const Color secondaryBackgroundColor = Color(0xFFF9F9F9);
 
   /// Color: #17223B
   static const Color selectedPageBlue = Color(0xFF17223B);
@@ -124,10 +130,4 @@ class ColorName {
 
   /// Color: #FFFFFF
   static const Color whiteColor = Color(0xFFFFFFFF);
-
-  /// Color: #F9F9F9
-  static const Color secondaryBackgroundColor = Color(0xFFF9F9F9);
-
-  /// Color: #2196F3
-  static const Color materialBlue = Color(0xFF2196F3);
 }

@@ -5,8 +5,10 @@ enum IconSizeEnum {
   homeSortFilterIconSize(20),
   homeIconSize(30),
   homeStarIconSize(14),
+  homePaymentCardIconSize(20),
   homeCouponIconSize(16),
-  homeCouponIconContainerSize(24);
+  homeCouponIconContainerSize(24),
+  paymentSuccessDialogIconSize(40);
 
 
 
@@ -75,7 +77,8 @@ enum WidgetSizeEnum {
   profileEditButtonBottom(-10),
   profileEditButtonWidthAndHeight(40),
   deliveryAddressContainerHeight(140),
-  couponContainerBorderWidth(1.5);
+  couponContainerBorderWidth(1.5),
+  paymentSuccessDialogWidthAndHeight(80);
 
 
   

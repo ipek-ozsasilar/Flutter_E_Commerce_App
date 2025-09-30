@@ -10,19 +10,17 @@ import 'package:flutter_e_commerce_app/features/home/sub_widgets/sort_filter_wid
 import 'package:flutter_e_commerce_app/features/home/sub_widgets/special_offers.dart';
 import 'package:flutter_e_commerce_app/features/home/sub_widgets/sponsord_widget.dart';
 import 'package:flutter_e_commerce_app/features/home/sub_widgets/trending_deal_widget.dart';
-import 'package:flutter_e_commerce_app/gen/assets.gen.dart';
-import 'package:flutter_e_commerce_app/gen/colors.gen.dart';
 import 'package:flutter_e_commerce_app/generated/locale_keys.g.dart';
+import 'package:flutter_e_commerce_app/models/product_model.dart';
 import 'package:flutter_e_commerce_app/product/constants/paddings_constants.dart';
+import 'package:flutter_e_commerce_app/product/enums/firebase_collections.dart';
 import 'package:flutter_e_commerce_app/product/enums/icons_enum.dart';
 import 'package:flutter_e_commerce_app/product/enums/sizes_enum.dart';
 import 'package:flutter_e_commerce_app/product/theme/app_colors_context.dart';
+import 'package:flutter_e_commerce_app/product/utility/firebase/base_firebase.dart';
 import 'package:flutter_e_commerce_app/product/widget/appbar/home_appbar.dart';
 import 'package:flutter_e_commerce_app/product/widget/bottom_appbar/home_bottom_navigation.dart';
-import 'package:flutter_e_commerce_app/product/widget/button/home_icon_button.dart';
-import 'package:flutter_e_commerce_app/product/widget/icon/global_icon.dart';
 import 'package:flutter_e_commerce_app/product/widget/search/search_widget.dart';
-import 'package:flutter_e_commerce_app/product/widget/text/text_widget.dart';
 
 //Haber, ürün açıklaması, kullanıcıya özel içerik gibi backend’den gelen veriler için çeviri dosyası kullanılmaz.
 //Bunun yerine veri tabanında çok dilli yapı olur.
@@ -35,6 +33,16 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  late final Future<List<ProductModel?>> products;
+
+  @override
+  void initState() {
+    super.initState();
+    products = BaseFirebase(
+      firebaseCollections: FirebaseCollections.products,
+    ).getData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,7 +82,20 @@ class _HomeViewState extends State<HomeView> {
             ),
 
             //Deal of the day card list
-            DealOfTheDayCardsWidget(),
+            FutureBuilder<List<ProductModel?>>(
+              future: products,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Container(
+                    height: WidgetSizeEnum.homeCardsContainerHeight.value,
+                    child: const Center(child: CircularProgressIndicator()),
+                  );
+                }
+
+                final productList = snapshot.data?.cast<ProductModel>() ?? [];
+                return DealOfTheDayCardsWidget(products: productList);
+              },
+            ),
 
             Padding(
               padding:
@@ -102,7 +123,20 @@ class _HomeViewState extends State<HomeView> {
               ),
             ),
 
-            DealOfTheDayCardsWidget(),
+            FutureBuilder<List<ProductModel?>>(
+              future: products,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Container(
+                    height: WidgetSizeEnum.homeCardsContainerHeight.value,
+                    child: const Center(child: CircularProgressIndicator()),
+                  );
+                }
+
+                final productList = snapshot.data?.cast<ProductModel>() ?? [];
+                return DealOfTheDayCardsWidget(products: productList);
+              },
+            ),
 
             //New Arrivals
             Padding(
@@ -120,18 +154,9 @@ class _HomeViewState extends State<HomeView> {
         ),
       ),
       bottomNavigationBar: homeBottomNavigationBar(),
-
-       
-
-
-     
-
     );
   }
 }
-
-
-
 
 class HomeContainerDecoration {
   static BoxDecoration containerDecoration() {
@@ -141,5 +166,3 @@ class HomeContainerDecoration {
     );
   }
 }
-
-

@@ -128,4 +128,7 @@ abstract class LocaleKeys {
   static const shoppingBag = 'shoppingBag';
   static const orderPaymentDetails = 'orderPaymentDetails';
   static const orderAmounts = 'orderAmounts';
+  static const continueButton = 'continueButton';
+  static const payment = 'payment';
+  static const paymentSuccess = 'paymentSuccess';
 }

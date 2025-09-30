@@ -4,9 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 enum FirebaseCollections {
   version,
   android,
-  ios;
+  ios,
+  products;
 
   //Created Collection Reference for data fetch
-  CollectionReference get collectionReference =>
-      FirebaseFirestore.instance.collection(name);
+  CollectionReference get collectionReference => FirebaseFirestore.instance.collection(name);
 }
